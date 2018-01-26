@@ -1,5 +1,6 @@
 ﻿# Trumpf.Coparoo.Web Library for .NET 
 ![logo640]
+![buildStatus]
 
 ## Description
 *Trumpf.Coparoo.Web is a .NET library for C# that helps you write fast, maintainable, robust and fluent web tests based on the **co**ntrol/**pa**ge/**ro**ot-**o**bject (Coparoo) pattern.*
@@ -32,7 +33,9 @@ Finally, if things are set up and you want to work on user interface tests in a 
 Copyright (c) TRUMPF Werkzeugmaschinen GmbH + Co. KG. All rights reserved. 2016, 2017, 2018.
 
 Developed by Alexander Kaiser, ideas and contributions by many more.
+Developed by Alexander Kaiser (alexander.kai...@de.trumpf.com), ideas and contributions by many more.
 
 Licensed under the [Apache License Version 2.0](LICENSE) License.
 
 [logo640]: ./Resources/logo640.png "coparoo web logo"
+[buildStatus]: https://travis-ci.org/trumpf-code/Trumpf.Coparoo.Web.svg?branch=master "Build Status"
