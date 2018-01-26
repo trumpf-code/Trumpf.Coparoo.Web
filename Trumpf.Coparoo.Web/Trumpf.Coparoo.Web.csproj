@@ -7,6 +7,7 @@
 
     <!-- nupkg information -->
     <PackageId>Trumpf.Coparoo.Web</PackageId>
+    <Title>Trumpf.Coparoo.Web Library for .NET</Title>
     <Authors>Alexander Kaiser</Authors>
     <Company>TRUMPF Werkzeugmaschinen GmbH + Co. KG</Company>
     <Product>Trumpf Coparoo Web</Product>
@@ -17,8 +18,8 @@
     <PackageTags>selenium, webdriver, browser, automation, PageObject, test, ui</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageProjectUrl>https://github.com/trumpf-code/trumpf.coparoo.web</PackageProjectUrl>
-    <PackageIconUrl>https://github.com/trumpf-code/trumpf.coparoo.web/resources/logo.png</PackageIconUrl>
-    <Version>0.3.0</Version>
+    <PackageIconUrl>https://github.com/trumpf-code/trumpf.coparoo.web/blob/master/Resources/logo.png</PackageIconUrl>
+    <Version>1.0.0</Version>
     <RepositoryUrl>https://github.com/trumpf-code/trumpf.coparoo.web</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
