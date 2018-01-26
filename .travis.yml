@@ -1,2 +1,7 @@
 language: csharp
 solution: Trumpf.Coparoo.Web.sln
+before_script:
+- msbuild /t:Restore Trumpf.Coparoo.Web.sln
+ 
+script:
+- msbuild /p:Configuration=Release Trumpf.Coparoo.Web.sln
