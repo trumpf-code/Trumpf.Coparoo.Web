@@ -15,7 +15,7 @@ The following sign-in/out test scenario illustrates how the framework facilitate
     app.On<ProfileDrowndown>().SignOut.Click();         // sign out
 
 ## NuGet Package Information
-To make it easier for you to develop with the *Trumpf Coparoo Web* library we release it as NuGet package. The latest library is available on the [Nuget package page](https://www.nuget.org/packages/Trumpf.Coparoo.Web/1.0.0).
+To make it easier for you to develop with the *Trumpf Coparoo Web* library we release it as NuGet package. The latest library is available on [https://www.nuget.org/packages/Trumpf.Coparoo.Web](https://www.nuget.org/packages/Trumpf.Coparoo.Web).
 To install, just type `Install-Package Trumpf.Coparoo.Web` in the [Package Manager Console](https://docs.nuget.org/docs/start-here/using-the-package-manager-console).
 
 ## Getting Started
