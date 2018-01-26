@@ -3,7 +3,7 @@ solution: Trumpf.Coparoo.Web.sln
 before_script:
 - msbuild /t:Restore Trumpf.Coparoo.Web.sln
 
-install
+install:
 - nuget install NUnit.Runners -Version 3.7.0 -OutputDirectory testrunner
 
 script:
