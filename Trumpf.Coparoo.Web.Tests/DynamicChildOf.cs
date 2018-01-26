@@ -15,7 +15,7 @@
 namespace Trumpf.Coparoo.Tests
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
     using Trumpf.Coparoo.Web.Internal;
@@ -23,7 +23,7 @@ namespace Trumpf.Coparoo.Tests
     /// <summary>
     /// Test class.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class DynamicChildOf
     {
         /// <summary>
@@ -36,7 +36,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenChildRelationsAreAddedAtRuntime_ThenTheseShowUpInThePageObjectTree()
         {
             // Act
@@ -51,7 +51,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenTheOnMethodIsCalled_ThenDynamicallyAddedChildRelationAreEffective()
         {
             // Act
@@ -76,7 +76,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenTheSameRelationIsAddedMultipleTime_ThenThisIsRecognizedByTheReturnCode()
         {
             // Act
@@ -91,23 +91,39 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [Test]
         public void WhenAnChildInterfaceIsRegisteredAtRuntime_ThenAnExceptionIsThrown()
         {
-            // Act
-            new A().ChildOf<IB, A>();
+            try
+            {
+                // Act
+                new A().ChildOf<IB, A>();
+            }
+            catch (InvalidOperationException)
+            {
+                return;
+            }
+
+            Assert.Fail();
         }
 
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [Test]
         public void WhenAParentInterfaceIsRegisteredAtRuntime_ThenAnExceptionIsThrown()
         {
-            // Act
-            new A().ChildOf<A, IB>();
+            try
+            {
+                // Act
+                new A().ChildOf<A, IB>();
+            }
+            catch (InvalidOperationException)
+            {
+                return;
+            }
+
+            Assert.Fail();
         }
 
         /// <summary>

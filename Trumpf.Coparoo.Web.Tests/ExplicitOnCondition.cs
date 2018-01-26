@@ -15,20 +15,20 @@
 namespace Trumpf.Coparoo.Tests
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
 
     /// <summary>
     /// Test class.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class ExplicitOnCondition
     {
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenMultiplePathsToAPageObjectExistInThePageObjectTree_ThenTheExplicitOnConditionIsEffective()
         {
             SetAndCheck(typeof(A));

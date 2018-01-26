@@ -15,14 +15,14 @@
 namespace Trumpf.Coparoo.Tests
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
 
     /// <summary>
     /// Test class.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class ConditionalOn
     {
         /// <summary>
@@ -33,7 +33,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenAccessingAPage_ThenTheOnConditionIsEvalutated()
         {
             // Act

@@ -19,7 +19,7 @@ namespace Trumpf.Coparoo.Tests
     using System.IO;
     using System.Linq;
     using System.Threading;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
     using Trumpf.Coparoo.Web.PageTests;
@@ -27,13 +27,13 @@ namespace Trumpf.Coparoo.Tests
     /// <summary>
     /// Test class.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class TreeWriter
     {
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenTheDotTreeIsGenerated_ThenItContainsTheControlProperties()
         {
             // Data
@@ -76,7 +76,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenTestAreExecutedAllSucceedAndTheDotTreeIsGenerated_ThenItContainsTheControlPropertiesAndTestRestults()
         {
             // Environment
@@ -132,7 +132,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenTestOfOnePageObjectAreExecutedAllSucceedAndTheDotTreeIsGenerated_ThenItContainsTheControlPropertiesAndTestRestults()
         {
             // Environment
@@ -178,49 +178,57 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
-        [ExpectedException(typeof(TimeoutException))]
+        [Test]
         public void WhenTestAreExecutedAndOneFailsAndTheDotTreeIsGenerated_ThenItContainsTheControlPropertiesAndTestRestults()
         {
-            // Environment
-            var slow = false;
-            var fail = true;
-            WithTests.LoginTests.Fail = fail;
-            WithTests.LoginTests.Slow = slow;
-            WithTests.MenuTests.Slow = slow;
-
-            // Data
-            var dotFile = $"{TabObject.DEFAULT_FILE_PREFIX}.dot";
-            var pdfFile = $"{TabObject.DEFAULT_FILE_PREFIX}.pdf";
-            var fullDotPath = Path.GetFullPath(dotFile);
-            var fullPdfPath = Path.GetFullPath(pdfFile);
-            var dotExists = false;
-            var pdfExists = false;
-
-            // Test
             try
             {
-                // Act
-                new WithTests.MyTab().TestBottomUpInternal(null, true);
+                // Environment
+                var slow = false;
+                var fail = true;
+                WithTests.LoginTests.Fail = fail;
+                WithTests.LoginTests.Slow = slow;
+                WithTests.MenuTests.Slow = slow;
+
+                // Data
+                var dotFile = $"{TabObject.DEFAULT_FILE_PREFIX}.dot";
+                var pdfFile = $"{TabObject.DEFAULT_FILE_PREFIX}.pdf";
+                var fullDotPath = Path.GetFullPath(dotFile);
+                var fullPdfPath = Path.GetFullPath(pdfFile);
+                var dotExists = false;
+                var pdfExists = false;
+
+                // Test
+                try
+                {
+                    // Act
+                    new WithTests.MyTab().TestBottomUpInternal(null, true);
+                }
+                finally
+                {
+                    // Check
+                    dotExists = File.Exists(dotFile);
+                    pdfExists = File.Exists(pdfFile);
+                    Assert.IsTrue(pdfExists || dotExists);
+
+                    // Clean up
+                    if (pdfExists)
+                    {
+                        File.Delete(pdfFile);
+                    }
+
+                    if (dotExists)
+                    {
+                        File.Delete(dotFile);
+                    }
+                }
             }
-            finally
+            catch (TimeoutException)
             {
-                // Check
-                dotExists = File.Exists(dotFile);
-                pdfExists = File.Exists(pdfFile);
-                Assert.IsTrue(pdfExists || dotExists);
-
-                // Clean up
-                if (pdfExists)
-                {
-                    File.Delete(pdfFile);
-                }
-
-                if (dotExists)
-                {
-                    File.Delete(dotFile);
-                }
+                return;
             }
+
+            Assert.Fail();
         }
 
         private class WithoutTests

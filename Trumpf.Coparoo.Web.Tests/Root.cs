@@ -16,20 +16,20 @@
 namespace Trumpf.Coparoo.Tests
 {
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
 
     /// <summary>
     /// Test class.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class Root
     {
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenRootIsCalledOnRoot_ThenTheRootIsReturned()
         {
             // Act
@@ -43,7 +43,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenWeGetTheRootOfTheChildOfTheRoot_ThenTheRootIsReturned()
         {
             // Act
@@ -59,7 +59,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenWeGetTheRootOfTheChildOfChildOfTheRoot_ThenTheRootIsReturned()
         {
             // Act

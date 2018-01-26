@@ -16,7 +16,7 @@ namespace Trumpf.Coparoo.Tests
 {
     using System;
     using System.IO;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using NUnit.Framework;
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
     using Trumpf.Coparoo.Web.Logging.Tree;
@@ -25,13 +25,13 @@ namespace Trumpf.Coparoo.Tests
     /// <summary>
     /// Test class.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class Runner
     {
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenThePageTestsOfBAreExecuted_ThenTwoTestsExecuteInTotal()
         {
             // Prepare
@@ -48,7 +48,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenThePageTestsOfBAreExecuted_ThenOneTestExecutesInTotal()
         {
             // Prepare
@@ -64,7 +64,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenTheBottomUpTestIsCalledOnTheRoot_ThenThreeTestsAreExecuted()
         {
             // Prepare
@@ -84,7 +84,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenTheDotTreeIsWrittenToDisk_ThenAFileIsCreated()
         {
             A root;
@@ -123,7 +123,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void WhenTheDotTreeIsGenerated_ThenItContainsTheTestResults()
         {
             string file = null;
