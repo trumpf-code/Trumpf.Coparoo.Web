@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topics>
+  <Topic id="21f8760e-a098-43d0-b8ae-90ec7a80bed7" visible="True" isDefault="true" isSelected="true" title="Welcome to the Trumpf.Coparoo.Web Framework">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="Welcome" />
+    </HelpKeywords>
+  </Topic>
+</Topics>

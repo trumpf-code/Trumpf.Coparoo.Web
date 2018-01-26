@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net45</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.8.0" />
+    <ProjectReference Include="..\Trumpf.Coparoo.Web\Trumpf.Coparoo.Web.csproj" />
+  </ItemGroup>
+</Project>

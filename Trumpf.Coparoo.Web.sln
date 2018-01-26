@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trumpf.Coparoo.Web", "Trumpf.Coparoo.Web\Trumpf.Coparoo.Web.csproj", "{6C1B3F6C-88F1-431C-845E-9B6822687326}"
+EndProject
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Trumpf.Coparoo.Web.Docu", "Trumpf.Coparoo.Web.Docu\Trumpf.Coparoo.Web.Docu.shfbproj", "{991268D0-2168-489B-8A5D-8F914537DBF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{415EECA7-4BD2-4479-A58A-5F0757D54991}"
+	ProjectSection(SolutionItems) = preProject
+		DECOUPLING.md = DECOUPLING.md
+		DEMO.md = DEMO.md
+		LICENSE = LICENSE
+		PAGETESTS.md = PAGETESTS.md
+		PATTERN.md = PATTERN.md
+		README.md = README.md
+		Trumpf.Coparoo.Web.sln.licenseheader = Trumpf.Coparoo.Web.sln.licenseheader
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trumpf.Coparoo.Web.Demo", "Trumpf.Coparoo.Web.Demo\Trumpf.Coparoo.Web.Demo.csproj", "{12962F01-639A-4234-BA4A-7514EA58D011}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trumpf.Coparoo.Web.Tests", "Trumpf.Coparoo.Web.Tests\Trumpf.Coparoo.Web.Tests.csproj", "{514B66AE-8969-4590-B30F-B9B89390BB16}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C1B3F6C-88F1-431C-845E-9B6822687326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C1B3F6C-88F1-431C-845E-9B6822687326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C1B3F6C-88F1-431C-845E-9B6822687326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C1B3F6C-88F1-431C-845E-9B6822687326}.Release|Any CPU.Build.0 = Release|Any CPU
+		{991268D0-2168-489B-8A5D-8F914537DBF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{991268D0-2168-489B-8A5D-8F914537DBF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12962F01-639A-4234-BA4A-7514EA58D011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12962F01-639A-4234-BA4A-7514EA58D011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12962F01-639A-4234-BA4A-7514EA58D011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12962F01-639A-4234-BA4A-7514EA58D011}.Release|Any CPU.Build.0 = Release|Any CPU
+		{514B66AE-8969-4590-B30F-B9B89390BB16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{514B66AE-8969-4590-B30F-B9B89390BB16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{514B66AE-8969-4590-B30F-B9B89390BB16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{514B66AE-8969-4590-B30F-B9B89390BB16}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3334CEC1-6232-47CA-A5C8-6BF37FDE259D}
+	EndGlobalSection
+EndGlobal
