@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if !DEBUG
 namespace Trumpf.Coparoo.Web.Demo
 {
     using System.Linq;
@@ -97,3 +98,4 @@ namespace Trumpf.Coparoo.Web.Demo
         }
     }
 }
+#endif
