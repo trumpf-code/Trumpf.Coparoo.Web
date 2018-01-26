@@ -1,0 +1,5 @@
+image:
+- Visual Studio 2017
+
+build:
+  project: Trumpf.Coparoo.Web.sln
