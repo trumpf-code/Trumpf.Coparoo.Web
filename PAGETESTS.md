@@ -45,7 +45,7 @@ To visualize page test results of page object `P` together with the Coparoo grap
 
     tab.On<P>().Test(true);
 
-This will generate a `Coparoo.pdf` or `Coparoo.dot` file in working directory; check [the Coparoo code example](DEMO) for details.
+This will generate a `Coparoo.pdf` or `Coparoo.dot` file in working directory; check [the Coparoo code example](DEMO.md) for details.
 The generated graph contains discovered page test classes as well as their page tests.
 
 The resulting graph looks like this:

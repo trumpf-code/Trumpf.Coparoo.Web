@@ -124,7 +124,7 @@ When you have identified these page objects, you can follow this simple rule to 
 - no node `c` of another page object `C` is located on the path from `a` to `b`.
 
 ### Getting started...
-As a next step, consider reading [this code example](DEMO).
+As a next step, consider reading [this code example](DEMO.md).
 It illustrates how the *Coparoo* framework helps you putting these ideas into practice.
 
 [tree]: ./Resources/pageObjectTree.png "Coparoo tree"

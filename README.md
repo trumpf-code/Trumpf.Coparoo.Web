@@ -18,14 +18,14 @@ To make it easier for you to develop with the *Trumpf Coparoo Web* library we re
 To install, just type `Install-Package Trumpf.Coparoo.Web` in the [Package Manager Console](https://docs.nuget.org/docs/start-here/using-the-package-manager-console).
 
 ## Getting Started
-If you want to learn more about the *control/page/root-object pattern*, the idea behind this framework, consider reading [the design pattern introduction](PATTERN).
+If you want to learn more about the *control/page/root-object pattern*, the idea behind this framework, consider reading [the design pattern introduction](PATTERN.md).
 It illustrates how the framework can help you at writing maintainable and fast-running user interface tests.
 
 If you can't wait getting started and want see some code, have a look at [this code example](DEMO.md).
 
-Supposed you have already defined your first Coparoo test and want to know how to better structure page objects and related tests, have a look at [Coparoo's page test runner](PAGETESTS).
+Supposed you have already defined your first Coparoo test and want to know how to better structure page objects and related tests, have a look at [Coparoo's page test runner](PAGETESTS.md).
 
-Finally, if things are set up and you want to work on user interface tests in a collaborative setup consisting of many possibly independent teams, or write test cases even before the user interfaces ready to execute (say, directly after the UX team is done) consider reading [this tutorial](DECOUPLING).
+Finally, if things are set up and you want to work on user interface tests in a collaborative setup consisting of many possibly independent teams, or write test cases even before the user interfaces ready to execute (say, directly after the UX team is done) consider reading [this tutorial](DECOUPLING.md).
 
 ## License
 
