@@ -3,3 +3,6 @@ image:
 
 build:
   project: Trumpf.Coparoo.Web.sln
+
+before_build:
+- nuget restore
