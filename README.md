@@ -39,4 +39,4 @@ Licensed under the [Apache License Version 2.0](LICENSE) License.
 
 [logo640]: ./Resources/logo640.png "coparoo web logo"
 [travisBuildStatus]: https://travis-ci.org/trumpf-code/Trumpf.Coparoo.Web.svg?branch=master "Build Status (Travis CI)"
-[appVeyorBuildStatus]: https://ci.appveyor.com/api/projects/status/github/trumpf-code/Trumpf.Coparoo.Web\&svg=true "Build Status (AppVeyor)"
+[appVeyorBuildStatus]: https://ci.appveyor.com/api/projects/status/github/trumpf-code/Trumpf.Coparoo.Web "Build Status (AppVeyor)"
