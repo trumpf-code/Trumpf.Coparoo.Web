@@ -1,6 +1,7 @@
 ﻿# Trumpf.Coparoo.Web Library for .NET 
 ![logo640]
-[![buildStatus]](https://travis-ci.org/trumpf-code/Trumpf.Coparoo.Web)
+[![travisBuildStatus]](https://travis-ci.org/trumpf-code/Trumpf.Coparoo.Web)
+[![appVeyorBuildStatus]](https://ci.appveyor.com/project/trumpf-code/trumpf-coparoo-web)
 
 ## Description
 *Trumpf.Coparoo.Web is a .NET library for C# that helps you write fast, maintainable, robust and fluent web tests based on the **co**ntrol/**pa**ge/**ro**ot-**o**bject (Coparoo) pattern.*
@@ -37,4 +38,5 @@ Developed by Alexander Kaiser (alexander.kai...@de.trumpf.com), ideas and contri
 Licensed under the [Apache License Version 2.0](LICENSE) License.
 
 [logo640]: ./Resources/logo640.png "coparoo web logo"
-[buildStatus]: https://travis-ci.org/trumpf-code/Trumpf.Coparoo.Web.svg?branch=master "Build Status"
+[travisBuildStatus]: https://travis-ci.org/trumpf-code/Trumpf.Coparoo.Web.svg?branch=master "Build Status (Travis CI)"
+[appVeyorBuildStatus]: https://ci.appveyor.com/api/projects/status/github/trumpf-code/Trumpf.Coparoo.Web "Build Status (AppVeyor)"
