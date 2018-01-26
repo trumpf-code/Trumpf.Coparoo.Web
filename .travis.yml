@@ -9,4 +9,4 @@ install:
 script:
 - ls --recursive
 - msbuild /p:Configuration=Release Trumpf.Coparoo.Web.sln
-- mono ./testrunner/NUnit.ConsoleRunner.3.7.0/tools/nunit3-console.exe ./Trumpf.Coparoo.Web.Tests/bin/Release/net45/Trumpf.Coparoo.Web.Tests.dll
+- mono ./testrunner/NUnit.ConsoleRunner.3.7.0/tools/nunit3-console.exe ./Trumpf.Coparoo.Web.Tests/bin/Release/net45/Trumpf.Coparoo.Web.Tests.dll --workers=1
