@@ -35,7 +35,6 @@ namespace Trumpf.Coparoo.Web.Internal
         private int index = 0;
         private IUIObjectNode mParent;
         private int mHash;
-        private IEnumerable<ISearchContext> matches = null;
         private ITabObjectNode mRootNode = null;
         private bool enableCaching;
 
