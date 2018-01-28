@@ -17,13 +17,13 @@ namespace Trumpf.Coparoo.Web.Demo
     using System.Linq;
 
     using Trumpf.Coparoo.Web.PageTests;
-    public class SeminareTests : PageObjectTests<Events>
+    public class EventsTests : PageObjectTests<Events>
     {
         [PageTest]
-        public void CheckSeminarCount()
+        public void CheckEventsCount()
         {
             Page.On<Events>().SearchFor("praxis qualitätssicherung");
-            Await(() => Page.On<Events>().SeminarZeilen.Count()).WaitFor(c => c == 0, "0 seminars in list");
+            Await(() => Page.On<Events>().EventList.Count()).WaitFor(c => c == 2, "2 seminars in list");
         }
     }
 }

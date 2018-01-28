@@ -19,7 +19,7 @@ namespace Trumpf.Coparoo.Web.Demo
     public class VdiTab : TabObject, IVdiTab
     {
         protected override System.Func<IWebDriver> Creator => () => new OpenQA.Selenium.Firefox.FirefoxDriver();
-        protected override string Url => "https://www.vdi-suedwest.de";
+        protected override string Url => "https://www.vdi-fortbildung.de";
         public VdiTab()
         {
             Configuration.ShowWaitingDialog = true;

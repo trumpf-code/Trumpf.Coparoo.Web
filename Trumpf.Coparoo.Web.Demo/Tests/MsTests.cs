@@ -49,10 +49,10 @@ namespace Trumpf.Coparoo.Web.Demo
                 vdi = new VdiTab();
                 vdi.Open();
                 vdi.On<VDI>().Displayed.WaitFor();
-                vdi.On<Menu>().Veranstaltungen.Click();
-                vdi.On<Events>().Volltextsuche.Content = "praxis qualitätssicherung";
-                vdi.On<Events>().SucheAnzeigen.Click();
-                DialogWait.For(() => vdi.On<Events>().SeminarZeilen.Count(), c => c == 0, "0 seminars in list");
+                vdi.On<Menu>().Events.Click();
+                vdi.On<Events>().SearchText.Content = "praxis qualitätssicherung";
+                vdi.On<Events>().Find.Click();
+                DialogWait.For(() => vdi.On<Events>().EventList.Count(), c => c == 0, "0 seminars in list");
             }
             finally
             {
@@ -67,7 +67,7 @@ namespace Trumpf.Coparoo.Web.Demo
             {
                 vdi = new VdiTab();
                 vdi.Goto<Events>().SearchFor("praxis qualitätssicherung");
-                DialogWait.For(() => vdi.On<Events>().SeminarZeilen.Count(), c => c == 0, "0 seminars in list");
+                DialogWait.For(() => vdi.On<Events>().EventList.Count(), c => c == 0, "0 seminars in list");
             }
             finally
             {
@@ -82,7 +82,7 @@ namespace Trumpf.Coparoo.Web.Demo
             {
                 vdi = TabObject.Resolve<IVdiTab>();
                 vdi.Goto<IEvents>().SearchFor("praxis qualitätssicherung");
-                DialogWait.For(() => vdi.On<IEvents>().SeminarZeilen.Count(), c => c == 0, "0 seminars in list");
+                DialogWait.For(() => vdi.On<IEvents>().EventList.Count(), c => c == 0, "0 seminars in list");
             }
             finally
             {

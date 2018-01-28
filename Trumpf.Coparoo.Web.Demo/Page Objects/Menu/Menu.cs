@@ -20,7 +20,7 @@ namespace Trumpf.Coparoo.Web.Demo
     public class Menu : PageObject, IChildOf<VDI>, IMenu
     {
         protected override By SearchPattern => By.ClassName("vdi-header");
-        public ILink Veranstaltungen => Find<Link>(By.LinkText("Veranstaltungen"));
+        public ILink Events => Find<Link>(By.LinkText("Seminare"));
         public override void Goto()
         {
             if (!Displayed)

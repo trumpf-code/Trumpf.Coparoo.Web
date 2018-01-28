@@ -25,16 +25,16 @@ namespace Trumpf.Coparoo.Web.Demo
         public override void Goto()
         {
             if (!Displayed)
-                Goto<Menu>().Veranstaltungen.Click();
+                Goto<Menu>().Events.Click();
         }
-        public IInputBox Volltextsuche => Find<InputBox>();
-        public IButton SucheAnzeigen => Find<Button>();
-        public IEnumerable<IEvent> SeminarZeilen => FindAll<Event>();
+        public IInputBox SearchText => Find<InputBox>();
+        public IButton Find => Find<Button>();
+        public IEnumerable<IEvent> EventList => FindAll<Event>();
         public void SearchFor(string searchText)
         {
-            Volltextsuche.ScrollTo();
-            Volltextsuche.Content = searchText;
-            SucheAnzeigen.Click();
+            SearchText.ScrollTo();
+            SearchText.Content = searchText;
+            Find.Click();
         }
     }
 }
