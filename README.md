@@ -29,6 +29,9 @@ Supposed you have already defined your first Coparoo test and want to know how t
 
 Finally, if things are set up and you want to work on user interface tests in a collaborative setup consisting of many possibly independent teams, or write test cases even before the user interfaces ready to execute (say, directly after the UX team is done) consider reading [this tutorial](DECOUPLING.md).
 
+## Contributors
+Jochen Lange (TRUMPF Werkzeugmaschinen GmbH + Co. KG)
+
 ## License
 Copyright (c) TRUMPF Werkzeugmaschinen GmbH + Co. KG. All rights reserved. 2016, 2017, 2018.
 
