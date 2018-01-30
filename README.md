@@ -34,7 +34,7 @@ Main development by Alexander Kaiser (alexander.kai...@de.trumpf.com or alexande
 
 Ideas and contributions by many more including
 - Daniel Knorreck, Gerald Waldherr (Additive Manufacturing, TRUMPF Laser- und Systemtechnik GmbH, Ditzingen)
-- Jochen Lange, Matthias Wetzel, Markus Ament, Bernd Gschwind, Bernd Theissler, Andreas Alavi (TRUMPF Werkzeugmaschinen GmbH + Co. KG, Ditzingen)
+- Jochen Lange, Matthias Wetzel, Markus Ament, Bernd Gschwind, Bernd Theissler, Andreas Alavi, Sebastian Mayer (TRUMPF Werkzeugmaschinen GmbH + Co. KG, Ditzingen)
 - Nol Zefaj (Axoom Solutions, Karlsruhe)
 - Igor Mikhalev (Trumpf Laser Marking Systems AG, Schweiz)
 - Thanikaivel Natarajan (India Metamation Software P. Ltd., India)
