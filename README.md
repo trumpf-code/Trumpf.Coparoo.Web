@@ -4,7 +4,7 @@
 [![appVeyorBuildStatus]](https://ci.appveyor.com/project/trumpf-code/trumpf-coparoo-web)
 
 ## Description
-*Trumpf.Coparoo.Web is a .NET library for C# that helps you write fast, maintainable, robust and fluent web tests based on the **co**ntrol/**pa**ge/**ro**ot-**o**bject (Coparoo) pattern.*
+*Trumpf.Coparoo.Web is a .NET library for C# that helps you write fast, maintainable, robust and fluent Selenium-driven web tests based on the **co**ntrol/**pa**ge/**ro**ot-**o**bject (Coparoo) pattern.*
 
 The following sign-in/out test scenario illustrates how the framework facilitates writing user interface tests in "natural" way:
     
