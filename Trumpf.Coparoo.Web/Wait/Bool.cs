@@ -21,9 +21,9 @@ namespace Trumpf.Coparoo.Web.Waiting
     /// </summary>
     public class Bool
     {
-        private IAwait<bool> waiter;
-        private Func<bool> snap;
-        private Action unsnap;
+        private readonly IAwait<bool> waiter;
+        private readonly Func<bool> snap;
+        private readonly Action unsnap;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Bool"/> class.
