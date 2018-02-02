@@ -33,11 +33,13 @@ Finally, if things are set up and you want to work on user interface tests in a 
 Main development by Alexander Kaiser (alexander.kai...@de.trumpf.com or alexander.kai...@cs.ox.ac.uk).
 
 Ideas and contributions by many more including
-- Daniel Knorreck, Gerald Waldherr (Additive Manufacturing, TRUMPF Laser- und Systemtechnik GmbH, Ditzingen)
-- Jochen Lange, Matthias Wetzel, Markus Ament, Bernd Gschwind, Bernd Theissler, Andreas Alavi, Sebastian Mayer (TRUMPF Werkzeugmaschinen GmbH + Co. KG, Ditzingen)
-- Nol Zefaj (Axoom Solutions, Karlsruhe)
-- Igor Mikhalev (Trumpf Laser Marking Systems AG, Schweiz)
-- Thanikaivel Natarajan (India Metamation Software P. Ltd., India)
+- Daniel Knorreck, Gerald Waldherr / *Additive Manufacturing, TRUMPF Laser- und Systemtechnik GmbH, Ditzingen*
+- Jochen Lange, Matthias Wetzel, Markus Ament, Bernd Gschwind, Bernd Theissler, Andreas Alavi, Sebastian Mayer, Daniel Boeck / *TRUMPF Werkzeugmaschinen GmbH + Co. KG, Ditzingen*
+- Igor Mikhalev / *Trumpf Laser Marking Systems AG, Schweiz*
+- Thanikaivel Natarajan / *India Metamation Software P. Ltd., India*
+- Nol Zefaj, Nils Engelbach, Phi Dang, Mattanja Kern, Felix Eisele / *AXOOM GmbH, Karlsruhe*
+- Manuel Pfemeter / *AIT – Applied Information Technologies GmbH & Co. KG, Stuttgart*
+- Marie Jeutter / *Hochschule Karlsruhe*
 
 ## License
 Copyright (c) TRUMPF Werkzeugmaschinen GmbH + Co. KG. All rights reserved. 2016, 2017, 2018.
