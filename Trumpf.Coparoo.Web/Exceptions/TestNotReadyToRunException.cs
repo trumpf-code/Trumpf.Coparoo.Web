@@ -26,7 +26,7 @@ namespace Trumpf.Coparoo.Web.Exceptions
         /// </summary>
         /// <param name="testClass">The class with tests that cannot be run.</param>
         public TestNotReadyToRunException(string testClass)
-            : base("Tests in class " + testClass + " are not ready to run")
+            : base("Tests in class " + testClass + " are not ready to run.")
         {
         }
     }

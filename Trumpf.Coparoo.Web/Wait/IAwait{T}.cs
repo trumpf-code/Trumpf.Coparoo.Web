@@ -28,8 +28,8 @@ namespace Trumpf.Coparoo.Web.Waiting
         T Value { get; }
 
         /// <summary>
-        /// Try-wait for the expectation to become true.
-        /// Return false on timeout.
+        /// Try-wait for the expectation to become <c>true</c>.
+        /// Return <c>false</c> on timeout.
         /// Use the default timeout as specified by configuration in the root object.
         /// </summary>
         /// <param name="expectation">The expectation.</param>
@@ -37,8 +37,8 @@ namespace Trumpf.Coparoo.Web.Waiting
         bool TryWaitFor(Predicate<T> expectation);
 
         /// <summary>
-        /// Try-wait for the expectation to become true.
-        /// Return false on timeout.
+        /// Try-wait for the expectation to become <c>true</c>.
+        /// Return <c>false</c> on timeout.
         /// </summary>
         /// <param name="expectation">The expectation.</param>
         /// <param name="timeout">The timeout.</param>
@@ -46,7 +46,7 @@ namespace Trumpf.Coparoo.Web.Waiting
         bool TryWaitFor(Predicate<T> expectation, TimeSpan timeout);
 
         /// <summary>
-        /// Wait for the expectation to become true.
+        /// Wait for the expectation to become <c>true</c>.
         /// Throw on timeout.
         /// Use the default timeout as specified by configuration in the root object.
         /// </summary>
@@ -55,7 +55,7 @@ namespace Trumpf.Coparoo.Web.Waiting
         void WaitFor(Predicate<T> expectation, string expectationText);
 
         /// <summary>
-        /// Wait for the expectation to become true.
+        /// Wait for the expectation to become <c>true</c>.
         /// Throw on timeout.
         /// </summary>
         /// <param name="expectation">The expectation.</param>

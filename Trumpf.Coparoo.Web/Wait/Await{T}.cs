@@ -23,12 +23,12 @@ namespace Trumpf.Coparoo.Web.Waiting
     /// </summary>
     internal class Await<T> : IAwait<T>
     {
-        private Func<T> getValue;
-        private string name;
-        private Type owner;
-        private Func<TimeSpan> positiveTimeout;
-        private Func<TimeSpan> waitTimeout;
-        private Func<bool> showDialog;
+        private readonly Func<T> getValue;
+        private readonly string name;
+        private readonly Type owner;
+        private readonly Func<TimeSpan> positiveTimeout;
+        private readonly Func<TimeSpan> waitTimeout;
+        private readonly Func<bool> showDialog;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Await{T}"/> class.
@@ -44,8 +44,8 @@ namespace Trumpf.Coparoo.Web.Waiting
             this.getValue = getValue;
             this.name = name;
             this.owner = owner;
-            this.positiveTimeout = positiveTimeout;
             this.waitTimeout = waitTimeout;
+            this.positiveTimeout = positiveTimeout;
             this.showDialog = showDialog;
         }
 
@@ -62,14 +62,14 @@ namespace Trumpf.Coparoo.Web.Waiting
 
         #region TryWait
         /// <summary>
-        /// Try wait until the page object is visible on screen .
+        /// Try wait until the page object is visible on screen.
         /// </summary>
         /// <param name="expectation">Expectation predicate.</param>
         /// <returns>Whether the page object is visible on screen.</returns>
         public bool TryWaitFor(Predicate<T> expectation) => TryWait.For(() => expectation(Value), waitTimeout());
 
         /// <summary>
-        /// Try wait until the page object is visible on screen .
+        /// Try wait until the page object is visible on screen.
         /// </summary>
         /// <param name="expectation">Expectation predicate.</param>
         /// <param name="timeout">The timeout.</param>

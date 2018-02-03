@@ -51,26 +51,26 @@ namespace Trumpf.Coparoo.Web.Waiting
 
         #region TryWait
         /// <summary>
-        /// Try wait until the page object is visible on screen .
+        /// Try wait until the page object is visible on screen.
         /// </summary>
         /// <returns>Whether the page object is visible on screen.</returns>
         public bool TryWaitFor() => waiter.TryWaitFor(value => value);
 
         /// <summary>
-        /// Try wait until the page object is visible on screen .
+        /// Try wait until the page object is visible on screen.
         /// </summary>
         /// <param name="timeout">The timeout.</param>
         /// <returns>Whether the page object is visible on screen.</returns>
         public bool TryWaitFor(TimeSpan timeout) => waiter.TryWaitFor(value => value, timeout);
 
         /// <summary>
-        /// Try wait until the page object is not visible on screen .
+        /// Try wait until the page object is not visible on screen.
         /// </summary>
         /// <returns>Whether the page object is visible on screen.</returns>
         public bool TryWaitForFalse()=> ActSnapped(() => waiter.TryWaitFor(value => !value));
 
         /// <summary>
-        /// Try wait until the page object is not visible on screen .
+        /// Try wait until the page object is not visible on screen.
         /// </summary>
         /// <param name="timeout">The timeout.</param>
         /// <returns>Whether the page object is visible on screen.</returns>
