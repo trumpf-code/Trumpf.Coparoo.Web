@@ -92,7 +92,7 @@ namespace Trumpf.Coparoo.Web.Internal
         /// <summary>
         /// Gets the node in the UI tree associated with this object.
         /// </summary>
-        public IUIObjectNode Node => node;
+        protected IUIObjectNode Node => node;
 
         /// <summary>
         /// Gets the typed root node of the page object.

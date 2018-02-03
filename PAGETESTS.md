@@ -49,6 +49,7 @@ This will generate a `Coparoo.pdf` or `Coparoo.dot` file in working directory; c
 The generated graph contains discovered page test classes as well as their page tests.
 
 The resulting graph looks like this:
+
 ![testTree]
 
 The graph helps answering questions like
@@ -67,7 +68,18 @@ The entire set of page tests, i.e. of all page objects in the Coparoo graph, can
 
 Page tests of page object are then executed from "bottom to top", i.e. starting from the leaves. 
 The result will look like this:
+
 ![bottomUpTree]
+
+
+## A slightly larger example...
+The Coparoo graph for a subset of the user interface tests developed by the digital production platform [Axoom](https://www.axoom.com/) looks like this:
+
+![largeBottomUpTree]
+
+It gives an impression on how the graph looks like for realistic 
+ projects. In this case, a single test failed (highlighted in red), while all other passed (green).
 
 [testTree]: ./Resources/testTree.PNG "Coparoo graph with test classes and results"
 [bottomUpTree]: ./Resources/bottomUpTree.PNG "Coparoo graph with test classes and results"
+[largeBottomUpTree]: ./Resources/largeBottomUpTree.PNG "Large Coparoo graph for Axoom with test classes and results"
