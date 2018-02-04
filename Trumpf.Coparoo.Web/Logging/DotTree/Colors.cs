@@ -22,7 +22,7 @@ namespace Trumpf.Coparoo.Web.Logging.Tree
     internal enum Color
     {
         /// <summary>
-        /// The color is black.
+        /// The color is white.
         /// </summary>
         [Description("white")]
         White,

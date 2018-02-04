@@ -95,10 +95,6 @@ namespace Trumpf.Coparoo.Web.Waiting
                 Wait.RetryUntilSuccessOrTimeout(function, condition, timeout, retryPause);
                 return true;
             }
-            catch (TimeoutException)
-            {
-                return false;
-            }
             catch
             {
                 return false;
@@ -196,10 +192,6 @@ namespace Trumpf.Coparoo.Web.Waiting
             {
                 Wait.UntilStableInternal(function, timeout, retryPause);
                 return true;
-            }
-            catch (TimeoutException)
-            {
-                return false;
             }
             catch
             {
