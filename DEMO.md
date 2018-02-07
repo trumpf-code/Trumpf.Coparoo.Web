@@ -167,7 +167,7 @@ to
 
     var app = new GitHubWebDriver();                    // create the test driver
     app.Goto<SignInForm>().SignIn("myUser", "abc");     // enter the user credentials ...
-    app.Goto<ProfileDrowndown>().SignOut.Click();       // sign out
+    app.SignOut();                                      // sign out
 
 The navigation action of the sign-in form needs, e.g., be defined in `SignInForm.Goto()`'s as follows:
 
