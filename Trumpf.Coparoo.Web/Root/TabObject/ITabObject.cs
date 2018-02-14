@@ -66,11 +66,5 @@ namespace Trumpf.Coparoo.Web
         /// Close every associated window.
         /// </summary>
         void Quit();
-
-        /// <summary>
-        /// Get the current page URL.
-        /// </summary>
-        /// <returns>Current page URL.</returns>
-        string GetCurrentURL();
     }
 }
