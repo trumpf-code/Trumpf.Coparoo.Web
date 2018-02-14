@@ -217,6 +217,12 @@ namespace Trumpf.Coparoo.Web
         }
 
         /// <summary>
+        /// Gets the URL of the current page.
+        /// </summary>
+        /// <returns>Current page URL.</returns>
+        public string CurrentURL => Driver.Url;
+
+        /// <summary>
         /// Gets an await-object.
         /// </summary>
         /// <typeparam name="T">The underlying type.</typeparam>
