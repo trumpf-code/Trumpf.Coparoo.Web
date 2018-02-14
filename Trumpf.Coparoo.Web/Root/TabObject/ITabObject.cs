@@ -70,7 +70,7 @@ namespace Trumpf.Coparoo.Web
         /// <summary>
         /// Get the current page URL.
         /// </summary>
-        /// <returns>Current page URL</returns>
+        /// <returns>Current page URL.</returns>
         string GetCurrentURL();
     }
 }
