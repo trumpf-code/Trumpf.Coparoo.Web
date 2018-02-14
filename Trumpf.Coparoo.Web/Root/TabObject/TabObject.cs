@@ -217,10 +217,10 @@ namespace Trumpf.Coparoo.Web
         }
 
         /// <summary>
-        /// Get the URL of the current page.
+        /// Gets the URL of the current page.
         /// </summary>
         /// <returns>Current page URL.</returns>
-        public string CurrentURL { get { return Driver.Url; } }
+        public string CurrentURL => return Driver.Url;
 
         /// <summary>
         /// Gets an await-object.
