@@ -5,7 +5,7 @@
     /// <summary>
     /// Table head control object.
     /// </summary>
-    public class TableHead : TableSegment
+    public class Head : Segment
     {
         /// <summary>
         /// Gets the search pattern.

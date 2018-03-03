@@ -6,7 +6,7 @@
     /// <summary>
     /// Table data cell object.
     /// </summary>
-    public class TableCell : ControlObject
+    public class Cell : ControlObject
     {
         /// <summary>
         /// Gets the search pattern.
@@ -16,6 +16,8 @@
         /// <summary>
         /// Searches for a control object like provided and returns it.
         /// </summary>
+        /// <typeparam name="T">Control object type.</typeparam>
+        /// <returns>Cell object as a control object like provided.</returns>
         public T As<T>() where T : ControlObject => Find<T>();
 
         /// <summary>

@@ -3,13 +3,13 @@
     using OpenQA.Selenium;
 
     /// <summary>
-    /// Table body control object.
+    /// Table foot control object.
     /// </summary>
-    public class TableBody : TableSegment
+    public class Foot : Segment
     {
         /// <summary>
         /// Gets the search pattern.
         /// </summary>
-        protected override By SearchPattern => By.TagName("tbody");
+        protected override By SearchPattern => By.TagName("tfoot");
     }
 }

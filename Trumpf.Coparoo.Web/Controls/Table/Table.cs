@@ -15,16 +15,16 @@
         /// <summary>
         /// Gets the table head control object.
         /// </summary>
-        public TableHead Head => Find<TableHead>();
+        public Head Head => Find<Head>();
 
         /// <summary>
         /// Gets the table body control object.
         /// </summary>
-        public TableBody Body => Find<TableBody>();
+        public Body Body => Find<Body>();
 
         /// <summary>
         /// Gets the table foot control object.
         /// </summary>
-        public TableFoot Foot => Find<TableFoot>();
+        public Foot Foot => Find<Foot>();
     }
 }

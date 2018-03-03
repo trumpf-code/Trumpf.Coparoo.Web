@@ -6,12 +6,12 @@
     /// <summary>
     /// Generic table segment control object.
     /// </summary>
-    abstract public class TableSegment : ControlObject
+    public abstract class Segment : ControlObject
     {
         /// <summary>
         /// Gets the enumeration of row control objects.
         /// </summary>
-        public IEnumerable<TableRow> Rows => FindAll<TableRow>();
+        public IEnumerable<Row> Rows => FindAll<Row>();
 
         /// <summary>
         /// Returns the row element at a specified index in the row sequence.
@@ -20,6 +20,6 @@
         /// <exception cref="System.ArgumentOutOfRangeException">Index is less than 0 or greater than or equal to the number of row elements in the row sequence.</exception>
         /// <param name="index">The zero-based index of the row to retrieve.</param>
         /// <returns>The row element at the specified position in the row sequence.</returns>
-        public TableRow RowAt(int index) => Rows.ElementAt(index);
+        public Row RowAt(int index) => Rows.ElementAt(index);
     }
 }
