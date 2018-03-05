@@ -1,11 +1,14 @@
-﻿namespace Trumpf.Coparoo.Web.Controls.Table
+﻿namespace Trumpf.Coparoo.Web.Controls
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using OpenQA.Selenium;
 
     /// <summary>
     /// Table control object.
     /// </summary>
-    public class Table : ControlObject
+    public partial class Table : ControlObject
     {
         /// <summary>
         /// Gets the search pattern.
@@ -15,16 +18,21 @@
         /// <summary>
         /// Gets the table head control object.
         /// </summary>
-        public Head Head => Find<Head>();
+        public Head Header => Find<Head>();
 
         /// <summary>
         /// Gets the table body control object.
         /// </summary>
-        public Body Body => Find<Body>();
+        public Body Content => Find<Body>();
 
         /// <summary>
         /// Gets the table foot control object.
         /// </summary>
-        public Foot Foot => Find<Foot>();
+        public Foot Footer => Find<Foot>();
+
+        /// <summary>
+        /// Gets a sorted enumeration of all row control objects (including header, body and footer rows).
+        /// </summary>
+        public IEnumerable<Row> AllRows => Header.Rows.Concat(Content.Rows).Concat(Footer.Rows);
     }
 }

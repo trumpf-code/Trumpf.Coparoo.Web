@@ -1,15 +1,21 @@
-﻿namespace Trumpf.Coparoo.Web.Controls.Table
+﻿namespace Trumpf.Coparoo.Web.Controls
 {
     using OpenQA.Selenium;
 
     /// <summary>
-    /// Table head control object.
+    /// Partial Table control object.
     /// </summary>
-    public class Head : Segment
+    public partial class Table
     {
         /// <summary>
-        /// Gets the search pattern.
+        /// Table head control object.
         /// </summary>
-        protected override By SearchPattern => By.TagName("thead");
+        public class Head : Segment
+        {
+            /// <summary>
+            /// Gets the search pattern.
+            /// </summary>
+            protected override By SearchPattern => By.TagName("thead");
+        }
     }
 }
