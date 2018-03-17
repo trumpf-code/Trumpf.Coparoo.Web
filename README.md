@@ -1,6 +1,5 @@
 ﻿# Trumpf.Coparoo.Web Library for .NET 
 ![logo640]
-[![travisBuildStatus]](https://travis-ci.org/trumpf-code/Trumpf.Coparoo.Web)
 [![appVeyorBuildStatus]](https://ci.appveyor.com/project/trumpf-code/trumpf-coparoo-web)
 
 ## Description
