@@ -26,6 +26,7 @@
 
   <!-- reference information -->
   <ItemGroup>
+    <PackageReference Include="Selenium.Support" Version="3.12.1" />
     <PackageReference Include="Selenium.WebDriver" Version="3.12.1" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
