@@ -1,7 +1,6 @@
 ﻿namespace Trumpf.Coparoo.Web.Controls
 {
     using OpenQA.Selenium;
-    using OpenQA.Selenium.Interactions;
 
     /// <summary>
     /// Checkbox control object.
@@ -15,17 +14,27 @@
         protected override By SearchPattern => By.XPath(".//input[@type='checkbox']");
 
         /// <summary>
+        /// Gets the value.
+        /// </summary>
+        public string Value => Node.GetAttribute("value");
+
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        public string Name => Node.GetAttribute("name");
+
+        /// <summary>
         /// Gets or sets a value indicating whether the checkbox is checked.
         /// </summary>
         public bool Checked
         {
-            get { return Node.GetAttribute("checked") != null; }
+            get { return Node.Selected; }
 
             set
             {
                 if (Checked != value)
                 {
-                    new Actions(Root.Driver).MoveToElement(Node).Click().Perform();
+                    Node.Click();
                 }
             }
         }
