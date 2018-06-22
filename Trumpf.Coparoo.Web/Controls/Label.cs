@@ -13,7 +13,7 @@
         protected override By SearchPattern => By.TagName("label");
 
         /// <summary>
-        /// Gets the label text.
+        /// Gets the text.
         /// </summary>
         public string Text => Node.Text;
     }

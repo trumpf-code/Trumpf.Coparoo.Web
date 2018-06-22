@@ -15,7 +15,7 @@
         protected override By SearchPattern => By.XPath(".//input[@type='checkbox']");
 
         /// <summary>
-        /// Gets or sets the checked attribute.
+        /// Gets or sets a value indicating whether the checkbox is checked.
         /// </summary>
         public bool Checked
         {
@@ -25,8 +25,7 @@
             {
                 if (Checked != value)
                 {
-                    var element = Parent.Node.FindElement(SearchPattern);
-                    new Actions(Root.Driver).MoveToElement(element).Click().Perform();
+                    new Actions(Root.Driver).MoveToElement(Node).Click().Perform();
                 }
             }
         }

@@ -6,7 +6,7 @@
     /// Text input control object.
     /// Expects an input html element with attribute type="text".
     /// </summary>
-    public class Input : ControlObject
+    public class TextInput : ControlObject
     {
         /// <summary>
         /// Gets the search pattern.
@@ -14,7 +14,7 @@
         protected override By SearchPattern => By.XPath(".//input[@type='text']");
 
         /// <summary>
-        /// Gets or sets the text content.
+        /// Gets or sets the text.
         /// </summary>
         public string Text
         {
@@ -22,9 +22,10 @@
 
             set
             {
-                if (Text != value)
+                var text = Text;
+                if (text != value)
                 {
-                    if (Text != string.Empty)
+                    if (text != string.Empty)
                     {
                         Node.Clear();
                     }
