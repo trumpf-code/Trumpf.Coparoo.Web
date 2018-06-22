@@ -14,7 +14,6 @@
 
 namespace Trumpf.Coparoo.Tests
 {
-
     using NUnit.Framework;
     using Trumpf.Coparoo.Web.Controls;
 

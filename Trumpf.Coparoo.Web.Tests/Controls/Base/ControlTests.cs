@@ -18,7 +18,6 @@ namespace Trumpf.Coparoo.Tests
     using System.IO;
     using System.Linq;
 
-    using NUnit.Framework;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Firefox;
     using Trumpf.Coparoo.Web;
@@ -34,7 +33,7 @@ namespace Trumpf.Coparoo.Tests
         /// </summary>
         /// <param name="htmlfileContent">The content of the HTML file.</param>
         /// <param name="actAndCheck">The action to execute on the tab.</param>
-        protected static void PrepareAndExecute(string fileBaseName, string htmlfileContent, Action<Tab> actAndCheck)
+        protected void PrepareAndExecute(string fileBaseName, string htmlfileContent, Action<Tab> actAndCheck)
         {
             string htmlFileName = null;
             Tab tab = null;

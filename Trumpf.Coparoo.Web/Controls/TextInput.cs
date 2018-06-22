@@ -14,6 +14,11 @@
         protected override By SearchPattern => By.XPath(".//input[@type='text']");
 
         /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        public string Name => Node.GetAttribute("name");
+
+        /// <summary>
         /// Gets or sets the text.
         /// </summary>
         public string Text
