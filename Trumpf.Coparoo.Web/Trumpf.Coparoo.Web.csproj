@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <!-- project information -->
-    <TargetFramework>net45</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
 
@@ -25,9 +25,14 @@
   </PropertyGroup>
 
   <!-- reference information -->
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
     <PackageReference Include="Selenium.Support" Version="3.12.1" />
     <PackageReference Include="Selenium.WebDriver" Version="3.12.1" />
     <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="Selenium.Support" Version="3.12.1" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.12.1" />
   </ItemGroup>
 </Project>
