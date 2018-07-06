@@ -1,11 +1,11 @@
 ﻿// Copyright 2016, 2017, 2018 TRUMPF Werkzeugmaschinen GmbH + Co. KG.
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -86,6 +86,7 @@ namespace Trumpf.Coparoo.Web.Waiting
         /// <param name="expectationText">Expectation text, i.e. the predicate expressed as a human-readable text.</param>
         public void WaitFor(Predicate<T> expectation, string expectationText) => WaitFor(expectation, expectationText, waitTimeout());
 
+#if !NETSTANDARD2_0
         /// <summary>
         /// Wait until the property evaluates to true.
         /// Show a dialog.
@@ -108,6 +109,28 @@ namespace Trumpf.Coparoo.Web.Waiting
                 }
             }
         }
+#else
+        /// <summary>
+        /// Wait until the property evaluates to true.
+        /// Show a dialog.
+        /// </summary>
+        /// <param name="expectation">Expectation predicate.</param>
+        /// <param name="expectationText">Expectation text, i.e. the predicate expressed as a human-readable text.</param>
+        /// <param name="timeout">The timeout.</param>
+        public void WaitFor(Predicate<T> expectation, string expectationText, TimeSpan timeout)
+        {
+            if(showDialog()) {
+                throw new NotSupportedException("Showing a waiting dialog is not supported under .NET Standard. Please use the .NET 4.5 version.");
+            }
+
+            string message = $"{name} in {owner.Name}: {expectationText}";
+
+            if (!TryWaitFor(expectation, timeout))
+            {
+                throw new WaitForException(owner, message);
+            }
+        }
+#endif
         #endregion
 
         #region Others
