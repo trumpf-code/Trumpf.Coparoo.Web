@@ -86,7 +86,7 @@ namespace Trumpf.Coparoo.Web.Waiting
         /// <param name="expectationText">Expectation text, i.e. the predicate expressed as a human-readable text.</param>
         public void WaitFor(Predicate<T> expectation, string expectationText) => WaitFor(expectation, expectationText, waitTimeout());
 
-#if !NETSTANDARD2_0
+#if NET451
         /// <summary>
         /// Wait until the property evaluates to true.
         /// Show a dialog.
@@ -120,7 +120,7 @@ namespace Trumpf.Coparoo.Web.Waiting
         public void WaitFor(Predicate<T> expectation, string expectationText, TimeSpan timeout)
         {
             if(showDialog()) {
-                throw new NotSupportedException("Showing a waiting dialog is not supported under .NET Standard. Please use the .NET 4.5 version.");
+                throw new NotSupportedException("Showing a waiting dialog is not supported under .NET Standard and .NET Core. Please use the .NET 4.5 version.");
             }
 
             string message = $"{name} in {owner.Name}: {expectationText}";
