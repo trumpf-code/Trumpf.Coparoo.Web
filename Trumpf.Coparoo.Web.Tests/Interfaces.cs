@@ -47,6 +47,27 @@ namespace Trumpf.Coparoo.Tests
         }
 
         /// <summary>
+        /// Helper interface.
+        /// </summary>
+        private interface ID : IControlObject
+        {
+        }
+
+        /// <summary>
+        /// Helper interface.
+        /// </summary>
+        private interface IE : ID
+        {
+        }
+
+        /// <summary>
+        /// Helper interface.
+        /// </summary>
+        private interface IF : IE
+        {
+        }
+
+        /// <summary>
         /// Test method.
         /// </summary>
         [Test]
@@ -82,6 +103,25 @@ namespace Trumpf.Coparoo.Tests
         }
 
         /// <summary>
+        /// Test method.
+        /// </summary>
+        [Test]
+        public void WhenMupltipleControlObjectInterfacesMatch_ThenTheClosestMatchIsReturned()
+        {
+            // Act
+            var rootObject = TabObject.Resolve<IA>();
+
+            var d = rootObject.Find<ID>(); // IE and IF also implement ID, yet we want to get "the closest" implementation, hence D
+            var e = rootObject.Find<IE>();
+            var f = rootObject.Find<IF>();
+
+            // Check
+            Assert.AreEqual(typeof(D), d.GetType());
+            Assert.AreEqual(typeof(E), e.GetType());
+            Assert.AreEqual(typeof(F), f.GetType());
+        }
+
+        /// <summary>
         /// Helper class.
         /// </summary>
         private class A : TabObject, IA
@@ -102,6 +142,30 @@ namespace Trumpf.Coparoo.Tests
         /// Helper class.
         /// </summary>
         private class C : PageObject, IC, IChildOf<IB>
+        {
+            protected override By SearchPattern => null;
+        }
+
+        /// <summary>
+        /// Helper class.
+        /// </summary>
+        private class D : ControlObject, ID
+        {
+            protected override By SearchPattern => null;
+        }
+
+        /// <summary>
+        /// Helper class.
+        /// </summary>
+        private class E : D, IE
+        {
+            protected override By SearchPattern => null;
+        }
+
+        /// <summary>
+        /// Helper class.
+        /// </summary>
+        private class F : E, IF
         {
             protected override By SearchPattern => null;
         }

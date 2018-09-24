@@ -76,17 +76,42 @@ namespace Trumpf.Coparoo.Web
                 }
                 else
                 {
+                    result = LowestType(matches);
+
                     if (matches.Count() >= 2)
                     {
-                        Trace.WriteLine($"Warning: Multiple matches found for control object interface <{toResolve.FullName}>: {string.Join(", ", matches.Select(e => e.FullName))}; continue with first match...");
+                        Trace.WriteLine($"Warning: Multiple matches found for control object interface <{toResolve.FullName}>: {string.Join(", ", matches.Select(e => e.FullName))}; continue with \"lowest\" match: '{result.FullName}'.");
                     }
 
-                    result = matches.First();
                     resolveCache.Add(toResolve, result);
                 }
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Gets the "lowest" assignable type.
+        /// </summary>
+        /// <param name="types">The type.</param>
+        /// <returns>The "lowest" type.</returns>
+        private static Type LowestType(params Type[] types)
+        {
+            // source: https://stackoverflow.com/a/701880, MIT
+            Type ret = types[0];
+
+            for (int i = 1; i < types.Length; ++i)
+            {
+                if (types[i].IsAssignableFrom(ret))
+                    ret = types[i];
+                else
+                {
+                    while (!ret.IsAssignableFrom(types[i]))
+                        ret = ret.BaseType;
+                }
+            }
+
+            return ret;
         }
     }
 }
