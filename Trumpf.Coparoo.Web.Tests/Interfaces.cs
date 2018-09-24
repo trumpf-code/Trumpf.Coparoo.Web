@@ -47,6 +47,61 @@ namespace Trumpf.Coparoo.Tests
         }
 
         /// <summary>
+        /// Helper interface.
+        /// </summary>
+        private interface ID : IControlObject
+        {
+        }
+
+        /// <summary>
+        /// Helper interface.
+        /// </summary>
+        private interface IE : ID
+        {
+        }
+
+        /// <summary>
+        /// Helper interface.
+        /// </summary>
+        private interface IF : IControlObject
+        {
+        }
+
+        /// <summary>
+        /// Helper interface.
+        /// </summary>
+        private interface IG<I> : IControlObject
+            where I : IControlObject
+        {
+            I Item { get; }
+        }
+
+        /// <summary>
+        /// Helper interface.
+        /// </summary>
+        private interface IH<I, I2> : IControlObject
+            where I : IControlObject
+            where I2 : IControlObject
+        {
+        }
+
+        /// <summary>
+        /// Test method.
+        /// </summary>
+        [Test]
+        public void WhenAGenericInterfaceIsSearchedFor_ThenToCorrenspondingGenericImplementationIsResolved()
+        {
+            // Act
+            var rootObject = TabObject.Resolve<IA>();
+            IG<IF> control = rootObject.Find<IG<IF>>();
+            IF item = control.Item;
+
+            // Check
+            Assert.AreEqual(typeof(G<IF>), control.GetType());
+            Assert.AreEqual(typeof(F), control.Item.GetType());
+        }
+
+        /// <summary>
         /// Test method.
         /// </summary>
         [Test]
@@ -82,6 +137,25 @@ namespace Trumpf.Coparoo.Tests
         }
 
         /// <summary>
+        /// Test method.
+        /// </summary>
+        [Test]
+        public void WhenMupltipleControlObjectInterfacesMatch_ThenTheClosestMatchIsReturned()
+        {
+            // Act
+            var rootObject = TabObject.Resolve<IA>();
+
+            var d = rootObject.Find<ID>(); // IE and IF also implement ID, yet we want to get "the closest" implementation, hence D
+            var e = rootObject.Find<IE>();
+            var f = rootObject.Find<IF>();
+
+            // Check
+            Assert.AreEqual(typeof(D), d.GetType());
+            Assert.AreEqual(typeof(E), e.GetType());
+            Assert.AreEqual(typeof(F), f.GetType());
+        }
+
+        /// <summary>
         /// Helper class.
         /// </summary>
         private class A : TabObject, IA
@@ -105,5 +179,47 @@ namespace Trumpf.Coparoo.Tests
         {
             protected override By SearchPattern => null;
         }
+
+        /// <summary>
+        /// Helper class.
+        /// </summary>
+        private class D : ControlObject, ID
+        {
+            protected override By SearchPattern => null;
+        }
+
+        /// <summary>
+        /// Helper class.
+        /// </summary>
+        private class E : D, IE
+        {
+        }
+
+        /// <summary>
+        /// Helper class.
+        /// </summary>
+        private class F : ControlObject, IF
+        {
+            protected override By SearchPattern => null;
+        }
+
+        /// <summary>
+        /// Helper class.
+        /// </summary>
+        private class G<I> : ControlObject, IG<I>
+            where I : IControlObject
+        {
+            public I Item
+                => Find<I>();
+
+            protected override By SearchPattern => null;
+
+            internal void Init(F f)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+
     }
 }

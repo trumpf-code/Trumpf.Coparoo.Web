@@ -18,6 +18,7 @@ namespace Trumpf.Coparoo.Web
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
+    using System.Reflection;
 
     using Exceptions;
 
@@ -41,17 +42,17 @@ namespace Trumpf.Coparoo.Web
         /// </summary>
         /// <typeparam name="TControl">The control type to resolve.</typeparam>
         /// <returns>The control type with parameter-less default constructor.</returns>
-        public Type Resolve<TControl>() where TControl : IControlObject => ResolveControlType<TControl>(true);
+        public Type Resolve<TControl>() where TControl : IControlObject
+            => ResolveControlType<TControl>(true);
 
         /// <summary>
         /// Resolve the control type.
         /// </summary>
-        /// <typeparam name="TControl">The control type to resolve.</typeparam>
+        /// <param name="toResolve">The control type to resolve.</param>
         /// <param name="retryOnce">Whether to retry once.</param>
         /// <returns>The control type with parameter-less default constructor.</returns>
-        private Type ResolveControlType<TControl>(bool retryOnce) where TControl : IControlObject
+        private Type ResolveControlType(Type toResolve, bool retryOnce)
         {
-            Type toResolve = typeof(TControl);
             Type result;
             if (!toResolve.IsInterface)
             {
@@ -64,29 +65,68 @@ namespace Trumpf.Coparoo.Web
             else
             {
                 controlTypesCache = controlTypesCache ?? PageTests.Locate.ControlObjectTypes.Where(e => e.IsAssignableFrom(e)).ToArray();
-                Type[] matches = controlTypesCache.Where(e => toResolve.IsAssignableFrom(e)).ToArray();
+
+                Type[] matches = toResolve.GenericTypeArguments.Length == 0 
+                    ? controlTypesCache.Where(e => toResolve.IsAssignableFrom(e)).ToArray()
+                    : controlTypesCache.Where(e => e.GetTypeInfo().GenericTypeParameters.Length == toResolve.GenericTypeArguments.Length).ToArray(); // TODO: currently the check only considers the parameters count
+
                 if (!matches.Any() && !retryOnce)
                 {
-                    throw new ControlObjectNotFoundException<TControl>();
+                    throw new ControlObjectNotFoundException(toResolve);
                 }
                 else if (!matches.Any() && retryOnce)
                 {
                     controlTypesCache = null;
-                    result = ResolveControlType<TControl>(false);
+                    result = ResolveControlType(toResolve, false);
                 }
                 else
                 {
+                    result = LowestType(matches);
+                    result = !result.IsGenericTypeDefinition ? result : result.MakeGenericType(toResolve.GenericTypeArguments);
+
                     if (matches.Count() >= 2)
                     {
-                        Trace.WriteLine($"Warning: Multiple matches found for control object interface <{toResolve.FullName}>: {string.Join(", ", matches.Select(e => e.FullName))}; continue with first match...");
+                        Trace.WriteLine($"Warning: Multiple matches found for control object interface <{toResolve.FullName}>: {string.Join(", ", matches.Select(e => e.FullName))}; continue with \"lowest\" match: '{result.FullName}'.");
                     }
 
-                    result = matches.First();
                     resolveCache.Add(toResolve, result);
                 }
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Resolve the control type.
+        /// </summary>
+        /// <typeparam name="TControl">The control type to resolve.</typeparam>
+        /// <param name="retryOnce">Whether to retry once.</param>
+        /// <returns>The control type with parameter-less default constructor.</returns>
+        private Type ResolveControlType<TControl>(bool retryOnce) where TControl : IControlObject
+            => ResolveControlType(typeof(TControl), retryOnce);
+
+        /// <summary>
+        /// Gets the "lowest" assignable type.
+        /// </summary>
+        /// <param name="types">The type.</param>
+        /// <returns>The "lowest" type.</returns>
+        private static Type LowestType(params Type[] types)
+        {
+            // source: https://stackoverflow.com/a/701880, MIT
+            Type ret = types[0];
+
+            for (int i = 1; i < types.Length; ++i)
+            {
+                if (types[i].IsAssignableFrom(ret))
+                    ret = types[i];
+                else
+                {
+                    while (!ret.IsAssignableFrom(types[i]))
+                        ret = ret.BaseType;
+                }
+            }
+
+            return ret;
         }
     }
 }
