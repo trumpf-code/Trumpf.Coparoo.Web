@@ -63,8 +63,42 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Helper interface.
         /// </summary>
-        private interface IF : IE
+        private interface IF : IControlObject
         {
+        }
+
+        /// <summary>
+        /// Helper interface.
+        /// </summary>
+        private interface IG<I> : IControlObject
+            where I : IControlObject
+        {
+            I Item { get; }
+        }
+
+        /// <summary>
+        /// Helper interface.
+        /// </summary>
+        private interface IH<I, I2> : IControlObject
+            where I : IControlObject
+            where I2 : IControlObject
+        {
+        }
+
+        /// <summary>
+        /// Test method.
+        /// </summary>
+        [Test]
+        public void WhenAGenericInterfaceIsSearchedFor_ThenToCorrenspondingGenericImplementationIsResolved()
+        {
+            // Act
+            var rootObject = TabObject.Resolve<IA>();
+            IG<IF> control = rootObject.Find<IG<IF>>();
+            IF item = control.Item;
+
+            // Check
+            Assert.AreEqual(typeof(G<IF>), control.GetType());
+            Assert.AreEqual(typeof(F), control.Item.GetType());
         }
 
         /// <summary>
@@ -159,15 +193,33 @@ namespace Trumpf.Coparoo.Tests
         /// </summary>
         private class E : D, IE
         {
+        }
+
+        /// <summary>
+        /// Helper class.
+        /// </summary>
+        private class F : ControlObject, IF
+        {
             protected override By SearchPattern => null;
         }
 
         /// <summary>
         /// Helper class.
         /// </summary>
-        private class F : E, IF
+        private class G<I> : ControlObject, IG<I>
+            where I : IControlObject
         {
+            public I Item
+                => Find<I>();
+
             protected override By SearchPattern => null;
+
+            internal void Init(F f)
+            {
+                throw new NotImplementedException();
+            }
         }
+
+
     }
 }

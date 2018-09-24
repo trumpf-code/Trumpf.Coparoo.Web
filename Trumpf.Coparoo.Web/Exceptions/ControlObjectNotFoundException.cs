@@ -19,32 +19,13 @@ namespace Trumpf.Coparoo.Web.Exceptions
     /// <summary>
     /// Control object not found exception class.
     /// </summary>
-    /// <typeparam name="TControlObject">The control object type.</typeparam>
-    public class ControlObjectNotFoundException<TControlObject> : Exception
+    public class ControlObjectNotFoundException : Exception
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ControlObjectNotFoundException{TPageObject}"/> class.
+        /// Initializes a new instance of the <see cref="ControlObjectNotFoundException"/> class.
         /// </summary>
-        public ControlObjectNotFoundException()
-            : base("Control object " + typeof(TControlObject).ToString() + " could not be resolved: no matching class with parameterless default constructor found; are all assemblies already loaded?")
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ControlObjectNotFoundException{TPageObject}"/> class.
-        /// </summary>
-        /// <param name="message">The message that describes the error.</param>
-        public ControlObjectNotFoundException(string message)
-            : base(message)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ControlObjectNotFoundException{TPageObject}"/> class.
-        /// </summary>
-        /// <param name="message">The error message that explains the reason for the exception.</param>
-        /// <param name="innerException">The exception that is the cause of the current exception.</param>
-        public ControlObjectNotFoundException(string message, Exception innerException) : base(message, innerException)
+        public ControlObjectNotFoundException(Type ControlObjectType)
+            : base("Control object " + ControlObjectType.ToString() + " could not be resolved: no matching class with parameterless default constructor found; are all assemblies already loaded?")
         {
         }
     }
