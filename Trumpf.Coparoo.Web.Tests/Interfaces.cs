@@ -79,6 +79,15 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Helper interface.
         /// </summary>
+        private interface IH<I> : IControlObject
+            where I : IControlObject
+        {
+            I Item { get; }
+        }
+
+        /// <summary>
+        /// Helper interface.
+        /// </summary>
         private interface IH<I, I2> : IControlObject
             where I : IControlObject
             where I2 : IControlObject
@@ -220,6 +229,21 @@ namespace Trumpf.Coparoo.Tests
             }
         }
 
+        /// <summary>
+        /// Helper class.
+        /// </summary>
+        private class H<I> : ControlObject, IH<I>
+            where I : IControlObject
+        {
+            public I Item
+                => Find<I>();
 
+            protected override By SearchPattern => null;
+
+            internal void Init(F f)
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

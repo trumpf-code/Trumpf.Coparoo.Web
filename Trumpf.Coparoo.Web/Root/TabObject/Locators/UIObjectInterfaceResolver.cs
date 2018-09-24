@@ -66,9 +66,13 @@ namespace Trumpf.Coparoo.Web
             {
                 controlTypesCache = controlTypesCache ?? PageTests.Locate.ControlObjectTypes.Where(e => e.IsAssignableFrom(e)).ToArray();
 
-                Type[] matches = toResolve.GenericTypeArguments.Length == 0 
+                Type[] matches = toResolve.GenericTypeArguments.Length == 0
                     ? controlTypesCache.Where(e => toResolve.IsAssignableFrom(e)).ToArray()
-                    : controlTypesCache.Where(e => e.GetTypeInfo().GenericTypeParameters.Length == toResolve.GenericTypeArguments.Length).ToArray(); // TODO: currently the check only considers the parameters count
+                    : controlTypesCache
+                        .Where(e => e.GetTypeInfo().GenericTypeParameters.Length == toResolve.GenericTypeArguments.Length)
+                        .Select(e => e.MakeGenericType(toResolve.GenericTypeArguments))
+                        .Where(e => toResolve.IsAssignableFrom(e))
+                        .ToArray();
 
                 if (!matches.Any() && !retryOnce)
                 {
@@ -82,7 +86,6 @@ namespace Trumpf.Coparoo.Web
                 else
                 {
                     result = LowestType(matches);
-                    result = !result.IsGenericTypeDefinition ? result : result.MakeGenericType(toResolve.GenericTypeArguments);
 
                     if (matches.Count() >= 2)
                     {
