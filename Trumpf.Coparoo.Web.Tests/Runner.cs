@@ -28,6 +28,26 @@ namespace Trumpf.Coparoo.Tests
     [TestFixture]
     public class Runner
     {
+        private A Root
+        {
+            get
+            {
+                var result = new A();
+                result.Configuration.DependencyRegistrator
+                    .RegisterType<BT>()
+                    .RegisterType<IDontKnow, DontKnow>();
+
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// Test method.
+        /// </summary>
+        [Test]
+        public void WhenATestsClassHasUnregisteredTypes_ThenAnExceptionIsThrown()
+            => Assert.Throws<Stashbox.Exceptions.ResolutionFailedException>(() => new A().On<B>().Test());
+
         /// <summary>
         /// Test method.
         /// </summary>
@@ -35,11 +55,11 @@ namespace Trumpf.Coparoo.Tests
         public void WhenThePageTestsOfBAreExecuted_ThenTwoTestsExecuteInTotal()
         {
             // Prepare
-            new BT().Reset();
+            new BT(new DontKnow()).Reset();
 
-            // Act
-            new A().On<B>().Test();
-            var testsExecuted = new BT().Counter;
+
+            Root.On<B>().Test();
+            var testsExecuted = new BT(new DontKnow()).Counter;
 
             // Check
             Assert.AreEqual(2, testsExecuted);
@@ -55,7 +75,7 @@ namespace Trumpf.Coparoo.Tests
             new CT().Reset();
 
             // Act
-            new A().On<C>().Test();
+            Root.On<C>().Test();
             var testsExecuted = new CT().Counter;
 
             Assert.AreEqual(1, new CT().Counter);
@@ -68,12 +88,12 @@ namespace Trumpf.Coparoo.Tests
         public void WhenTheBottomUpTestIsCalledOnTheRoot_ThenThreeTestsAreExecuted()
         {
             // Prepare
-            new BT().Reset();
+            new BT(new DontKnow()).Reset();
             new CT().Reset();
 
             // Act
-            new A().TestBottomUp();
-            var testsOfB = new BT().Counter;
+            Root.TestBottomUp();
+            var testsOfB = new BT(new DontKnow()).Counter;
             var testsOfC = new CT().Counter;
 
             // Check
@@ -87,7 +107,6 @@ namespace Trumpf.Coparoo.Tests
         [Test]
         public void WhenTheDotTreeIsWrittenToDisk_ThenAFileIsCreated()
         {
-            A root;
             var dotFile = $"{TabObject.DEFAULT_FILE_PREFIX}.dot";
             var pdfFile = $"{TabObject.DEFAULT_FILE_PREFIX}.pdf";
             var fullDotPath = Path.GetFullPath(dotFile);
@@ -97,7 +116,7 @@ namespace Trumpf.Coparoo.Tests
             try
             {
                 // Act
-                root = new A();
+                var root = Root;
                 root.TestBottomUp(true);
                 dotExists = File.Exists(fullDotPath);
                 pdfExists = File.Exists(fullPdfPath);
@@ -184,16 +203,37 @@ namespace Trumpf.Coparoo.Tests
         }
 
         /// <summary>
+        /// Helper interface.
+        /// </summary>
+        private interface IDontKnow
+        {
+        }
+
+        /// <summary>
+        /// Helper class.
+        /// </summary>
+        private class DontKnow : IDontKnow
+        {
+        }
+
+        /// <summary>
         /// Helper class.
         /// </summary>
         private class BT : MyPageObjectTests<B>
         {
+            private IDontKnow dontKnow;
+
+            public BT(IDontKnow dontKnow)
+                => this.dontKnow = dontKnow;
+
             /// <summary>
             /// Test method.
             /// </summary>
             [PageTest]
             public void B1()
             {
+                Assert.NotNull(dontKnow);
+                Assert.AreEqual(typeof(DontKnow), dontKnow.GetType());
                 Increment();
             }
 

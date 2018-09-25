@@ -14,6 +14,7 @@
 
 namespace Trumpf.Coparoo.Web
 {
+    using Stashbox;
     using System;
 
     /// <summary>
@@ -24,6 +25,10 @@ namespace Trumpf.Coparoo.Web
         private TimeSpan waitTime = TimeSpan.FromSeconds(20);
         private TimeSpan positiveWaitTime = TimeSpan.FromSeconds(2);
         private bool showWaitingDialog = true;
+        private StashboxContainer resolver = new StashboxContainer();
+
+        internal object Resolve(Type typeFrom)
+            => resolver.Resolve(typeFrom);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Configuration"/> class.
@@ -31,6 +36,12 @@ namespace Trumpf.Coparoo.Web
         internal Configuration()
         {
         }
+
+        /// <summary>
+        /// Gets the registrator.
+        /// </summary>
+        public IDependencyRegistrator DependencyRegistrator 
+            => resolver;
 
         /// <summary>
         /// Gets or sets the default timeout for waiting methods.

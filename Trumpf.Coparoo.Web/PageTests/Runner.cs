@@ -43,7 +43,7 @@ namespace Trumpf.Coparoo.Web.PageTests
         /// </summary>
         /// <param name="source">The page object.</param>
         /// <returns>The root.</returns>
-        private static ITreeObject Root(IPageObject source) => (ITreeObject)((IUIObjectInternal)source).Root;
+        private static ITabObject Root(IPageObject source) => ((IUIObjectInternal)source).Root;
 
         /// <summary>
         /// Run tests for this page object.
@@ -123,7 +123,11 @@ namespace Trumpf.Coparoo.Web.PageTests
                     Trace.WriteLine($"Found page test class for current class {source.GetType().ToString()}: {classWithTests.ToString()}");
 
                     // create and initialize page test class
-                    var instance = (IPageObjectTestsInternal)Activator.CreateInstance(classWithTests);
+                    object resolveObject = classWithTests.GetConstructor(Type.EmptyTypes) == null
+                        ? Root(source).Configuration.Resolve(classWithTests)
+                        : Activator.CreateInstance(classWithTests);
+
+                    var instance = (IPageObjectTestsInternal)resolveObject;
                     instance.Init(source);
 
                     // check if tests should be executed
@@ -190,7 +194,7 @@ namespace Trumpf.Coparoo.Web.PageTests
             }
             finally
             {
-                result = Root(source).Tree;
+                result = ((ITreeObject)Root(source)).Tree;
                 foreach (var pair in pageObjectStatistics.Stats)
                 {
                     // merge trees
