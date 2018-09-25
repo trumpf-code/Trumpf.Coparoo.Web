@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <!-- project information -->
-    <TargetFrameworks>netcoreapp2.0;netstandard2.0;net45</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.0;netstandard2.0;NET451</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
 
@@ -30,7 +30,7 @@
     <PackageReference Include="Selenium.WebDriver" Version="3.12.1" />
     <PackageReference Include="Stashbox" Version="2.6.1" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'NET451'">
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
 </Project>
