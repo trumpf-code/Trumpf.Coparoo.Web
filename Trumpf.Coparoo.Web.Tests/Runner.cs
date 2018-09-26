@@ -16,9 +16,11 @@ namespace Trumpf.Coparoo.Tests
 {
     using System;
     using System.IO;
+
     using NUnit.Framework;
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
+    using Trumpf.Coparoo.Web.Exceptions;
     using Trumpf.Coparoo.Web.Logging.Tree;
     using Trumpf.Coparoo.Web.PageTests;
 
@@ -34,7 +36,6 @@ namespace Trumpf.Coparoo.Tests
             {
                 var result = new A();
                 result.Configuration.DependencyRegistrator
-                    .RegisterType<BT>()
                     .RegisterType<IDontKnow, DontKnow>();
 
                 return result;
@@ -46,7 +47,7 @@ namespace Trumpf.Coparoo.Tests
         /// </summary>
         [Test]
         public void WhenATestsClassHasUnregisteredTypes_ThenAnExceptionIsThrown()
-            => Assert.Throws<Stashbox.Exceptions.ResolutionFailedException>(() => new A().On<B>().Test());
+            => Assert.Throws<TypeResolutionFailedException>(() => new A().On<B>().Test());
 
         /// <summary>
         /// Test method.

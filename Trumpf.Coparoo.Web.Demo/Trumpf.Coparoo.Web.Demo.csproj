@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net45</TargetFramework>
+    <TargetFramework>net451</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MSTest.TestAdapter" Version="1.3.2" />

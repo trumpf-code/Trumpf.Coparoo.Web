@@ -123,11 +123,20 @@ namespace Trumpf.Coparoo.Web.PageTests
                     Trace.WriteLine($"Found page test class for current class {source.GetType().ToString()}: {classWithTests.ToString()}");
 
                     // create and initialize page test class
-                    object resolveObject = classWithTests.GetConstructor(Type.EmptyTypes) == null
-                        ? Root(source).Configuration.Resolve(classWithTests)
-                        : Activator.CreateInstance(classWithTests);
+                    IPageObjectTestsInternal instance;
+                    try
+                    {
+                        instance = (IPageObjectTestsInternal)Root(source)
+                            .Configuration
+                            .DependencyRegistrator
+                            .RegisterType(classWithTests)
+                            .Resolve(classWithTests);
+                    }
+                    catch (Stashbox.Exceptions.ResolutionFailedException exception)
+                    {
+                        throw new TypeResolutionFailedException(exception, $"Configure the resolver via property '{nameof(Configuration.DependencyRegistrator)}' in class '{Root(source).GetType().FullName}'.");
+                    }
 
-                    var instance = (IPageObjectTestsInternal)resolveObject;
                     instance.Init(source);
 
                     // check if tests should be executed

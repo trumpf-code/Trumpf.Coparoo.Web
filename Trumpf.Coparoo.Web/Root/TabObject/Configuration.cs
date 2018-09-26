@@ -14,60 +14,43 @@
 
 namespace Trumpf.Coparoo.Web
 {
-    using Stashbox;
     using System;
+    using System.Linq.Expressions;
+
+    using Stashbox;
 
     /// <summary>
     /// The configuration class.
     /// </summary>
     public class Configuration
     {
-        private TimeSpan waitTime = TimeSpan.FromSeconds(20);
-        private TimeSpan positiveWaitTime = TimeSpan.FromSeconds(2);
-        private bool showWaitingDialog = true;
-        private StashboxContainer resolver = new StashboxContainer();
-
-        internal object Resolve(Type typeFrom)
-            => resolver.Resolve(typeFrom);
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Configuration"/> class.
         /// </summary>
         internal Configuration()
-        {
-        }
+            => Expression.Empty();
 
         /// <summary>
-        /// Gets the registrator.
+        /// Gets the page test class dependency registrator.
         /// </summary>
-        public IDependencyRegistrator DependencyRegistrator 
-            => resolver;
+        public IDependencyRegistrator DependencyRegistrator { get; } = new StashboxContainer();
 
         /// <summary>
         /// Gets or sets the default timeout for waiting methods.
         /// </summary>
-        public TimeSpan WaitTimeout
-        {
-            get { return waitTime; }
-            set { waitTime = value; }
-        }
+        public TimeSpan WaitTimeout { get; set; } = TimeSpan.FromSeconds(20);
 
         /// <summary>
         /// Gets or sets the default positive timeout for the waiting dialog, i.e. how long the dialog should remain visible in case the expected condition evaluates true.
         /// </summary>
-        public TimeSpan PositiveWaitTimeout
-        {
-            get { return positiveWaitTime; }
-            set { positiveWaitTime = value; }
-        }
+        public TimeSpan PositiveWaitTimeout { get; set; } = TimeSpan.FromSeconds(2);
 
         /// <summary>
         /// Gets or sets a value indicating whether to show a dialog when waiting for a condition.
         /// </summary>
-        public bool ShowWaitingDialog
-        {
-            get { return showWaitingDialog; }
-            set { showWaitingDialog = value; }
-        }
+        public bool ShowWaitingDialog { get; set; } = true;
+
+        internal object Resolve(Type typeFrom)
+            => ((StashboxContainer)DependencyRegistrator).Resolve(typeFrom);
     }
 }
