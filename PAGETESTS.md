@@ -40,6 +40,33 @@ By default `ReadyToRun` maps to `Page.Displayed`, and `BeforeFirstTest` to
         Page.Displayed.TryWaitFor(); }
 Hence, if sufficient implicit navigation actions are specified in the `Goto` method of `P` then no explicit navigation steps are required for preparation.
 
+## How to inject objects into page test classes?
+If page tests interact with other components, then injecting these through interfaces has a big advantage:
+The **same** tests can be executed in **different test setups**, e.g. against 
+- concrete component implementations in an end-to-end scenario
+- simulated components
+- simple mocks etc.
+
+We can achieve this in two steps. First, we add a constructor with the desired component interfaces, e.g. for `IOtherComponent`
+
+    public class PageTests : PageObjectTests<Menu> {
+        private IOtherComponent otherComponente;
+        public PageTests(IOtherComponent otherComponente)
+            => this.otherComponente = otherComponente;
+        [PageTest] public void SomeTest() {
+            otherComponente.DoSometing();
+            ...
+Second, we register the desired implementation with the dependency resolver like this:
+
+    var tab = new MyTab();
+    tab.Configuration
+        .DependencyRegistrator
+        .RegisterType<IOtherComponent, OtherComponentEndToEnd>();
+    tab.On<Menu>().Test();
+    tab.Close(); }
+
+The framework ensures that appropriate instances get passed to the `PageTests` constructor before running tests.
+
 ## How to visualize page tests?
 To visualize page test results of page object `P` together with the Coparoo graph, call 
 

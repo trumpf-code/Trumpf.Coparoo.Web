@@ -45,6 +45,8 @@ Copyright (c) TRUMPF Werkzeugmaschinen GmbH + Co. KG. All rights reserved. 2016,
 
 Licensed under the [Apache License Version 2.0](LICENSE) License.
 
+Coparoo uses the [Stashbox](https://github.com/z4kn4fein/stashbox) dependency injection framework (MIT license) by Peter Csajtai.
+
 [logo640]: ./Resources/logo640.png "coparoo web logo"
 [travisBuildStatus]: https://travis-ci.org/trumpf-code/Trumpf.Coparoo.Web.svg?branch=master "Build Status (Travis CI)"
 [appVeyorBuildStatus]: https://ci.appveyor.com/api/projects/status/github/trumpf-code/Trumpf.Coparoo.Web "Build Status (AppVeyor)"
