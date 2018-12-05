@@ -17,9 +17,9 @@ namespace Trumpf.Coparoo.Web.Demo
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
 
-    public class VDI : PageObject, IChildOf<VdiTab>
+    public class VdiPage : PageObject, IChildOf<VdiTab>
     {
-        protected override By SearchPattern => By.CssSelector(".pushy-container");
+        protected override By SearchPattern => By.CssSelector(".vdi-wrapper");
         public override void Goto()
         {
             if (!Displayed)

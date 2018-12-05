@@ -14,11 +14,9 @@
 
 namespace Trumpf.Coparoo.Web.Demo
 {
-    using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
 
-    public class EventTitleRow : ControlObject, IEventTitleRow
+    public interface IEventTitleRow : IControlObject
     {
-        protected override By SearchPattern => By.ClassName("list-title");
     }
 }

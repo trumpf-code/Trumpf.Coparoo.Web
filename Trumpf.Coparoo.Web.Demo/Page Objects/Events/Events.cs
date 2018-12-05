@@ -20,22 +20,24 @@ namespace Trumpf.Coparoo.Web.Demo
     using Trumpf.Coparoo.Web;
     using Trumpf.Coparoo.Web.Controls;
 
-    public class Events : PageObject, IChildOf<VDI>, IEvents
+    public class Events : PageObject, IChildOf<VdiPage>
     {
         protected override By SearchPattern => By.ClassName("vdi-event-list-view");
-        public override void Goto()
-        {
-            if (!Displayed)
-                Goto<Menu>().Events.Click();
-        }
+
         public ITextInput SearchText => Find<TextInput>(By.Id("name"));
         public IButton Search => Find<Button>();
         public IEnumerable<IEventTitleRow> EventList => FindAll<EventTitleRow>();
+
         public void SearchFor(string searchText)
         {
             SearchText.ScrollTo();
             SearchText.Text = searchText;
             Search.Click();
+        }
+        public override void Goto()
+        {
+            if (!Displayed)
+                Goto<Menu>().Events.Click();
         }
     }
 }

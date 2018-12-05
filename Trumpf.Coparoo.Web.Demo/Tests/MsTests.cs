@@ -34,7 +34,7 @@ namespace Trumpf.Coparoo.Web.Demo
             {
                 vdi = new VdiTab();
                 vdi.Open();
-                vdi.On<VDI>().Displayed.WaitFor();
+                vdi.On<VdiPage>().Displayed.WaitFor();
             }
             finally
             {
@@ -49,10 +49,10 @@ namespace Trumpf.Coparoo.Web.Demo
             {
                 vdi = new VdiTab();
                 vdi.Open();
-                vdi.On<VDI>().Displayed.WaitFor();
+                vdi.On<VdiPage>().Displayed.WaitFor();
                 vdi.On<Menu>().Events.Click();
                 vdi.On<Events>().SearchText.Text = "praxis qualitätssicherung";
-                vdi.On<Events>().Search.Click();
+                vdi.On<Events>().Search.SendReturn();
                 DialogWait.For(() => vdi.On<Events>().EventList.Count(), c => c == 1, "1 seminars in list");
             }
             finally

@@ -14,18 +14,25 @@
 
 namespace Trumpf.Coparoo.Web.Demo
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
     using Trumpf.Coparoo.Web.Controls;
 
-    public class Menu : PageObject, IChildOf<VDI>, IMenu
-    {
-        protected override By SearchPattern => By.CssSelector(".vdi-main-menu");
-        public ILink Events => Find<Link>(By.LinkText("SEMINARE"));
-        public override void Goto()
-        {
-            if (!Displayed)
-                Parent.Goto();
-        }
-    }
+public class Menu : PageObject, IChildOf<VdiPage>, IMenu {
+    protected override By SearchPattern => By.CssSelector(".vdi-main-menu");
+    public IEnumerable<Link> Buttons => FindAll<Link>()
+        .OrderFromLeftToRight()
+        .Where(e => e.Displayed);
+
+    public ILink Events => Buttons.ElementAt(0);
+    public ILink Place => Buttons.ElementAt(1);
+    public ILink Contact => Buttons.ElementAt(2);
+    public ILink AboutUs => Buttons.ElementAt(3);
+
+    public override void Goto() {
+        if (!Displayed)
+            Parent.Goto(); } }
 }
