@@ -3,9 +3,9 @@
     <TargetFramework>net451</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MSTest.TestAdapter" Version="1.3.2" />
-    <PackageReference Include="MSTest.TestFramework" Version="1.3.2" />
-    <PackageReference Include="Selenium.WebDriver" Version="3.12.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <ProjectReference Include="..\Trumpf.Coparoo.Web\Trumpf.Coparoo.Web.csproj" />
   </ItemGroup>
 </Project>

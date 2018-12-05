@@ -129,7 +129,7 @@ namespace Trumpf.Coparoo.Web.PageTests
                         instance = (IPageObjectTestsInternal)Root(source)
                             .Configuration
                             .DependencyRegistrator
-                            .RegisterType(classWithTests)
+                            .Register(classWithTests)
                             .Resolve(classWithTests);
                     }
                     catch (Stashbox.Exceptions.ResolutionFailedException exception)

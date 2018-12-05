@@ -36,7 +36,7 @@ namespace Trumpf.Coparoo.Tests
             {
                 var result = new A();
                 result.Configuration.DependencyRegistrator
-                    .RegisterType<IDontKnow, DontKnow>();
+                    .Register<IDontKnow, DontKnow>();
 
                 return result;
             }
