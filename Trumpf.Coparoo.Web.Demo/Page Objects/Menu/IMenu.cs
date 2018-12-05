@@ -15,6 +15,8 @@
 namespace Trumpf.Coparoo.Web.Demo
 {
     using Trumpf.Coparoo.Web;
+    using Trumpf.Coparoo.Web.Controls;
+
     public interface IMenu : IPageObject
     {
         ILink Events { get; }

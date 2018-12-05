@@ -14,16 +14,10 @@
 
 namespace Trumpf.Coparoo.Web.Controls
 {
-    using OpenQA.Selenium;
-
     /// <summary>
-    /// Div control object.
+    /// Span control object interface.
     /// </summary>
-    public class Div : ControlObject, IDiv
+    public interface ISpan : IControlObject
     {
-        /// <summary>
-        /// Gets the search pattern.
-        /// </summary>
-        protected override By SearchPattern => By.TagName("div");
     }
 }

@@ -12,19 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trumpf.Coparoo.Web.Demo
+namespace Trumpf.Coparoo.Web.Controls
 {
-    using OpenQA.Selenium;
-    using Trumpf.Coparoo.Web;
-
-    public interface ILink : IControlObject
+    /// <summary>
+    /// Label control object interface.
+    /// </summary>
+    public interface ILabel
     {
-    }
-
-    public class Link : ControlObject, ILink
-    {
-        protected override By SearchPattern => By.TagName("a");
-        public string Text => Node.Text;
-        public string URL => Node.GetAttribute("href");
+        /// <summary>
+        /// Gets the text.
+        /// </summary>
+        string Text { get; }
     }
 }

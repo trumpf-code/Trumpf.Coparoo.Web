@@ -14,16 +14,25 @@
 
 namespace Trumpf.Coparoo.Web.Controls
 {
-    using OpenQA.Selenium;
-
     /// <summary>
-    /// Div control object.
+    /// Checkbox control object interface.
+    /// Expects an input html element with attribute type="checkbox".
     /// </summary>
-    public class Div : ControlObject, IDiv
+    public interface ICheckbox : IControlObject
     {
         /// <summary>
-        /// Gets the search pattern.
+        /// Gets the value.
         /// </summary>
-        protected override By SearchPattern => By.TagName("div");
+        string Value { get; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the checkbox is checked.
+        /// </summary>
+        bool Checked { get; set; }
+
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        string Name { get; }
     }
 }

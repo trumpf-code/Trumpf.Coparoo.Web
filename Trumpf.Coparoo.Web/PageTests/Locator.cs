@@ -31,8 +31,8 @@ namespace Trumpf.Coparoo.Web.PageTests
         private static Type[] pageObjectTypes;
         private static Type[] controlObjectTypes;
         private static Type[] uiaObjectTypes;
-        private static Func<Type, bool> pageObjectSelector = t => t.GetInterfaces().Contains(typeof(IPageObject));
-        private static Func<Type, bool> controlObjectSelector = t => t.GetInterfaces().Contains(typeof(IControlObject));
+        private static readonly Func<Type, bool> pageObjectSelector = t => t.GetInterfaces().Contains(typeof(IPageObject));
+        private static readonly Func<Type, bool> controlObjectSelector = t => t.GetInterfaces().Contains(typeof(IControlObject));
 
         /// <summary>
         /// Gets the retrievable app domain types.

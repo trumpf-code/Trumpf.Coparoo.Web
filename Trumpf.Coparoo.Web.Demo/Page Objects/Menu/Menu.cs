@@ -16,6 +16,7 @@ namespace Trumpf.Coparoo.Web.Demo
 {
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
+    using Trumpf.Coparoo.Web.Controls;
 
     public class Menu : PageObject, IChildOf<VDI>, IMenu
     {

@@ -19,7 +19,7 @@ namespace Trumpf.Coparoo.Web.Controls
     /// <summary>
     /// Button control object.
     /// </summary>
-    public class Button : ControlObject
+    public class Button : ControlObject, IButton
     {
         /// <summary>
         /// Gets the search pattern.
@@ -30,5 +30,11 @@ namespace Trumpf.Coparoo.Web.Controls
         /// Gets the button text.
         /// </summary>
         public string Text => Node.Text;
+
+        /// <summary>
+        /// Sends the return key.
+        /// </summary>
+        public void SendReturn()
+            => Node.SendKeys(Keys.Return);
     }
 }

@@ -30,7 +30,7 @@ namespace Trumpf.Coparoo.Web.Waiting
     /// </summary>
     public class DialogWait
     {
-        private object m = new object();
+        private readonly object m = new object();
         private State state;
         private TimeSpan gto;
         private TimeSpan positiveTimeout;
@@ -633,8 +633,8 @@ namespace Trumpf.Coparoo.Web.Waiting
             private Button positiveButton;
             private Button negativeButton;
             private Form dialog;
-            private bool clickThrough;
-            private bool showCurrentValue;
+            private readonly bool clickThrough;
+            private readonly bool showCurrentValue;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="DialogView"/> class.

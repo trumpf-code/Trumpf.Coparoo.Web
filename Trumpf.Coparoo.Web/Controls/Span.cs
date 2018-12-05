@@ -19,7 +19,7 @@ namespace Trumpf.Coparoo.Web.Controls
     /// <summary>
     /// Span control object.
     /// </summary>
-    public class Span : ControlObject
+    public class Span : ControlObject, ISpan
     {
         /// <summary>
         /// Gets the search pattern.

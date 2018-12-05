@@ -94,9 +94,7 @@ namespace Trumpf.Coparoo.Web.Logging.Tree
         {
             System.Reflection.FieldInfo field = value.GetType().GetField(value.ToString());
 
-            DescriptionAttribute attribute = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) as DescriptionAttribute;
-
-            if (attribute == null)
+            if (!(Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) is DescriptionAttribute attribute))
             {
                 throw new InvalidOperationException(string.Format(@"The enum does not have a {0} attribute.", typeof(DescriptionAttribute).FullName));
             }

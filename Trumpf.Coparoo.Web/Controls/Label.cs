@@ -19,7 +19,7 @@ namespace Trumpf.Coparoo.Web.Controls
     /// <summary>
     /// Label control object.
     /// </summary>
-    public class Label : ControlObject
+    public class Label : ControlObject, ILabel
     {
         /// <summary>
         /// Gets the search pattern.

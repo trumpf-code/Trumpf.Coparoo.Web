@@ -59,7 +59,7 @@ namespace Trumpf.Coparoo.Tests
         /// </summary>
         protected class Tab : TabObject
         {
-            private string file;
+            private readonly string file;
             public Tab(string file) => this.file = file;
             protected override string Url => file;
             protected override Func<IWebDriver> Creator => () => new FirefoxDriver();

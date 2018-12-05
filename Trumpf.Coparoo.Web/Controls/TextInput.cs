@@ -20,7 +20,7 @@ namespace Trumpf.Coparoo.Web.Controls
     /// Text input control object.
     /// Expects an input html element with attribute type="text".
     /// </summary>
-    public class TextInput : ControlObject
+    public class TextInput : ControlObject, ITextInput
     {
         /// <summary>
         /// Gets the search pattern.

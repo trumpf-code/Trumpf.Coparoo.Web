@@ -19,7 +19,7 @@ namespace Trumpf.Coparoo.Web.Controls
     /// <summary>
     /// Link control object.
     /// </summary>
-    public class Link : ControlObject
+    public class Link : ControlObject, ILink
     {
         /// <summary>
         /// Gets the search pattern.

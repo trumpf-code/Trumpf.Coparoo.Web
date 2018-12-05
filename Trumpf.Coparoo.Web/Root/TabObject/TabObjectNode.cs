@@ -24,7 +24,7 @@ namespace Trumpf.Coparoo.Web
     /// </summary>
     internal class TabObjectNode : UIObjectNode, ITabObjectNode, ITabObjectNodeInternal
     {
-        private NodeLocator nodeLocator = new NodeLocator();
+        private readonly NodeLocator nodeLocator = new NodeLocator();
         private IWebDriver webDriver;
 
         /// <summary>

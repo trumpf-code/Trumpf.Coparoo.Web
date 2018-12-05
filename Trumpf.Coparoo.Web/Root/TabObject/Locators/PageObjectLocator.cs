@@ -28,7 +28,7 @@ namespace Trumpf.Coparoo.Web
     internal class PageObjectLocator : IPageObjectLocator
     {
         private Dictionary<Type, HashSet<IPageObject>> typeToPageObjectMap;
-        private ITabObject rootObject;
+        private readonly ITabObject rootObject;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PageObjectLocator"/> class.
@@ -162,7 +162,7 @@ namespace Trumpf.Coparoo.Web
 
                     if ((page as ITreeObject).OnCondition && condition(page))
                     {
-                        var parent = (IPageObject)page.Parent;
+                        var parent = page.Parent;
                         result = parent == null ? page : (TPageObject)(Activator.CreateInstance(page.GetType()) as IUIObjectInternal).Init(parent, true);
                         return true;
                     }

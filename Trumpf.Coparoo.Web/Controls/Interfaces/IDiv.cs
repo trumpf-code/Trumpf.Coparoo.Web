@@ -12,20 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trumpf.Coparoo.Web.Demo
+namespace Trumpf.Coparoo.Web.Controls
 {
-    using OpenQA.Selenium;
-    using Trumpf.Coparoo.Web;
-
-    public interface IButton : IControlObject
+    /// <summary>
+    /// Div control object interface.
+    /// </summary>
+    public interface IDiv : IControlObject
     {
-    }
-
-    public class Button : ControlObject, IButton
-    {
-        protected override By SearchPattern => By.XPath("//button[@type='submit']");
-
-        public override void Click()
-            => Node.SendKeys(Keys.Return);
     }
 }

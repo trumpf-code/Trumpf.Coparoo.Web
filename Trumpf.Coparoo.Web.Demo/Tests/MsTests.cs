@@ -51,7 +51,7 @@ namespace Trumpf.Coparoo.Web.Demo
                 vdi.Open();
                 vdi.On<VDI>().Displayed.WaitFor();
                 vdi.On<Menu>().Events.Click();
-                vdi.On<Events>().SearchText.Content = "praxis qualitätssicherung";
+                vdi.On<Events>().SearchText.Text = "praxis qualitätssicherung";
                 vdi.On<Events>().Search.Click();
                 DialogWait.For(() => vdi.On<Events>().EventList.Count(), c => c == 1, "1 seminars in list");
             }

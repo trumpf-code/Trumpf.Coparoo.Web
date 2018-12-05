@@ -20,7 +20,7 @@ namespace Trumpf.Coparoo.Web.Controls
     /// Checkbox control object.
     /// Expects an input html element with attribute type="checkbox".
     /// </summary>
-    public class Checkbox : ControlObject
+    public class Checkbox : ControlObject, ICheckbox
     {
         /// <summary>
         /// Gets the search pattern.

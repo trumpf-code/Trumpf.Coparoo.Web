@@ -18,6 +18,7 @@ namespace Trumpf.Coparoo.Web.Demo
 
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
+    using Trumpf.Coparoo.Web.Controls;
 
     public class Events : PageObject, IChildOf<VDI>, IEvents
     {
@@ -27,13 +28,13 @@ namespace Trumpf.Coparoo.Web.Demo
             if (!Displayed)
                 Goto<Menu>().Events.Click();
         }
-        public IInputBox SearchText => Find<InputBox>();
+        public ITextInput SearchText => Find<TextInput>(By.Id("name"));
         public IButton Search => Find<Button>();
         public IEnumerable<IEventTitleRow> EventList => FindAll<EventTitleRow>();
         public void SearchFor(string searchText)
         {
             SearchText.ScrollTo();
-            SearchText.Content = searchText;
+            SearchText.Text = searchText;
             Search.Click();
         }
     }

@@ -17,12 +17,13 @@ namespace Trumpf.Coparoo.Web.Demo
     using System.Collections.Generic;
 
     using Trumpf.Coparoo.Web;
+    using Trumpf.Coparoo.Web.Controls;
 
     public interface IEvents : IPageObject
     {
         IEnumerable<IEventTitleRow> EventList { get; }
         IButton Search { get; }
-        IInputBox SearchText { get; }
+        ITextInput SearchText { get; }
         void SearchFor(string searchText);
     }
 }

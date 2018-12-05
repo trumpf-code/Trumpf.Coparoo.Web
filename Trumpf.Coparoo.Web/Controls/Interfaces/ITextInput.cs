@@ -14,16 +14,20 @@
 
 namespace Trumpf.Coparoo.Web.Controls
 {
-    using OpenQA.Selenium;
-
     /// <summary>
-    /// Div control object.
+    /// Text input control object interface.
+    /// Expects an input html element with attribute type="text".
     /// </summary>
-    public class Div : ControlObject, IDiv
+    public interface ITextInput : IControlObject
     {
         /// <summary>
-        /// Gets the search pattern.
+        /// Gets or sets the name.
         /// </summary>
-        protected override By SearchPattern => By.TagName("div");
+        string Name { get; }
+
+        /// <summary>
+        /// Gets or sets the text.
+        /// </summary>
+        string Text { get; set; }
     }
 }
