@@ -12,23 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trumpf.Coparoo.Web.Controls
+namespace Trumpf.Coparoo.Tests
 {
+    using System;
     using OpenQA.Selenium;
+    using Trumpf.Coparoo.Web;
 
-    /// <summary>
-    /// Button control object.
-    /// </summary>
-    public class Button : ControlObject
+    public class RootObject : TabObject
     {
-        /// <summary>
-        /// Gets the search pattern.
-        /// </summary>
-        protected override By SearchPattern => By.TagName("button");
-
-        /// <summary>
-        /// Gets the button text.
-        /// </summary>
-        public string Text => Node.Text;
+        protected override string Url => "";
+        protected override Func<IWebDriver> Creator => null;
     }
 }

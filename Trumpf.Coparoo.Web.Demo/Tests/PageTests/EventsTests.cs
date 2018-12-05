@@ -23,7 +23,7 @@ namespace Trumpf.Coparoo.Web.Demo
         public void CheckEventsCount()
         {
             Page.On<Events>().SearchFor("praxis qualitätssicherung");
-            Await(() => Page.On<Events>().EventList.Count()).WaitFor(c => c == 2, "2 seminars in list");
+            Await(() => Page.On<Events>().EventList.Count()).WaitFor(c => c == 1, "1 seminars in list");
         }
     }
 }

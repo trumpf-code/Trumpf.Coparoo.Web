@@ -12,23 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trumpf.Coparoo.Web.Controls
+namespace Trumpf.Coparoo.Tests
 {
-    using OpenQA.Selenium;
+    using System.IO;
+    using NUnit.Framework;
 
-    /// <summary>
-    /// Button control object.
-    /// </summary>
-    public class Button : ControlObject
+    [SetUpFixture]
+    public class SetUpClass
     {
-        /// <summary>
-        /// Gets the search pattern.
-        /// </summary>
-        protected override By SearchPattern => By.TagName("button");
-
-        /// <summary>
-        /// Gets the button text.
-        /// </summary>
-        public string Text => Node.Text;
+        [OneTimeSetUp]
+        public void RunBeforeAnyTests()
+            => Directory.SetCurrentDirectory(TestContext.CurrentContext.TestDirectory);
     }
 }
