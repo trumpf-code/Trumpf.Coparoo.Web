@@ -32,7 +32,7 @@ namespace Trumpf.Coparoo.Web.Demo
         {
             SearchText.ScrollTo();
             SearchText.Text = searchText;
-            Search.Click();
+            Search.SendReturn();
         }
         public override void Goto()
         {

@@ -213,7 +213,8 @@ namespace Trumpf.Coparoo.Web.PageTests
 
                 if (!success || writeTree)
                 {
-                    result.WriteGraph();
+                    var treeFilePath = result.WriteGraph();
+                    Trace.WriteLine($"Graph written to '{treeFilePath}'.");
                 }
             }
 
