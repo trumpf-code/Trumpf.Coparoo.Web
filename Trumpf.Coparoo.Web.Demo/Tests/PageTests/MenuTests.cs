@@ -16,12 +16,12 @@ namespace Trumpf.Coparoo.Web.Demo
 {
     using Trumpf.Coparoo.Web.PageTests;
 
-    public class MenuTests : PageObjectTests<Menu>
+    public class MenuTests : PageObjectTests<IMenu>
     {
         [PageTest]
         public void CheckAllContents()
         {
-            Page.Goto<Events>().Displayed.WaitFor();
+            Page.Goto<IEvents>().Displayed.WaitFor();
         }
     }
 }

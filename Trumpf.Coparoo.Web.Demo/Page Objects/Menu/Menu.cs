@@ -21,18 +21,22 @@ namespace Trumpf.Coparoo.Web.Demo
     using Trumpf.Coparoo.Web;
     using Trumpf.Coparoo.Web.Controls;
 
-public class Menu : PageObject, IChildOf<VdiPage>, IMenu {
-    protected override By SearchPattern => By.CssSelector(".vdi-main-menu");
-    public IEnumerable<Link> Buttons => FindAll<Link>()
-        .OrderFromLeftToRight()
-        .Where(e => e.Displayed);
+    public class Menu : PageObject, IChildOf<VdiPage>, IMenu
+    {
+        protected override By SearchPattern => By.CssSelector(".vdi-main-menu");
+        public IEnumerable<ILink> Buttons => FindAll<ILink>()
+            .OrderFromLeftToRight()
+            .Where(e => e.Displayed);
 
-    public ILink Events => Buttons.ElementAt(0);
-    public ILink Place => Buttons.ElementAt(1);
-    public ILink Contact => Buttons.ElementAt(2);
-    public ILink AboutUs => Buttons.ElementAt(3);
+        public ILink Events => Buttons.ElementAt(0);
+        public ILink Place => Buttons.ElementAt(1);
+        public ILink Contact => Buttons.ElementAt(2);
+        public ILink AboutUs => Buttons.ElementAt(3);
 
-    public override void Goto() {
-        if (!Displayed)
-            Parent.Goto(); } }
+        public override void Goto()
+        {
+            if (!Displayed)
+                Parent.Goto();
+        }
+    }
 }

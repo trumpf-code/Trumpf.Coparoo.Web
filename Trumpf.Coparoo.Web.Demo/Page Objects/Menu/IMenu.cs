@@ -14,11 +14,16 @@
 
 namespace Trumpf.Coparoo.Web.Demo
 {
+    using System.Collections.Generic;
     using Trumpf.Coparoo.Web;
     using Trumpf.Coparoo.Web.Controls;
 
     public interface IMenu : IPageObject
     {
+        ILink AboutUs { get; }
+        IEnumerable<ILink> Buttons { get; }
+        ILink Contact { get; }
         ILink Events { get; }
+        ILink Place { get; }
     }
 }

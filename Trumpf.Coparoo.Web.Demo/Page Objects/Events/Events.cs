@@ -20,13 +20,13 @@ namespace Trumpf.Coparoo.Web.Demo
     using Trumpf.Coparoo.Web;
     using Trumpf.Coparoo.Web.Controls;
 
-    public class Events : PageObject, IChildOf<VdiPage>
+    public class Events : PageObject, IChildOf<VdiPage>, IEvents
     {
         protected override By SearchPattern => By.ClassName("vdi-event-list-view");
 
-        public ITextInput SearchText => Find<TextInput>(By.Id("name"));
-        public IButton Search => Find<Button>();
-        public IEnumerable<IEventTitleRow> EventList => FindAll<EventTitleRow>();
+        public ITextInput SearchText => Find<ITextInput>(By.Id("name"));
+        public IButton Search => Find<IButton>();
+        public IEnumerable<IEventTitleRow> EventList => FindAll<IEventTitleRow>();
 
         public void SearchFor(string searchText)
         {
@@ -37,7 +37,7 @@ namespace Trumpf.Coparoo.Web.Demo
         public override void Goto()
         {
             if (!Displayed)
-                Goto<Menu>().Events.Click();
+                Goto<IMenu>().Events.Click();
         }
     }
 }

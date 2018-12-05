@@ -27,7 +27,7 @@ namespace Trumpf.Coparoo.Web.Demo
             var vdi = new VdiTab();
             try
             {
-                vdi.On<Menu>().Test();
+                vdi.On<IMenu>().Test();
             }
             finally
             {
@@ -41,7 +41,7 @@ namespace Trumpf.Coparoo.Web.Demo
             var vdi = new VdiTab();
             try
             {
-                vdi.On<Events>().Test();
+                vdi.On<IEvents>().Test();
             }
             finally
             {
@@ -63,4 +63,5 @@ namespace Trumpf.Coparoo.Web.Demo
             }
         }
     }
+}
 #endif
