@@ -28,13 +28,13 @@ namespace Trumpf.Coparoo.Web.Demo
                 Goto<Menu>().Events.Click();
         }
         public IInputBox SearchText => Find<InputBox>();
-        public IButton Find => Find<Button>();
-        public IEnumerable<IEvent> EventList => FindAll<Event>();
+        public IButton Search => Find<Button>();
+        public IEnumerable<IEventTitleRow> EventList => FindAll<EventTitleRow>();
         public void SearchFor(string searchText)
         {
             SearchText.ScrollTo();
             SearchText.Content = searchText;
-            Find.Click();
+            Search.Click();
         }
     }
 }

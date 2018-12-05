@@ -20,8 +20,8 @@ namespace Trumpf.Coparoo.Web.Demo
 
     public interface IEvents : IPageObject
     {
-        IEnumerable<IEvent> EventList { get; }
-        IButton Find { get; }
+        IEnumerable<IEventTitleRow> EventList { get; }
+        IButton Search { get; }
         IInputBox SearchText { get; }
         void SearchFor(string searchText);
     }

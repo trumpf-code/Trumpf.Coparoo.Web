@@ -178,6 +178,11 @@ namespace Trumpf.Coparoo.Web.Internal
         /// <returns>Whether the node is accessible or not.</returns>
         internal static bool Accessible(ISearchContext node)
         {
+            if (node == null)
+            {
+                return false;
+            }
+
             try
             {
                 var temp = (node as IWebElement).Enabled; // if we can access the property, we consider the node "accessible"

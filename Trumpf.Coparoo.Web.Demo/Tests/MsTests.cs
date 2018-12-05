@@ -15,6 +15,7 @@
 #if !DEBUG
 namespace Trumpf.Coparoo.Web.Demo
 {
+    using System;
     using System.Linq;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -51,8 +52,8 @@ namespace Trumpf.Coparoo.Web.Demo
                 vdi.On<VDI>().Displayed.WaitFor();
                 vdi.On<Menu>().Events.Click();
                 vdi.On<Events>().SearchText.Content = "praxis qualitätssicherung";
-                vdi.On<Events>().Find.Click();
-                DialogWait.For(() => vdi.On<Events>().EventList.Count(), c => c == 0, "0 seminars in list");
+                vdi.On<Events>().Search.Click();
+                DialogWait.For(() => vdi.On<Events>().EventList.Count(), c => c == 1, "1 seminars in list");
             }
             finally
             {
@@ -67,7 +68,7 @@ namespace Trumpf.Coparoo.Web.Demo
             {
                 vdi = new VdiTab();
                 vdi.Goto<Events>().SearchFor("praxis qualitätssicherung");
-                DialogWait.For(() => vdi.On<Events>().EventList.Count(), c => c == 0, "0 seminars in list");
+                DialogWait.For(() => vdi.On<Events>().EventList.Count(), c => c == 1, "1 seminars in list");
             }
             finally
             {
@@ -78,11 +79,11 @@ namespace Trumpf.Coparoo.Web.Demo
         [TestMethod]
         public void AbstractVdiTestWithImplicitNavigation()
         {
+            vdi = TabObject.Resolve<IVdiTab>();
             try
             {
-                vdi = TabObject.Resolve<IVdiTab>();
                 vdi.Goto<IEvents>().SearchFor("praxis qualitätssicherung");
-                DialogWait.For(() => vdi.On<IEvents>().EventList.Count(), c => c == 0, "0 seminars in list");
+                DialogWait.For(() => vdi.On<IEvents>().EventList.Count(), c => c == 1, "1 seminars in list");
             }
             finally
             {
@@ -95,6 +96,7 @@ namespace Trumpf.Coparoo.Web.Demo
         {
             vdi = new VdiTab();
             var filePath = vdi.WriteTree();
+            Console.WriteLine(filePath);
         }
     }
 }

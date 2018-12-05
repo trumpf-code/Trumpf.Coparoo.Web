@@ -24,5 +24,8 @@ namespace Trumpf.Coparoo.Web.Demo
     public class Button : ControlObject, IButton
     {
         protected override By SearchPattern => By.XPath("//button[@type='submit']");
+
+        public override void Click()
+            => Node.SendKeys(Keys.Return);
     }
 }

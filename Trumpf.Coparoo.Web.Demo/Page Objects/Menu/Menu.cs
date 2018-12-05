@@ -19,8 +19,8 @@ namespace Trumpf.Coparoo.Web.Demo
 
     public class Menu : PageObject, IChildOf<VDI>, IMenu
     {
-        protected override By SearchPattern => By.ClassName("vdi-header");
-        public ILink Events => Find<Link>(By.LinkText("Seminare"));
+        protected override By SearchPattern => By.CssSelector(".vdi-main-menu");
+        public ILink Events => Find<Link>(By.LinkText("SEMINARE"));
         public override void Goto()
         {
             if (!Displayed)

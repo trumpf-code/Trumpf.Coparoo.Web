@@ -17,12 +17,12 @@ namespace Trumpf.Coparoo.Web.Demo
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
 
-    public interface IEvent : IControlObject
+    public interface IEventTitleRow : IControlObject
     {
     }
 
-    public class Event : ControlObject, IEvent
+    public class EventTitleRow : ControlObject, IEventTitleRow
     {
-        protected override By SearchPattern => By.CssSelector("div.event");
+        protected override By SearchPattern => By.ClassName("list-title");
     }
 }

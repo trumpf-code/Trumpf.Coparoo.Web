@@ -14,16 +14,24 @@
 
 namespace Trumpf.Coparoo.Web.Demo
 {
+    using System;
     using OpenQA.Selenium;
+    using OpenQA.Selenium.Chrome;
     using Trumpf.Coparoo.Web;
     public class VdiTab : TabObject, IVdiTab
     {
-        protected override System.Func<IWebDriver> Creator => () => new OpenQA.Selenium.Firefox.FirefoxDriver();
+        protected override Func<IWebDriver> Creator => () =>
+        {
+            var result = new ChromeDriver();
+            result.Manage().Window.Maximize();
+            return result;
+        };
+
         protected override string Url => "https://www.vdi-fortbildung.de";
         public VdiTab()
         {
             Configuration.ShowWaitingDialog = true;
-            Configuration.PositiveWaitTimeout = System.TimeSpan.Zero;
+            Configuration.PositiveWaitTimeout = TimeSpan.Zero;
         }
     }
 }
