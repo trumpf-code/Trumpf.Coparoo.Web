@@ -19,6 +19,7 @@ namespace Trumpf.Coparoo.Web
     using System;
     using System.Collections.Generic;
     using System.Drawing;
+    using System.Drawing.Imaging;
     using System.Linq;
     using Trumpf.Coparoo.Web.Internal;
     using Trumpf.Coparoo.Web.Logging.Tree;
@@ -254,5 +255,30 @@ namespace Trumpf.Coparoo.Web
         /// <param name="name">The display name used in timeout exceptions.</param>
         /// <returns>The wrapped object.</returns>
         IAwait<T> ITabObjectInternal.Await<T>(Func<T> function, string name) => new Await<T>(function, name, GetType(), () => Configuration.WaitTimeout, () => Configuration.PositiveWaitTimeout, () => Configuration.ShowWaitingDialog);
+
+        /// <summary>
+        /// Take a screen shot.
+        /// </summary>
+        /// <param name="path">Write screenshot to this PNG file name (pass with extension). null = just return the bitmap.</param>
+        /// <returns>The screen shot.</returns>
+        public override Bitmap TakeScreenshot(string path = null)
+        {
+            if (Root.Driver is ITakesScreenshot)
+            {
+                IWebElement element = Node;
+                IWebDriver driver = Root.Driver;
+                byte[] byteArray = ((ITakesScreenshot)driver).GetScreenshot().AsByteArray;
+                Bitmap screenshot = new Bitmap(new System.IO.MemoryStream(byteArray));
+
+                if (path != null)
+                    screenshot.Save(path, ImageFormat.Png);
+
+                return screenshot;
+            }
+            else
+            {
+                throw new InvalidOperationException($"Driver '{Root.Driver.GetType().FullName}' does not implement '{nameof(ITakesScreenshot)}'.");
+            }
+        }
     }
 }

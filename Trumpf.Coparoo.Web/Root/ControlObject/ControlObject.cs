@@ -14,9 +14,8 @@
 
 namespace Trumpf.Coparoo.Web
 {
-    using System;
-
     using OpenQA.Selenium;
+    using System;
     using Trumpf.Coparoo.Web.Internal;
     using Trumpf.Coparoo.Web.Logging.Tree;
 
