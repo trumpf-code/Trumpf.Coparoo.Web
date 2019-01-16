@@ -29,6 +29,6 @@ namespace Trumpf.Coparoo.Web.Controls
         /// <summary>
         /// Gets the text.
         /// </summary>
-        public string Text => Node.Text;
+        public virtual string Text => Node.Text;
     }
 }
