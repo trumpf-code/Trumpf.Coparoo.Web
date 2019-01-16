@@ -21,7 +21,6 @@ namespace Trumpf.Coparoo.Tests
     [TestFixture]
     public class ScreenshotTests : ControlTests
     {
-        private const string ControlImage = "control.png";
         private const string BrowserImage = "browser.png";
 
         /// <summary>
@@ -34,13 +33,9 @@ namespace Trumpf.Coparoo.Tests
             {
                 // Act
                 tab.TakeScreenshot(BrowserImage);
-                tab.Find<Button>().TakeScreenshot(ControlImage);
 
                 // Check
                 FileAssert.Exists(BrowserImage);
-                FileAssert.Exists(ControlImage);
-                FileAssert.AreNotEqual(BrowserImage, ControlImage);
-                Assert.Greater(new FileInfo(BrowserImage).Length, new FileInfo(ControlImage).Length);
             });
         }
     }
