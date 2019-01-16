@@ -282,32 +282,5 @@ namespace Trumpf.Coparoo.Web.Internal
         /// <param name="name">The name of the property.</param>
         /// <returns>The wrapped Boolean.</returns>
         private Bool WoolFor(Func<bool> function, string name) => new Bool(new Await<bool>(function, name, GetType(), () => Root.Configuration.WaitTimeout, () => Root.Configuration.PositiveWaitTimeout, () => Root.Configuration.ShowWaitingDialog), () => TrySnap(), () => (this as IUIObjectInternal).TryUnsnap());
-
-        /// <summary>
-        /// Take a screen shot.
-        /// </summary>
-        /// <param name="path">Write screenshot to this PNG file name (pass with extension). null = just return the bitmap.</param>
-        /// <returns>The screen shot.</returns>
-        public virtual Bitmap TakeScreenshot(string path = null)
-        {
-            if (Root.Driver is ITakesScreenshot)
-            {
-                IWebElement element = Node;
-                IWebDriver driver = Root.Driver;
-                byte[] byteArray = ((ITakesScreenshot)driver).GetScreenshot().AsByteArray;
-                Bitmap screenshot = new Bitmap(new System.IO.MemoryStream(byteArray));
-                Rectangle croppedImage = new Rectangle(element.Location.X, element.Location.Y, element.Size.Width, element.Size.Height);
-                screenshot = screenshot.Clone(croppedImage, screenshot.PixelFormat);
-
-                if (path != null)
-                    screenshot.Save(path, ImageFormat.Png);
-
-                return screenshot;
-            }
-            else
-            {
-                throw new InvalidOperationException($"Driver '{Root.Driver.GetType().FullName}' does not implement '{nameof(ITakesScreenshot)}'.");
-            }
-        }
     }
 }

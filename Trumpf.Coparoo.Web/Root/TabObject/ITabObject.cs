@@ -15,6 +15,7 @@
 namespace Trumpf.Coparoo.Web
 {
     using OpenQA.Selenium;
+    using System.Drawing;
 
     /// <summary>
     /// Tab object interface.
@@ -66,5 +67,13 @@ namespace Trumpf.Coparoo.Web
         /// Close every associated window.
         /// </summary>
         void Quit();
+
+
+        /// <summary>
+        /// Take a screen shot.
+        /// </summary>
+        /// <param name="path">Write screenshot to this PNG file name (pass without extension). null = just return the bitmap.</param>
+        /// <returns>The screenshot.</returns>
+        Bitmap TakeScreenshot(string path = null);
     }
 }

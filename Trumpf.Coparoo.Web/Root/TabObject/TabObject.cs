@@ -261,7 +261,7 @@ namespace Trumpf.Coparoo.Web
         /// </summary>
         /// <param name="path">Write screenshot to this PNG file name (pass with extension). null = just return the bitmap.</param>
         /// <returns>The screen shot.</returns>
-        public override Bitmap TakeScreenshot(string path = null)
+        public Bitmap TakeScreenshot(string path = null)
         {
             if (Root.Driver is ITakesScreenshot)
             {

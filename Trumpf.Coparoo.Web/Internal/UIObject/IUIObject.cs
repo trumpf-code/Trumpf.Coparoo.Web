@@ -18,7 +18,6 @@ namespace Trumpf.Coparoo.Web.Internal
     using System;
     using System.Collections.Generic;
     using System.Drawing;
-    using System.Drawing.Imaging;
     using Trumpf.Coparoo.Web.Waiting;
 
     /// <summary>
@@ -107,12 +106,5 @@ namespace Trumpf.Coparoo.Web.Internal
         /// </summary>
         /// <param name="timeout">The timeout to wait for the object to become visible between page downs.</param>
         void ScrollTo(TimeSpan timeout);
-
-        /// <summary>
-        /// Take a screen shot.
-        /// </summary>
-        /// <param name="path">Write screenshot to this PNG file name (pass without extension). null = just return the bitmap.</param>
-        /// <returns>The screenshot.</returns>
-        Bitmap TakeScreenshot(string path = null);
     }
 }
