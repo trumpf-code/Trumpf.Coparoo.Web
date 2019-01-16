@@ -14,14 +14,13 @@
 
 namespace Trumpf.Coparoo.Web.Internal
 {
-    using System;
-    using System.Drawing;
-    using System.Collections.Generic;
-
     using OpenQA.Selenium;
     using OpenQA.Selenium.Interactions;
-    using Trumpf.Coparoo.Web.Waiting;
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
     using Trumpf.Coparoo.Web.Logging.Tree;
+    using Trumpf.Coparoo.Web.Waiting;
 
     /// <summary>
     /// DOM object base class.
@@ -43,7 +42,7 @@ namespace Trumpf.Coparoo.Web.Internal
         /// <summary>
         /// Gets the tab object.
         /// </summary>
-        public ITabObject Root => ((this as IUIObjectInternal).Root as Web.ITabObject);
+        public ITabObject Root => (this as IUIObjectInternal).Root as ITabObject;
 
         /// <summary>
         /// Gets the root page object.
@@ -82,7 +81,7 @@ namespace Trumpf.Coparoo.Web.Internal
         /// <summary>
         /// Gets or sets a value indicating whether the UI object can respond to user interaction.
         /// </summary>
-        public Bool Enabled => WoolFor(() => Node.Enabled, nameof(Enabled));
+        public virtual Bool Enabled => WoolFor(() => Node.Enabled, nameof(Enabled));
 
         /// <summary>
         /// Gets the parent of this page object.
@@ -107,7 +106,7 @@ namespace Trumpf.Coparoo.Web.Internal
         {
             get
             {
-                var node = NodeInternal.TryRoot;
+                var node = (IWebElement)NodeInternal.TryRoot;
                 bool result;
                 try
                 {
@@ -261,7 +260,7 @@ namespace Trumpf.Coparoo.Web.Internal
         public virtual void ScrollTo()
         {
             Actions actions = new Actions(Root.Driver);
-            actions.MoveToElement(NodeInternal.Root);
+            actions.MoveToElement(NodeInternal.Root as IWebElement);
             actions.Perform();
         }
 

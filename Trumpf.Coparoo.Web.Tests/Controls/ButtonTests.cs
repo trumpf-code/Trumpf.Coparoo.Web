@@ -27,7 +27,7 @@ namespace Trumpf.Coparoo.Tests
         public void WhenAButtonIsAccessed_ThenItCanBeFoundAndThePropertiesFit()
         {
             var text = Random;
-            PrepareAndExecute(nameof(WhenAButtonIsAccessed_ThenItCanBeFoundAndThePropertiesFit), HtmlStart + $"<button type=\"button\">{text}</button>" + HtmlEnd, tab =>
+            PrepareAndExecute<Tab>(nameof(WhenAButtonIsAccessed_ThenItCanBeFoundAndThePropertiesFit), HtmlStart + $"<button type=\"button\">{text}</button>" + HtmlEnd, tab =>
             {
                 // Act
                 var button = tab.Find<Button>();

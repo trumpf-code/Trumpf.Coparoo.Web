@@ -28,7 +28,7 @@ namespace Trumpf.Coparoo.Tests
         {
             var text = Random;
             var url = $"http://{Random}/";
-            PrepareAndExecute(nameof(WhenALinkIsAccessed_ThenItCanBeFoundAndThePropertiesFit), HtmlStart + $"<a href=\"{url}\">{text}</a>" + HtmlEnd, tab =>
+            PrepareAndExecute<Tab>(nameof(WhenALinkIsAccessed_ThenItCanBeFoundAndThePropertiesFit), HtmlStart + $"<a href=\"{url}\">{text}</a>" + HtmlEnd, tab =>
             {
                 // Act
                 var link = tab.Find<Link>();

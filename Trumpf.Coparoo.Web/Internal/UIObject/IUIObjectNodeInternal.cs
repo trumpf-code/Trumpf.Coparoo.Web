@@ -24,7 +24,7 @@ namespace Trumpf.Coparoo.Web.Internal
         /// <summary>
         /// Gets the root.
         /// </summary>
-        IWebElement Root { get; }
+        ISearchContext Root { get; }
 
         /// <summary>
         /// Gets the node representing this tree node in the UI.
@@ -39,7 +39,7 @@ namespace Trumpf.Coparoo.Web.Internal
         /// <summary>
         /// Gets the root.
         /// </summary>
-        IWebElement TryRoot { get; }
+        ISearchContext TryRoot { get; }
 
         /// <summary>
         /// Gets the process node.

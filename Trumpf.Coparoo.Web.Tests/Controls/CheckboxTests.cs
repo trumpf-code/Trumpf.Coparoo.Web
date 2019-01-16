@@ -29,7 +29,7 @@ namespace Trumpf.Coparoo.Tests
             var name = Random;
             var value = Random;
             var check = false;
-            PrepareAndExecute(
+            PrepareAndExecute<Tab>(
                 nameof(WhenACheckboxIsUnchecked_ThenItsCheckedPropertyReturnsFalse),
                 HtmlContents(name, value, check),
                 tab =>
@@ -56,7 +56,7 @@ namespace Trumpf.Coparoo.Tests
         public void WhenACheckboxIsToggled_ThenTheCheckedPropertyTogglesAsWell()
         {
             var check = false;
-            PrepareAndExecute(
+            PrepareAndExecute<Tab>(
                 nameof(WhenACheckboxIsToggled_ThenTheCheckedPropertyTogglesAsWell),
                 HtmlContents("", "", check),
                 tab =>

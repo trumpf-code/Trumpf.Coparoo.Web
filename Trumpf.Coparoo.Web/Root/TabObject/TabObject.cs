@@ -14,12 +14,12 @@
 
 namespace Trumpf.Coparoo.Web
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
     using Exceptions;
     using OpenQA.Selenium;
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
     using Trumpf.Coparoo.Web.Internal;
     using Trumpf.Coparoo.Web.Logging.Tree;
     using Trumpf.Coparoo.Web.Waiting;
@@ -164,6 +164,27 @@ namespace Trumpf.Coparoo.Web
         }
 
         /// <summary>
+        /// Scroll to the object.
+        /// Not supported for tab objects.
+        /// </summary>
+        public override void ScrollTo()
+            => throw new InvalidOperationException($"Tab objects do not support the 'ScrollTo' operation.");
+
+        /// <summary>
+        /// Gets the location.
+        /// Not supported for tab objects.
+        /// </summary>
+        public override Point Location
+            => throw new InvalidOperationException($"Tab objects do not support the 'Location' operation.");
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the UI object can respond to user interaction.
+        /// Not supported for tab objects.
+        /// </summary>
+        public override Bool Enabled
+            => throw new InvalidOperationException($"Tab objects do not support the 'Enabled' operation.");
+
+        /// <summary>
         /// Gets the dynamically registered children of a page object.
         /// </summary>
         /// <param name="pageObjectType">The parent page object type.</param>
@@ -190,7 +211,7 @@ namespace Trumpf.Coparoo.Web
         }
 
         /// <summary>
-        /// Open the web page in a new tab (the browser must already run).
+        /// Open the web page in a new tab (will open a new browser).
         /// </summary>
         public void Open()
         {
@@ -217,10 +238,13 @@ namespace Trumpf.Coparoo.Web
         }
 
         /// <summary>
-        /// Gets the URL of the current page.
+        /// Gets or sets the URL of the tab.
         /// </summary>
-        /// <returns>Current page URL.</returns>
-        public string CurrentURL => Driver.Url;
+        public string CurrentURL
+        {
+            get { return Driver.Url; }
+            set { Driver.Url = value; }
+        }
 
         /// <summary>
         /// Gets an await-object.

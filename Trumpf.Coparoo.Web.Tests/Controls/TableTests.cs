@@ -28,7 +28,7 @@ namespace Trumpf.Coparoo.Tests
         [Test]
         public void WhenATableIsAccessed_ThenItCanBeFoundAndThePropertiesFit()
         {
-            PrepareAndExecute(nameof(WhenATableIsAccessed_ThenItCanBeFoundAndThePropertiesFit), HtmlStart + "<table><thead><tr><th>1</th><th>2</th></tr></thead><tfoot><tr><td>3</td><td>4</td></tr></tfoot><tbody><tr><td>5</td><td>6</td></tr><tr><td>7</td><td>8</td></tr></tbody></table>" + HtmlEnd, tab =>
+            PrepareAndExecute<Tab>(nameof(WhenATableIsAccessed_ThenItCanBeFoundAndThePropertiesFit), HtmlStart + "<table><thead><tr><th>1</th><th>2</th></tr></thead><tfoot><tr><td>3</td><td>4</td></tr></tfoot><tbody><tr><td>5</td><td>6</td></tr><tr><td>7</td><td>8</td></tr></tbody></table>" + HtmlEnd, tab =>
             {
                 // Act
                 var table = tab.Find<Table>();

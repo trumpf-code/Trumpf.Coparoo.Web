@@ -21,7 +21,6 @@ namespace Trumpf.Coparoo.Web.Internal
     using System.Linq;
 
     using OpenQA.Selenium;
-    using Trumpf.Coparoo.Web.Waiting;
 
     /// <summary>
     /// Page object node class wrapping a UI tree node.
@@ -32,7 +31,6 @@ namespace Trumpf.Coparoo.Web.Internal
         private Predicate<ISearchContext> predicate;
         private bool autoSnap = false;
         private ISearchContext mNode;
-        private int index = 0;
         private IUIObjectNode mParent;
         private int mHash;
         private ITabObjectNode mRootNode = null;
@@ -51,21 +49,17 @@ namespace Trumpf.Coparoo.Web.Internal
         /// <summary>
         /// Gets the root.
         /// </summary>
-        public IWebElement Root => (IWebElement)RootSearchContext;
+        public ISearchContext Root => RootSearchContext;
 
         /// <summary>
         /// Gets the root.
         /// </summary>
-        public IWebElement TryRoot => (IWebElement)TryRootSearchContext;
+        public ISearchContext TryRoot => TryRootSearchContext;
 
         /// <summary>
         /// Sets the 0-based control index.
         /// </summary>
-        public int Index
-        {
-            get { return index; }
-            set { index = value; }
-        }
+        public int Index { get; set; } = 0;
 
         /// <summary>
         /// Gets the node representing this tree node in the UI.
@@ -109,7 +103,7 @@ namespace Trumpf.Coparoo.Web.Internal
                 {
                     return null;
                 }
-                else if (predicate == null && index == 0)
+                else if (predicate == null && Index == 0)
                 {
                     ISearchContext node;
                     try
@@ -136,40 +130,84 @@ namespace Trumpf.Coparoo.Web.Internal
         /// </summary>
         protected virtual bool EnableAutoSnap => autoSnap;
 
+        #region Web element operations
         /// <summary>
         /// Gets the tag name. Also check the Selenium documentation.
         /// </summary>
-        public string TagName => Root.TagName;
+        public string TagName => RootWebElement(nameof(TagName)).TagName;
 
         /// <summary>
         /// Gets the text. Also check the Selenium documentation.
         /// </summary>
-        public string Text => Root.Text;
+        public string Text => RootWebElement(nameof(Text)).Text;
 
         /// <summary>
         /// Gets a value indicating whether the element is enabled. Also check the Selenium documentation.
         /// </summary>
-        public bool Enabled => Root.Enabled;
+        public bool Enabled => RootWebElement(nameof(Enabled)).Enabled;
 
         /// <summary>
         /// Gets a value indicating whether the element is selected. Also check the Selenium documentation.
         /// </summary>
-        public bool Selected => Root.Selected;
+        public bool Selected => RootWebElement(nameof(Selected)).Selected;
 
         /// <summary>
         /// Gets the location. Also check the Selenium documentation.
         /// </summary>
-        public Point Location => Root.Location;
+        public Point Location => RootWebElement(nameof(Location)).Location;
 
         /// <summary>
         /// Gets the size. Also check the Selenium documentation.
         /// </summary>
-        public Size Size => Root.Size;
+        public Size Size => RootWebElement(nameof(Size)).Size;
 
         /// <summary>
         /// Gets a value indicating whether the element is displayed. Also check the Selenium documentation.
         /// </summary>
-        public bool Displayed => Root.Displayed;
+        public bool Displayed => RootWebElement(nameof(Displayed)).Displayed;
+
+        /// <summary>
+        /// Clears the content of this element.
+        /// </summary>
+        public void Clear() => RootWebElement(nameof(Clear)).Clear();
+
+        /// <summary>
+        /// Simulates typing text into the element.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        public void SendKeys(string text) => RootWebElement(nameof(SendKeys)).SendKeys(text);
+
+        /// <summary>
+        /// Submits this element to the web server.
+        /// </summary>
+        public void Submit() => RootWebElement(nameof(Submit)).Submit();
+
+        /// <summary>
+        /// Clicks this element.
+        /// </summary>
+        public void Click() => RootWebElement(nameof(Click)).Click();
+
+        /// <summary>
+        /// Gets the value of the specified attribute for this element.
+        /// </summary>
+        /// <param name="attributeName">The name of the attribute.</param>
+        /// <returns>The attribute's current value. Returns a null if the value is not set.</returns>
+        public string GetAttribute(string attributeName) => RootWebElement(nameof(GetAttribute)).GetAttribute(attributeName);
+
+        /// <summary>
+        /// Gets the value of a JavaScript property of this element.
+        /// </summary>
+        /// <param name="propertyName">The name JavaScript the JavaScript property to get the value of.</param>
+        /// <returns>The JavaScript property's current value. Returns a null if the value is not set or the property does not exist.</returns>
+        public string GetProperty(string propertyName) => RootWebElement(nameof(GetProperty)).GetProperty(propertyName);
+
+        /// <summary>
+        /// Gets the value of a CSS property of this element.
+        /// </summary>
+        /// <param name="propertyName">The name of the CSS property to get the value of.</param>
+        /// <returns>The value of the specified CSS property.</returns>
+        public string GetCssValue(string propertyName) => RootWebElement(nameof(GetCssValue)).GetCssValue(propertyName);
+        #endregion
 
         /// <summary>
         /// Determine whether the node is accessible, i.e. its properties can be retrieved.
@@ -339,48 +377,6 @@ namespace Trumpf.Coparoo.Web.Internal
         }
 
         /// <summary>
-        /// Clears the content of this element.
-        /// </summary>
-        public void Clear() => Root.Clear();
-
-        /// <summary>
-        /// Simulates typing text into the element.
-        /// </summary>
-        /// <param name="text">The text.</param>
-        public void SendKeys(string text) => Root.SendKeys(text);
-
-        /// <summary>
-        /// Submits this element to the web server.
-        /// </summary>
-        public void Submit() => Root.Submit();
-
-        /// <summary>
-        /// Clicks this element.
-        /// </summary>
-        public void Click() => Root.Click();
-
-        /// <summary>
-        /// Gets the value of the specified attribute for this element.
-        /// </summary>
-        /// <param name="attributeName">The name of the attribute.</param>
-        /// <returns>The attribute's current value. Returns a null if the value is not set.</returns>
-        public string GetAttribute(string attributeName) => Root.GetAttribute(attributeName);
-
-        /// <summary>
-        /// Gets the value of a JavaScript property of this element.
-        /// </summary>
-        /// <param name="propertyName">The name JavaScript the JavaScript property to get the value of.</param>
-        /// <returns>The JavaScript property's current value. Returns a null if the value is not set or the property does not exist.</returns>
-        public string GetProperty(string propertyName) => Root.GetProperty(propertyName);
-
-        /// <summary>
-        /// Gets the value of a CSS property of this element.
-        /// </summary>
-        /// <param name="propertyName">The name of the CSS property to get the value of.</param>
-        /// <returns>The value of the specified CSS property.</returns>
-        public string GetCssValue(string propertyName) => Root.GetCssValue(propertyName);
-
-        /// <summary>
         /// Finds the first OpenQA.Selenium.IWebElement using the given method.
         /// </summary>
         /// <param name="by">The locating mechanism to use.</param>
@@ -393,5 +389,8 @@ namespace Trumpf.Coparoo.Web.Internal
         /// <param name="by">The locating mechanism to use.</param>
         /// <returns>A System.Collections.ObjectModel.ReadOnlyCollection`1 of all OpenQA.Selenium.IWebElement matching the current criteria, or an empty list if nothing matches.</returns>
         public ReadOnlyCollection<IWebElement> FindElements(By by) => Root.FindElements(by);
+
+        private IWebElement RootWebElement(string propertyName)
+            => Root as IWebElement ?? throw new InvalidOperationException($"The node is of type '{Root.GetType().FullName}' which does not support the '{propertyName}' operation.");
     }
 }

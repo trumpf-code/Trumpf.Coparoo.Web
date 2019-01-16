@@ -14,12 +14,11 @@
 
 namespace Trumpf.Coparoo.Tests
 {
+    using OpenQA.Selenium;
+    using OpenQA.Selenium.Firefox;
     using System;
     using System.IO;
     using System.Linq;
-
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.Firefox;
     using Trumpf.Coparoo.Web;
 
     /// <summary>
@@ -33,16 +32,17 @@ namespace Trumpf.Coparoo.Tests
         /// </summary>
         /// <param name="htmlfileContent">The content of the HTML file.</param>
         /// <param name="actAndCheck">The action to execute on the tab.</param>
-        protected void PrepareAndExecute(string fileBaseName, string htmlfileContent, Action<Tab> actAndCheck)
+        protected void PrepareAndExecute<T>(string fileBaseName, string htmlfileContent, Action<T> actAndCheck)
+            where T : Tab, new()
         {
             string htmlFileName = null;
-            Tab tab = null;
+            T tab = null;
             try
             {
                 // Prepare
                 htmlFileName = Path.Combine(Path.GetTempPath(), fileBaseName + ".html");
                 File.WriteAllText(htmlFileName, htmlfileContent);
-                tab = tab = new Tab("file:///" + htmlFileName).Goto<Tab>();
+                tab = tab = new T { File = "file:///" + htmlFileName }.Goto<T>();
 
                 // Execute
                 actAndCheck(tab);
@@ -59,9 +59,8 @@ namespace Trumpf.Coparoo.Tests
         /// </summary>
         protected class Tab : TabObject
         {
-            private readonly string file;
-            public Tab(string file) => this.file = file;
-            protected override string Url => file;
+            public string File { get; set; }
+            protected override string Url => File;
             protected override Func<IWebDriver> Creator => () => new FirefoxDriver();
         }
 
