@@ -14,21 +14,14 @@
 
 namespace Trumpf.Coparoo.Web.Controls
 {
-    using OpenQA.Selenium;
-
     /// <summary>
-    /// Label control object.
+    /// Cite control object interface.
     /// </summary>
-    public class Cite : ControlObject, ICite
+    public interface ICite : IControlObject
     {
-        /// <summary>
-        /// Gets the search pattern.
-        /// </summary>
-        protected override By SearchPattern => By.TagName("cite");
-
         /// <summary>
         /// Gets the text.
         /// </summary>
-        public virtual string Text => Node.Text;
+        string Text { get; }
     }
 }
