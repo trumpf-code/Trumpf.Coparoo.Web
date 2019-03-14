@@ -49,7 +49,7 @@ namespace Trumpf.Coparoo.Tests
             }
             finally
             {
-                tab.Quit();
+                tab?.Quit();
                 File.Delete(htmlFileName);
             }
         }
