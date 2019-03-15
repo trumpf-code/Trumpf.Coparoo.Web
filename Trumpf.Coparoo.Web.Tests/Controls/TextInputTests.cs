@@ -55,7 +55,7 @@ namespace Trumpf.Coparoo.Tests
             var name = Random;
             var text = Random;
             PrepareAndExecute<Tab>(
-                nameof(WhenATextInputIsAccessed_ThenItCanBeFoundAndThePropertiesFit),
+                nameof(WhenATextInputIsSet_ThenTheNewValueCanAlsoBeRetrieved),
                 HtmlContents(name, text),
                 tab =>
                 {
