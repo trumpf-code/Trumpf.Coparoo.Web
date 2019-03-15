@@ -18,7 +18,7 @@ namespace Trumpf.Coparoo.Tests
     using System;
     using System.IO;
     using System.Linq;
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
     using Trumpf.Coparoo.Web.Exceptions;
@@ -27,13 +27,13 @@ namespace Trumpf.Coparoo.Tests
     /// <summary>
     /// Test class.
     /// </summary>
-    [TestFixture]
+    [TestClass]
     public class PageObjectLocatorStatic
     {
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheRootObjectIsFreshh_ThenTheCacheIsEmpty()
         {
             // Act
@@ -46,7 +46,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenThePageObjectsAreAccessed_ThenTheyAreCached()
         {
             // Act
@@ -61,7 +61,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenThePageObjectCacheIsCleared_ThenItIsEmpty()
         {
             // Act
@@ -77,7 +77,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenAPageObjectIsUnregistered_ThenIsDisappearsFromTheCache()
         {
             // Act
@@ -92,7 +92,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenAPageObjectIsUnregistedBeforeItWasCached_ThenNoExceptionIsThrown()
         {
             // Act
@@ -106,7 +106,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheSamePageObjectIsAccessedOnDifferentPath_ThenBothAreResultsAreCached()
         {
             // Act
@@ -121,7 +121,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheSamePageObjectIsAccessedOnDifferentPath_ThenExplicitOnConditionIsEffective()
         {
             // Act
@@ -137,7 +137,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheSamePageObjectIsAccessedOnDifferentPathMultipleTime_ThenDuplicatesDoNotFurtherIncreaseTheCacheCount()
         {
             // Act
@@ -158,7 +158,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheDotTreeIsGenerated_ThenIsContainsTheExpectedNodeAndEdgeCount()
         {
             // Act
@@ -175,7 +175,7 @@ namespace Trumpf.Coparoo.Tests
         /// Fails: https://ci.appveyor.com/project/trumpf-code/trumpf-coparoo-web/build/1.0.5/tests.
         /// Unclear why.
         /// </summary>
-        /// [Test]
+        /// [TestMethod]
         public void WhenTheDotTreeIsWrittenToDisk_ThenAFileIsCreated()
         {
             string file = null;
@@ -201,7 +201,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheOnMethodIsCalled_ThenStaticallyAddedChildRelationAreEffective()
         {
             // Act
@@ -226,7 +226,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenMultipleRootObjectAreCreated_ThenTheirCachesAreSeperated()
         {
             // Act
@@ -242,7 +242,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheOnMethodIsCalledManyTimes_ThenTheCacheCountIncreases()
         {
             // Act
@@ -261,7 +261,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheOnMethodIsCalledWithKnownObject_ThenTheCacheDoesNotIncreases()
         {
             // Act
@@ -284,7 +284,7 @@ namespace Trumpf.Coparoo.Tests
         /// Test method.
         /// Generic page object children of generic page objects are not supported
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheOnMethodIsCalledWithAGenericChildOfAGenericChild_ThenAnExceptionIsThrown()
         {
             // Act
@@ -304,7 +304,7 @@ namespace Trumpf.Coparoo.Tests
         /// Test method.
         /// Generic page object children of generic page objects are not supported
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheOnMethodIsCalledWithAGenericChildOfAGenericChildThatHasMultipleTypeParameters_ThenAnExceptionIsThrown()
         {
             try

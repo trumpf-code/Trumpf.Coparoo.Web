@@ -14,17 +14,17 @@
 
 namespace Trumpf.Coparoo.Tests
 {
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Linq;
     using Trumpf.Coparoo.Web.Controls;
 
-    [TestFixture]
+    [TestClass]
     public class SelectTests : ControlTests
     {
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenASelectHas3Options_ThenTheOptionEnumerationHas3Items()
         {
             PrepareAndExecute<Tab>(
@@ -36,11 +36,11 @@ namespace Trumpf.Coparoo.Tests
                     var select = tab.Find<Select>();
                     var displayed = select.Displayed;
                     var count = select.Options.Count();
-                    var values = select.Options.Select(e => e.Value);
-                    var selected = select.Options.Select(e => e.IsSelected);
+                    var values = select.Options.Select(e => e.Value).ToList();
+                    var selected = select.Options.Select(e => e.IsSelected).ToList();
 
                     // Check
-                    Assert.True(displayed);
+                    Assert.IsTrue(displayed);
                     Assert.AreEqual(3, count);
                     CollectionAssert.AreEqual(new[] { "a", "b", "c" }, values);
                     CollectionAssert.AreEqual(new[] { true, false, false }, selected);
@@ -52,7 +52,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheSecondOptionIsSelected_ThenTheSecondElementReturnIsSelectedTrue()
         {
             PrepareAndExecute<Tab>(
@@ -63,7 +63,7 @@ namespace Trumpf.Coparoo.Tests
                     // Act
                     var select = tab.Find<Select>();
                     select.Options.ElementAt(1).Select();
-                    var selected = select.Options.Select(e => e.IsSelected);
+                    var selected = select.Options.Select(e => e.IsSelected).ToList();
 
                     // Check
                     CollectionAssert.AreEqual(new[] { false, true, false }, selected);

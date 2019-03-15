@@ -14,17 +14,17 @@
 
 namespace Trumpf.Coparoo.Tests
 {
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using OpenQA.Selenium;
     using System;
 
-    [TestFixture]
+    [TestClass]
     public class RootTests : ControlTests
     {
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenButtonsAreSearchedFromTheRootsNode_ThenOneButtonIsReturned()
         {
             PrepareAndExecute<TabHelper>(nameof(WhenButtonsAreSearchedFromTheRootsNode_ThenOneButtonIsReturned), HtmlStart + $"<button type=\"button\">bu</button>" + HtmlEnd, tab =>
@@ -40,16 +40,16 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenCallingIWebElementOperationOnATabNode_ThenAnInvalidOperationExceptionIsThrown()
         {
             PrepareAndExecute<TabHelper>(nameof(WhenCallingIWebElementOperationOnATabNode_ThenAnInvalidOperationExceptionIsThrown), HtmlStart + $"<button type=\"button\">bu</button>" + HtmlEnd, tab =>
             {
-                Assert.Throws<InvalidOperationException>(() => tab.Click());
-                Assert.Throws<InvalidOperationException>(() => tab.SomeProperty());
-                Assert.Throws<InvalidOperationException>(() => tab.ScrollTo());
-                Assert.Throws<InvalidOperationException>(() => { var location = tab.Location; });
-                Assert.Throws<InvalidOperationException>(() => { var enabled = tab.Enabled; });
+                Assert.ThrowsException<InvalidOperationException>(() => tab.Click());
+                Assert.ThrowsException<InvalidOperationException>(() => tab.SomeProperty());
+                Assert.ThrowsException<InvalidOperationException>(() => tab.ScrollTo());
+                Assert.ThrowsException<InvalidOperationException>(() => { var location = tab.Location; });
+                Assert.ThrowsException<InvalidOperationException>(() => { var enabled = tab.Enabled; });
             });
         }
 

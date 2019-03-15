@@ -16,16 +16,16 @@ namespace Trumpf.Coparoo.Tests
 {
     using System.Linq;
 
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Trumpf.Coparoo.Web.Controls;
 
-    [TestFixture]
+    [TestClass]
     public class TableTests : ControlTests
     {
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenATableIsAccessed_ThenItCanBeFoundAndThePropertiesFit()
         {
             PrepareAndExecute<Tab>(nameof(WhenATableIsAccessed_ThenItCanBeFoundAndThePropertiesFit), HtmlStart + "<table><thead><tr><th>1</th><th>2</th></tr></thead><tfoot><tr><td>3</td><td>4</td></tr></tfoot><tbody><tr><td>5</td><td>6</td></tr><tr><td>7</td><td>8</td></tr></tbody></table>" + HtmlEnd, tab =>
@@ -39,7 +39,7 @@ namespace Trumpf.Coparoo.Tests
                 var allRows = table.AllRows.Count();
 
                 // Check
-                Assert.True(exists);
+                Assert.IsTrue(exists);
                 Assert.AreEqual(1, headerRows);
                 Assert.AreEqual(2, contentRows);
                 Assert.AreEqual(1, footerRows);

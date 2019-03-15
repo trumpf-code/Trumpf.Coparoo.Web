@@ -14,12 +14,12 @@
 
 namespace Trumpf.Coparoo.Tests
 {
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    [TestFixture]
+    [TestClass]
     public class GenericArgumentTests
     {
-        [Test]
+        [TestMethod]
         public void WhenTryingToFindControlObjectWithGenericArgument_CorrectTypeIsReturned()
         {
             // during resolve it should not hit unrelated types like DialogControlObject
@@ -30,8 +30,8 @@ namespace Trumpf.Coparoo.Tests
             Assert.AreEqual(typeof(ListDataTemplateObject), proc.Value.GetType());
         }
 
-        [Test]
+        [TestMethod]
         public void WhenTryingToFindControlObjectWithGenericArgument_NoExceptionIsThrown()
-            => Assert.DoesNotThrow(() => new RootObject().Find<IListBoxControlObject<IListDataTemplateObject>>());
+            => new RootObject().Find<IListBoxControlObject<IListDataTemplateObject>>();
     }
 }

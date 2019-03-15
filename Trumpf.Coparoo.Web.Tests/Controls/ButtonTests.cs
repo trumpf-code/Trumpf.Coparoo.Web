@@ -14,16 +14,16 @@
 
 namespace Trumpf.Coparoo.Tests
 {
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Trumpf.Coparoo.Web.Controls;
 
-    [TestFixture]
+    [TestClass]
     public class ButtonTests : ControlTests
     {
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenAButtonIsAccessed_ThenItCanBeFoundAndThePropertiesFit()
         {
             var text = Random;
@@ -35,7 +35,7 @@ namespace Trumpf.Coparoo.Tests
                 var buttonText = button.Text;
 
                 // Check
-                Assert.True(exists);
+                Assert.IsTrue(exists);
                 Assert.AreEqual(text, buttonText);
             });
         }
