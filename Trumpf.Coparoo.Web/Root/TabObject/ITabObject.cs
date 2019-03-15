@@ -68,6 +68,12 @@ namespace Trumpf.Coparoo.Web
         /// </summary>
         void Quit();
 
+        /// <summary>
+        /// Cast the tab object.
+        /// </summary>
+        /// <typeparam name="TTab">The type to cast to.</typeparam>
+        /// <returns>The tab object with the new type.</returns>
+        TTab Cast<TTab>() where TTab : ITabObject;
 
         /// <summary>
         /// Take a screen shot.
