@@ -15,7 +15,7 @@
 namespace Trumpf.Coparoo.Tests
 {
     using OpenQA.Selenium;
-    using OpenQA.Selenium.Firefox;
+    using OpenQA.Selenium.Chrome;
     using System;
     using System.IO;
     using System.Linq;
@@ -61,7 +61,7 @@ namespace Trumpf.Coparoo.Tests
         {
             public string File { get; set; }
             protected override string Url => File;
-            protected override Func<IWebDriver> Creator => () => new FirefoxDriver();
+            protected override Func<IWebDriver> Creator => () => new ChromeDriver();
         }
 
         protected static Random random = new Random();
