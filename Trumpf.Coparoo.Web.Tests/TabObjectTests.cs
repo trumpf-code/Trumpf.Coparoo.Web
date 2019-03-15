@@ -28,8 +28,7 @@ namespace Trumpf.Coparoo.Tests
         [TestMethod]
         public void WhenCastingTabObjects_ThenTheCorrectTabObjectsAreReturned()
         {
-            var text = Random;
-            PrepareAndExecute<Tab>(nameof(WhenCastingTabObjects_ThenTheCorrectTabObjectsAreReturned), HtmlStart + $"<button type=\"button\">{text}</button>" + HtmlEnd, tab =>
+            PrepareAndExecute<Tab>(nameof(WhenCastingTabObjects_ThenTheCorrectTabObjectsAreReturned), HtmlStart + $"<button type=\"button\">text</button>" + HtmlEnd, tab =>
             {
                 // Act
                 var t1 = tab.Cast<T1>();
@@ -52,8 +51,7 @@ namespace Trumpf.Coparoo.Tests
         [TestMethod]
         public void WhenCastingATabObjectAndThenBack_ThenTheCorrectTabObjectIsReturned()
         {
-            var text = Random;
-            PrepareAndExecute<Tab>(nameof(WhenCastingATabObjectAndThenBack_ThenTheCorrectTabObjectIsReturned), HtmlStart + $"<button type=\"button\">{text}</button>" + HtmlEnd, tab =>
+            PrepareAndExecute<Tab>(nameof(WhenCastingATabObjectAndThenBack_ThenTheCorrectTabObjectIsReturned), HtmlStart + $"<button type=\"button\">text</button>" + HtmlEnd, tab =>
             {
                 // Prepare
                 var t1 = tab.Cast<T1>();
@@ -72,7 +70,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [TestMethod]
+        // [TestMethod]
         public void WhenCastingATabObject_ThenOnlyPageObjectInTheCastedPageObjectTreeCanBeAccessed()
         {
             // Prepare
