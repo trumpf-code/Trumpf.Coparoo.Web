@@ -17,7 +17,7 @@ namespace Trumpf.Coparoo.Tests
     using System;
     using System.IO;
 
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
     using Trumpf.Coparoo.Web.Exceptions;
@@ -27,7 +27,7 @@ namespace Trumpf.Coparoo.Tests
     /// <summary>
     /// Test class.
     /// </summary>
-    [TestFixture]
+    [TestClass]
     public class Runner
     {
         private A Root
@@ -45,14 +45,14 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenATestsClassHasUnregisteredTypes_ThenAnExceptionIsThrown()
-            => Assert.Throws<TypeResolutionFailedException>(() => new A().On<B>().Test());
+            => Assert.ThrowsException<TypeResolutionFailedException>(() => new A().On<B>().Test());
 
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenThePageTestsOfBAreExecuted_ThenTwoTestsExecuteInTotal()
         {
             // Prepare
@@ -69,7 +69,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenThePageTestsOfBAreExecuted_ThenOneTestExecutesInTotal()
         {
             // Prepare
@@ -77,15 +77,15 @@ namespace Trumpf.Coparoo.Tests
 
             // Act
             Root.On<C>().Test();
-            var testsExecuted = new CT().Counter;
 
+            // Check
             Assert.AreEqual(1, new CT().Counter);
         }
 
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheBottomUpTestIsCalledOnTheRoot_ThenThreeTestsAreExecuted()
         {
             // Prepare
@@ -105,7 +105,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheDotTreeIsWrittenToDisk_ThenAFileIsCreated()
         {
             var dotFile = $"{TabObject.DEFAULT_FILE_PREFIX}.dot";
@@ -150,7 +150,7 @@ namespace Trumpf.Coparoo.Tests
         /// at Trumpf.Coparoo.Tests.Runner.WhenTheDotTreeIsGenerated_ThenItContainsTheTestResults()[0x0003c] in <6f1f588e7ba94c55a681f6266ea2076f>:0 
         /// Not reproducible locally.
         /// </summary>
-        /// [Test]
+        /// [TestMethod]
         public void WhenTheDotTreeIsGenerated_ThenItContainsTheTestResults()
         {
             string file = null;
@@ -222,7 +222,7 @@ namespace Trumpf.Coparoo.Tests
         /// </summary>
         private class BT : MyPageObjectTests<B>
         {
-            private IDontKnow dontKnow;
+            private readonly IDontKnow dontKnow;
 
             public BT(IDontKnow dontKnow)
                 => this.dontKnow = dontKnow;
@@ -233,7 +233,7 @@ namespace Trumpf.Coparoo.Tests
             [PageTest]
             public void B1()
             {
-                Assert.NotNull(dontKnow);
+                Assert.IsNotNull(dontKnow);
                 Assert.AreEqual(typeof(DontKnow), dontKnow.GetType());
                 Increment();
             }

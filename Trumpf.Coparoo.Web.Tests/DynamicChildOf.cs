@@ -15,7 +15,7 @@
 namespace Trumpf.Coparoo.Tests
 {
     using System;
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
     using Trumpf.Coparoo.Web.Internal;
@@ -23,7 +23,7 @@ namespace Trumpf.Coparoo.Tests
     /// <summary>
     /// Test class.
     /// </summary>
-    [TestFixture]
+    [TestClass]
     public class DynamicChildOf
     {
         /// <summary>
@@ -36,7 +36,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenChildRelationsAreAddedAtRuntime_ThenTheseShowUpInThePageObjectTree()
         {
             // Act
@@ -51,7 +51,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheOnMethodIsCalled_ThenDynamicallyAddedChildRelationAreEffective()
         {
             // Act
@@ -76,7 +76,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheSameRelationIsAddedMultipleTime_ThenThisIsRecognizedByTheReturnCode()
         {
             // Act
@@ -91,7 +91,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenAnChildInterfaceIsRegisteredAtRuntime_ThenAnExceptionIsThrown()
         {
             try
@@ -110,7 +110,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenAParentInterfaceIsRegisteredAtRuntime_ThenAnExceptionIsThrown()
         {
             try

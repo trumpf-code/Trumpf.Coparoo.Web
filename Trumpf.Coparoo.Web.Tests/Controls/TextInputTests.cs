@@ -14,16 +14,16 @@
 
 namespace Trumpf.Coparoo.Tests
 {
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Trumpf.Coparoo.Web.Controls;
 
-    [TestFixture]
+    [TestClass]
     public class TextInputTests : ControlTests
     {
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenATextInputIsAccessed_ThenItCanBeFoundAndThePropertiesFit()
         {
             var name = Random;
@@ -40,7 +40,7 @@ namespace Trumpf.Coparoo.Tests
                     var textInputName = textInput.Name;
 
                     // Check
-                    Assert.True(exists);
+                    Assert.IsTrue(exists);
                     Assert.AreEqual(name, textInputName);
                     Assert.AreEqual(text, textInputText);
                 });
@@ -49,7 +49,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenATextInputIsSet_ThenTheNewValueCanAlsoBeRetrieved()
         {
             var name = Random;

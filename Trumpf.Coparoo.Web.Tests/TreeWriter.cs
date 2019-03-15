@@ -19,7 +19,7 @@ namespace Trumpf.Coparoo.Tests
     using System.IO;
     using System.Linq;
     using System.Threading;
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
     using Trumpf.Coparoo.Web.PageTests;
@@ -27,13 +27,13 @@ namespace Trumpf.Coparoo.Tests
     /// <summary>
     /// Test class.
     /// </summary>
-    [TestFixture]
+    [TestClass]
     public class TreeWriter
     {
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTheDotTreeIsGenerated_ThenItContainsTheControlProperties()
         {
             // Data
@@ -76,7 +76,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTestAreExecutedAllSucceedAndTheDotTreeIsGenerated_ThenItContainsTheControlPropertiesAndTestRestults()
         {
             // Environment
@@ -132,7 +132,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTestOfOnePageObjectAreExecutedAllSucceedAndTheDotTreeIsGenerated_ThenItContainsTheControlPropertiesAndTestRestults()
         {
             // Environment
@@ -178,7 +178,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenTestAreExecutedAndOneFailsAndTheDotTreeIsGenerated_ThenItContainsTheControlPropertiesAndTestRestults()
         {
             try

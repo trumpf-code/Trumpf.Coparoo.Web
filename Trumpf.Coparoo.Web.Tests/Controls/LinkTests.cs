@@ -14,16 +14,16 @@
 
 namespace Trumpf.Coparoo.Tests
 {
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Trumpf.Coparoo.Web.Controls;
 
-    [TestFixture]
+    [TestClass]
     public class LinkTests : ControlTests
     {
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenALinkIsAccessed_ThenItCanBeFoundAndThePropertiesFit()
         {
             var text = Random;
@@ -37,7 +37,7 @@ namespace Trumpf.Coparoo.Tests
                 var linkUrl = link.URL;
 
                 // Check
-                Assert.True(exists);
+                Assert.IsTrue(exists);
                 Assert.AreEqual(text, linkText);
                 Assert.AreEqual(url, linkUrl);
             });

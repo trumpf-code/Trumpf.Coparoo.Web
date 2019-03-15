@@ -15,20 +15,20 @@
 namespace Trumpf.Coparoo.Tests
 {
     using System;
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
 
     /// <summary>
     /// Test class.
     /// </summary>
-    [TestFixture]
+    [TestClass]
     public class Inheritance
     {
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenADerivedPageObjectIsPassedToTheOnMethod_ThenTheResultHasTheSameTypeAsTheInputType()
         {
             // Act

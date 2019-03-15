@@ -14,11 +14,11 @@
 
 namespace Trumpf.Coparoo.Tests
 {
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.IO;
     using Trumpf.Coparoo.Web.Controls;
 
-    [TestFixture]
+    [TestClass]
     public class ScreenshotTests : ControlTests
     {
         private const string BrowserImage = "browser.png";
@@ -26,7 +26,7 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        [Test]
+        [TestMethod]
         public void WhenScreenshotsAreTaken_ThenFilesAreCreated()
         {
             PrepareAndExecute<Tab>(nameof(WhenScreenshotsAreTaken_ThenFilesAreCreated), HtmlStart + $"<button type=\"button\">bu</button>" + HtmlEnd, tab =>
@@ -35,7 +35,7 @@ namespace Trumpf.Coparoo.Tests
                 tab.TakeScreenshot(BrowserImage);
 
                 // Check
-                FileAssert.Exists(BrowserImage);
+                Assert.IsTrue(File.Exists(BrowserImage));
             });
         }
     }

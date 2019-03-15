@@ -14,18 +14,18 @@
 
 //namespace Trumpf.Coparoo.Tests
 //{
-//    using NUnit.Framework;
+//    using Microsoft.VisualStudio.TestTools.UnitTesting;
 //    using OpenQA.Selenium;
 //    using Trumpf.Coparoo.Web;
 //    using Trumpf.Coparoo.Web.Exceptions;
 
-//    [TestFixture]
+//    [TestClass]
 //    public class TabObjectTests : ControlTests
 //    {
 //        /// <summary>
 //        /// Test method.
 //        /// </summary>
-//        [Test]
+//        [TestMethod]
 //        public void WhenCastingTabObjects_ThenTheCorrectTabObjectsAreReturned()
 //        {
 //            var text = Random;
@@ -41,15 +41,15 @@
 //                var e2 = b2.Exists.TryWaitFor();
 
 //                // Check
-//                Assert.True(e1);
-//                Assert.True(e2);
+//                Assert.IsTrue(e1);
+//                Assert.IsTrue(e2);
 //            });
 //        }
 
 //        /// <summary>
 //        /// Test method.
 //        /// </summary>
-//        [Test]
+//        [TestMethod]
 //        public void WhenCastingATabObjectAndThenBack_ThenTheCorrectTabObjectIsReturned()
 //        {
 //            var text = Random;
@@ -65,14 +65,14 @@
 //                var e1 = b1.Exists.TryWaitFor();
 
 //                // Check
-//                Assert.True(e1);
+//                Assert.IsTrue(e1);
 //            });
 //        }
 
 //        /// <summary>
 //        /// Test method.
 //        /// </summary>
-//        [Test]
+//        [TestMethod]
 //        public void WhenCastingATabObject_ThenOnlyPageObjectInTheCastedPageObjectTreeCanBeAccessed()
 //        {
 //            // Prepare
@@ -83,8 +83,8 @@
 //            var t2 = tab.Cast<T2>();
 
 //            // Check
-//            Assert.Throws<PageObjectNotFoundException<B2>>(() => t1.On<B2>());
-//            Assert.Throws<PageObjectNotFoundException<B1>>(() => t2.On<B1>());
+//            Assert.ThrowsException<PageObjectNotFoundException<B2>>(() => t1.On<B2>());
+//            Assert.ThrowsException<PageObjectNotFoundException<B1>>(() => t2.On<B1>());
 //        }
 
 //        protected class T1 : Tab

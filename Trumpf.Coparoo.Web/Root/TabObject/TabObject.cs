@@ -35,7 +35,7 @@ namespace Trumpf.Coparoo.Web
         private readonly UIObjectInterfaceResolver objectInterfaceResolver;
         internal const string DEFAULT_FILE_PREFIX = "Coparoo";
         internal const string DEFAULT_DOT_PATH = @"C:\Program Files (x86)\Graphviz2.38\bin\dot.exe";
-        private Dictionary<Type, HashSet<Type>> dyanamicParentToChildMap = new Dictionary<Type, HashSet<Type>>();
+        private readonly Dictionary<Type, HashSet<Type>> dyanamicParentToChildMap = new Dictionary<Type, HashSet<Type>>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TabObject"/> class.
