@@ -70,11 +70,11 @@ namespace Trumpf.Coparoo.Tests
         /// <summary>
         /// Test method.
         /// </summary>
-        // [TestMethod]
+        [TestMethod]
         public void WhenCastingATabObject_ThenOnlyPageObjectInTheCastedPageObjectTreeCanBeAccessed()
         {
             // Prepare
-            var tab = new Tab();
+            ITabObject tab = new Tab();
 
             // Act
             var t1 = tab.Cast<T1>();

@@ -172,7 +172,7 @@ namespace Trumpf.Coparoo.Web
         public TTab Cast<TTab>() where TTab : ITabObject
         {
             var result = Resolve<TTab>();
-            result.Driver = Driver;
+            result.Driver = ((TabObjectNode)Node).webDriver;
             return result;
         }
 

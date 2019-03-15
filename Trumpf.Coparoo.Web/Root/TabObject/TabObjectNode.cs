@@ -25,7 +25,7 @@ namespace Trumpf.Coparoo.Web
     internal class TabObjectNode : UIObjectNode, ITabObjectNode, ITabObjectNodeInternal
     {
         private readonly NodeLocator nodeLocator = new NodeLocator();
-        private IWebDriver webDriver;
+        internal IWebDriver webDriver;
 
         /// <summary>
         /// Gets the node representing this tree node in the UI.
