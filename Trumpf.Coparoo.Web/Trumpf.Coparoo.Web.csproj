@@ -19,7 +19,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <PackageProjectUrl>https://github.com/trumpf-code/trumpf.coparoo.web</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/trumpf-code/Trumpf.Coparoo.Web/master/Resources/logo.png</PackageIconUrl>
-    <Version>1.4.0</Version>
+    <Version>1.4.1</Version>
     <RepositoryUrl>https://github.com/trumpf-code/trumpf.coparoo.web</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
