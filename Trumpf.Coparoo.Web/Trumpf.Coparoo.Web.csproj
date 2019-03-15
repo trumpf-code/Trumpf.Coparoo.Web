@@ -19,7 +19,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <PackageProjectUrl>https://github.com/trumpf-code/trumpf.coparoo.web</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/trumpf-code/Trumpf.Coparoo.Web/master/Resources/logo.png</PackageIconUrl>
-    <Version>1.4.1</Version>
+    <Version>1.5.0</Version>
     <RepositoryUrl>https://github.com/trumpf-code/trumpf.coparoo.web</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
@@ -28,7 +28,7 @@
   <ItemGroup>
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
-    <PackageReference Include="Stashbox" Version="2.6.3" />
+    <PackageReference Include="Stashbox" Version="2.7.3" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'NET451'">
     <Reference Include="System.Windows.Forms" />
