@@ -61,7 +61,19 @@ namespace Trumpf.Coparoo.Tests
         {
             public string File { get; set; }
             protected override string Url => File;
-            protected override Func<IWebDriver> Creator => () => new ChromeDriver();
+            protected override Func<IWebDriver> Creator =>
+                () =>
+            {
+                ChromeOptions options = new ChromeOptions();
+                options.AddArgument("headless");
+                options.AddArgument("no-sandbox");
+                options.AddArgument("proxy-server='direct://'");
+                options.AddArgument("proxy-bypass-list=*");
+
+                var result = new ChromeDriver(options);
+
+                return result;
+            };
         }
 
         protected static Random random = new Random();

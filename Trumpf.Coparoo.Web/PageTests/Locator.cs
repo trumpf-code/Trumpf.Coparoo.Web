@@ -27,7 +27,7 @@ namespace Trumpf.Coparoo.Web.PageTests
     /// </summary>
     internal static class Locate
     {
-        private static Dictionary<Type, Type[]> parentToChildrenMap;
+        private static Lazy<Dictionary<Type, Type[]>> parentToChildrenMap = new Lazy<Dictionary<Type, Type[]>>(() => ParentToChildMap);
         private static Type[] pageObjectTypes;
         private static Type[] controlObjectTypes;
         private static Type[] uiaObjectTypes;
@@ -74,26 +74,23 @@ namespace Trumpf.Coparoo.Web.PageTests
         {
             get
             {
-                if (parentToChildrenMap == null)
+                var result = new Dictionary<Type, Type[]>();
+                var t = PageObjectTypes;
+                foreach (Type type in t)
                 {
-                    parentToChildrenMap = new Dictionary<Type, Type[]>();
-                    var t = PageObjectTypes;
-                    foreach (Type type in t)
+                    if (!type.IsAbstract)
                     {
-                        if (!type.IsAbstract)
+                        var interfaces = type.GetInterfaces();
+                        var childOfInterfaces = interfaces.Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IChildOf<>));
+                        if (childOfInterfaces.Any())
                         {
-                            var interfaces = type.GetInterfaces();
-                            var childOfInterfaces = interfaces.Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IChildOf<>));
-                            if (childOfInterfaces.Any())
-                            {
-                                var parentTypes = childOfInterfaces.Select(i => i.GenericTypeArguments.First()).ToArray();
-                                parentToChildrenMap.Add(type, parentTypes.Select(e => Resolve(e)).ToArray());
-                            }
+                            var parentTypes = childOfInterfaces.Select(i => i.GenericTypeArguments.First()).ToArray();
+                            result.Add(type, parentTypes.Select(e => Resolve(e)).ToArray());
                         }
                     }
                 }
 
-                return parentToChildrenMap;
+                return result;
             }
         }
 
