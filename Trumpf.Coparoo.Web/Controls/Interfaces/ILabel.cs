@@ -17,7 +17,7 @@ namespace Trumpf.Coparoo.Web.Controls
     /// <summary>
     /// Label control object interface.
     /// </summary>
-    public interface ILabel
+    public interface ILabel : IControlObject
     {
         /// <summary>
         /// Gets the text.
