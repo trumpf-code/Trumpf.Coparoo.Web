@@ -19,10 +19,12 @@ namespace Trumpf.Coparoo.Web.Controls
 
     using OpenQA.Selenium;
 
+    using Trumpf.Coparoo.Web.Controls.Interfaces;
+
     /// <summary>
     /// Table control object.
     /// </summary>
-    public partial class Table : ControlObject
+    public partial class Table : ControlObject, ITable
     {
         /// <summary>
         /// Gets the search pattern.
@@ -32,21 +34,21 @@ namespace Trumpf.Coparoo.Web.Controls
         /// <summary>
         /// Gets the table head control object.
         /// </summary>
-        public Head Header => Find<Head>();
+        public IHead Header => Find<IHead>();
 
         /// <summary>
         /// Gets the table body control object.
         /// </summary>
-        public Body Content => Find<Body>();
+        public IBody Content => Find<IBody>();
 
         /// <summary>
         /// Gets the table foot control object.
         /// </summary>
-        public Foot Footer => Find<Foot>();
+        public IFoot Footer => Find<IFoot>();
 
         /// <summary>
         /// Gets a sorted enumeration of all row control objects (including header, body and footer rows).
         /// </summary>
-        public IEnumerable<Row> AllRows => Header.Rows.Concat(Content.Rows).Concat(Footer.Rows);
+        public IEnumerable<IRow> AllRows => Header.Rows.Concat(Content.Rows).Concat(Footer.Rows);
     }
 }

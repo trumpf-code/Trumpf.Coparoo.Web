@@ -19,5 +19,9 @@ namespace Trumpf.Coparoo.Web.Controls
     /// </summary>
     public interface ISpan : IControlObject
     {
+        /// <summary>
+        /// Gets the text.
+        /// </summary>
+        string Text { get; }
     }
 }

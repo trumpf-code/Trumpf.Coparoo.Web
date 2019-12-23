@@ -12,23 +12,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trumpf.Coparoo.Web.Controls
+namespace Trumpf.Coparoo.Web.Controls.Interfaces
 {
-    using OpenQA.Selenium;
+    using System.Collections.Generic;
 
     /// <summary>
-    /// Span control object.
+    /// Interface for table control object.
     /// </summary>
-    public class Span : ControlObject, ISpan
+    public interface ITable : IControlObject
     {
         /// <summary>
-        /// Gets the search pattern.
+        /// Gets the table head control object.
         /// </summary>
-        protected override By SearchPattern => By.TagName("span");
+        IHead Header { get; }
 
         /// <summary>
-        /// Gets the text.
+        /// Gets the table body control object.
         /// </summary>
-        public string Text => Node.Text;
+        IBody Content { get; }
+
+        /// <summary>
+        /// Gets the table foot control object.
+        /// </summary>
+        IFoot Footer { get; }
+
+        /// <summary>
+        /// Gets a sorted enumeration of all row control objects (including header, body and footer rows).
+        /// </summary>
+        IEnumerable<IRow> AllRows { get; }
     }
 }

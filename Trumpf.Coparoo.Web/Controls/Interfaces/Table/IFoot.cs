@@ -12,26 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trumpf.Coparoo.Web.Controls
+namespace Trumpf.Coparoo.Web.Controls.Interfaces
 {
-    using OpenQA.Selenium;
-
-    using Trumpf.Coparoo.Web.Controls.Interfaces;
-
     /// <summary>
-    /// Partial Table control object.
+    /// Interface for table foot control object.
     /// </summary>
-    public partial class Table
+    public interface IFoot : ISegment
     {
-        /// <summary>
-        /// Table head control object.
-        /// </summary>
-        public class Head : Segment, IHead
-        {
-            /// <summary>
-            /// Gets the search pattern.
-            /// </summary>
-            protected override By SearchPattern => By.TagName("thead");
-        }
     }
 }
