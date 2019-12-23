@@ -19,6 +19,9 @@ namespace Trumpf.Coparoo.Web.Controls
 
     using OpenQA.Selenium;
 
+    using Trumpf.Coparoo.Web.Controls.Interfaces;
+
+
     /// <summary>
     /// Partial Table control object.
     /// </summary>
@@ -27,7 +30,7 @@ namespace Trumpf.Coparoo.Web.Controls
         /// <summary>
         /// Table row control object.
         /// </summary>
-        public class Row : ControlObject
+        public class Row : ControlObject, IRow
         {
             /// <summary>
             /// Gets the search pattern.
@@ -37,7 +40,7 @@ namespace Trumpf.Coparoo.Web.Controls
             /// <summary>
             /// Gets the enumeration of cell control objects.
             /// </summary>
-            public IEnumerable<Cell> Cells => FindAll<Cell>();
+            public IEnumerable<ICell> Cells => FindAll<Cell>();
 
             /// <summary>
             /// Returns the cell element at a specified index in the cell sequence.
@@ -46,7 +49,7 @@ namespace Trumpf.Coparoo.Web.Controls
             /// <exception cref="System.ArgumentOutOfRangeException">Index is less than 0 or greater than or equal to the number of cell elements in the cell sequence.</exception>
             /// <param name="index">The zero-based index of the cell to retrieve.</param>
             /// <returns>The cell element at the specified position in the cell sequence.</returns>
-            public Cell CellAt(int index) => Cells.ElementAt(index);
+            public ICell CellAt(int index) => Cells.ElementAt(index);
 
             /// <summary>
             /// Returns the cell element at a specified index in the cell sequence as a control object like provided.

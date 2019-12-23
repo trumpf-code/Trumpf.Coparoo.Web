@@ -12,43 +12,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trumpf.Coparoo.Web.Controls
+namespace Trumpf.Coparoo.Web.Controls.Interfaces
 {
     using System.Collections.Generic;
-    using System.Linq;
-
-    using OpenQA.Selenium;
-
-    using Trumpf.Coparoo.Web.Controls.Interfaces;
 
     /// <summary>
-    /// Table control object.
+    /// Interface for table control object.
     /// </summary>
-    public partial class Table : ControlObject, ITable
+    public interface ITable : IControlObject
     {
-        /// <summary>
-        /// Gets the search pattern.
-        /// </summary>
-        protected override By SearchPattern => By.TagName("table");
-
         /// <summary>
         /// Gets the table head control object.
         /// </summary>
-        public IHead Header => Find<IHead>();
+        IHead Header { get; }
 
         /// <summary>
         /// Gets the table body control object.
         /// </summary>
-        public IBody Content => Find<IBody>();
+        IBody Content { get; }
 
         /// <summary>
         /// Gets the table foot control object.
         /// </summary>
-        public IFoot Footer => Find<IFoot>();
+        IFoot Footer { get; }
 
         /// <summary>
         /// Gets a sorted enumeration of all row control objects (including header, body and footer rows).
         /// </summary>
-        public IEnumerable<IRow> AllRows => Header.Rows.Concat(Content.Rows).Concat(Footer.Rows);
+        IEnumerable<IRow> AllRows { get; }
     }
 }

@@ -12,26 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-namespace Trumpf.Coparoo.Web.Controls
+namespace Trumpf.Coparoo.Web.Controls.Interfaces
 {
-    using OpenQA.Selenium;
-
-    using Trumpf.Coparoo.Web.Controls.Interfaces;
-
     /// <summary>
-    /// Partial Table control object.
+    /// Interface for table data cell object.
     /// </summary>
-    public partial class Table
+    public interface ICell : IControlObject
     {
         /// <summary>
-        /// Table head control object.
+        /// Searches for a control object like provided and returns it.
         /// </summary>
-        public class Head : Segment, IHead
-        {
-            /// <summary>
-            /// Gets the search pattern.
-            /// </summary>
-            protected override By SearchPattern => By.TagName("thead");
-        }
+        /// <typeparam name="T">Control object type.</typeparam>
+        /// <returns>Cell object as a control object like provided.</returns>
+        T As<T>() where T : IControlObject;
+
+        /// <summary>
+        /// Returns true if node element is header cell, otherwise false.
+        /// </summary>
+        bool IsHeaderCell { get; }
+
+        /// <summary>
+        /// Returns true if node element is data cell, otherwise false.
+        /// </summary>
+        bool IsDataCell { get; }
     }
 }

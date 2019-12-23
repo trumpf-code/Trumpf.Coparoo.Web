@@ -16,6 +16,8 @@ namespace Trumpf.Coparoo.Web.Controls
 {
     using OpenQA.Selenium;
 
+    using Trumpf.Coparoo.Web.Controls.Interfaces;
+
     /// <summary>
     /// Partial Table control object.
     /// </summary>
@@ -24,7 +26,7 @@ namespace Trumpf.Coparoo.Web.Controls
         /// <summary>
         /// Table foot control object.
         /// </summary>
-        public class Foot : Segment
+        public class Foot : Segment, IFoot
         {
             /// <summary>
             /// Gets the search pattern.

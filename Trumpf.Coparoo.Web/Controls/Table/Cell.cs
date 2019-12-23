@@ -16,6 +16,7 @@ namespace Trumpf.Coparoo.Web.Controls
 {
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
+    using Trumpf.Coparoo.Web.Controls.Interfaces;
 
     /// <summary>
     /// Partial Table control object.
@@ -25,7 +26,7 @@ namespace Trumpf.Coparoo.Web.Controls
         /// <summary>
         /// Table data cell object.
         /// </summary>
-        public class Cell : ControlObject
+        public class Cell : ControlObject, ICell
         {
             /// <summary>
             /// Gets the search pattern.
