@@ -37,7 +37,7 @@ namespace Trumpf.Coparoo.Web.Controls
             /// </summary>
             /// <typeparam name="T">Control object type.</typeparam>
             /// <returns>Cell object as a control object like provided.</returns>
-            public T As<T>() where T : ControlObject => Find<T>();
+            public T As<T>() where T : IControlObject => Find<T>();
 
             /// <summary>
             /// Returns true if node element is header cell, otherwise false.

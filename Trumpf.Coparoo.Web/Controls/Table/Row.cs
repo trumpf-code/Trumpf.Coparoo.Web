@@ -56,7 +56,7 @@ namespace Trumpf.Coparoo.Web.Controls
             /// <typeparam name="T">Control object type.</typeparam>
             /// <param name="index">The zero-based index of the cell to retrieve.</param>
             /// <returns>The cell element at the specified position in the cell sequence as a control object like provided.</returns>
-            public T CellAt<T>(int index) where T : ControlObject => Cells.ElementAt(index).As<T>();
+            public T CellAt<T>(int index) where T : IControlObject => Cells.ElementAt(index).As<T>();
         }
     }
 }
