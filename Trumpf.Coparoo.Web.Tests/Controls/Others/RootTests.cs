@@ -62,7 +62,7 @@ namespace Trumpf.Coparoo.Tests
                 => Node.Click();
 
             public string SomeProperty()
-                => Node.GetProperty("asdksa");
+                => Node.GetDomProperty("asdksa");
 
             public bool IsDisplayedProperty()
                 => base.IsDisplayed;

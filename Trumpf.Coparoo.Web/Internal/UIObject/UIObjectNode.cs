@@ -195,13 +195,6 @@ namespace Trumpf.Coparoo.Web.Internal
         public string GetAttribute(string attributeName) => RootWebElement(nameof(GetAttribute)).GetAttribute(attributeName);
 
         /// <summary>
-        /// Gets the value of a JavaScript property of this element.
-        /// </summary>
-        /// <param name="propertyName">The name JavaScript the JavaScript property to get the value of.</param>
-        /// <returns>The JavaScript property's current value. Returns a null if the value is not set or the property does not exist.</returns>
-        public string GetProperty(string propertyName) => RootWebElement(nameof(GetProperty)).GetProperty(propertyName);
-
-        /// <summary>
         /// Gets the value of a CSS property of this element.
         /// </summary>
         /// <param name="propertyName">The name of the CSS property to get the value of.</param>
@@ -392,5 +385,14 @@ namespace Trumpf.Coparoo.Web.Internal
 
         private IWebElement RootWebElement(string propertyName)
             => Root as IWebElement ?? throw new InvalidOperationException($"The node is of type '{Root.GetType().FullName}' which does not support the '{propertyName}' operation.");
+
+        public string GetDomAttribute(string propertyName) 
+            => RootWebElement(nameof(GetDomAttribute)).GetDomAttribute(propertyName);
+
+        public string GetDomProperty(string propertyName)
+            => RootWebElement(nameof(GetDomProperty)).GetDomProperty(propertyName);
+
+        public ISearchContext GetShadowRoot()
+            => RootWebElement(nameof(GetShadowRoot)).GetShadowRoot();
     }
 }
