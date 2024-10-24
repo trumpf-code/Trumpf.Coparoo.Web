@@ -14,18 +14,22 @@
     <Description>Trumpf.Coparoo.Web is a .NET library for C# that helps you write fast, maintainable, robust and fluent web tests based on the control/page/root-object (Coparoo) pattern.</Description>
     <Summary>The Trumpf Coparoo Web Automation Library for .NET Standard 2.0, Core 2.0 and .NET Framework 4.5 helps you to write fast, maintainable, robust and fluent web tests based on the control-, page- and root-object pattern. This package includes the Coparoo assembly, which is referenced by your UI web tests. The package requires the Selenium Webdriver package.</Summary>
     <Copyright>TRUMPF Werkzeugmaschinen GmbH + Co. KG</Copyright>
-    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>selenium, webdriver, browser, automation, PageObject, test, ui</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageProjectUrl>https://github.com/trumpf-code/trumpf.coparoo.web</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/trumpf-code/Trumpf.Coparoo.Web/master/Resources/logo.png</PackageIconUrl>
-    <Version>1.5.0</Version>
+    <PackageIcon>logo.png</PackageIcon>
+    <Version>1.6.0</Version>
     <RepositoryUrl>https://github.com/trumpf-code/trumpf.coparoo.web</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <!-- reference information -->
   <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\Resources\logo.png" Pack="true" PackagePath="" />
+    <None Include="..\LICENSE" Pack="true" PackagePath="" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <PackageReference Include="Stashbox" Version="2.7.8" />
@@ -35,7 +39,7 @@
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.Drawing.Common">
-      <Version>4.5.1</Version>
+      <Version>8.0.10</Version>
     </PackageReference>
   </ItemGroup>
 </Project>

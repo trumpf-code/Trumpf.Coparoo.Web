@@ -19,6 +19,7 @@ namespace Trumpf.Coparoo.Web.Demo
     using System.Linq;
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Trumpf.Coparoo.Desktop.Waiting;
     using Trumpf.Coparoo.Web;
     using Trumpf.Coparoo.Web.Waiting;
 
