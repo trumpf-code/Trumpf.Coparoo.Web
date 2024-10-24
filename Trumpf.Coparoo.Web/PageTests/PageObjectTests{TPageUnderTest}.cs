@@ -81,6 +81,6 @@ namespace Trumpf.Coparoo.Web.PageTests
         /// <typeparam name="T2">The underlying type.</typeparam>
         /// <param name="function">The function to wrap.</param>
         /// <returns>The wrapped object.</returns>
-        protected IAwait<T2> Await<T2>(Func<T2> function) => new Await<T2>(function, "Element", GetType(), () => Configuration.Value.WaitTimeout, () => Configuration.Value.PositiveWaitTimeout, () => Configuration.Value.ShowWaitingDialog);
+        protected IAwait<T2> Await<T2>(Func<T2> function) => new Await<T2>(function, "Element", GetType(), () => Configuration.Value.WaitTimeout, () => Configuration.Value.PositiveWaitTimeout, () => Configuration.Value.ShowWaitingDialog, () => Configuration.Value.DialogWaiter);
     }
 }

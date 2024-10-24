@@ -31,7 +31,7 @@ namespace Trumpf.Coparoo.Web.Waiting
         /// <param name="waiter">The Boolean to wait for.</param>
         /// <param name="snap">Snap the object.</param>
         /// <param name="unsnap">Unsnap the object.</param>
-        internal Bool(IAwait<bool> waiter, Func<bool> snap, Action unsnap)
+        public Bool(IAwait<bool> waiter, Func<bool> snap, Action unsnap)
         {
             this.waiter = waiter;
             this.snap = snap;
@@ -67,7 +67,7 @@ namespace Trumpf.Coparoo.Web.Waiting
         /// Try wait until the page object is not visible on screen.
         /// </summary>
         /// <returns>Whether the page object is visible on screen.</returns>
-        public bool TryWaitForFalse()=> ActSnapped(() => waiter.TryWaitFor(value => !value));
+        public bool TryWaitForFalse() => ActSnapped(() => waiter.TryWaitFor(value => !value));
 
         /// <summary>
         /// Try wait until the page object is not visible on screen.

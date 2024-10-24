@@ -18,6 +18,7 @@ namespace Trumpf.Coparoo.Web
     using System.Linq.Expressions;
 
     using Stashbox;
+    using Trumpf.Coparoo.Web.Waiting;
 
     /// <summary>
     /// The configuration class.
@@ -49,6 +50,11 @@ namespace Trumpf.Coparoo.Web
         /// Gets or sets a value indicating whether to show a dialog when waiting for a condition.
         /// </summary>
         public bool ShowWaitingDialog { get; set; } = true;
+
+        /// <summary>
+        /// Gets or set the dialog dialogWaiter.
+        /// </summary>
+        public IDialogWaiter DialogWaiter { get; set; } = null;
 
         internal object Resolve(Type typeFrom)
             => ((StashboxContainer)DependencyRegistrator).Resolve(typeFrom);

@@ -29,6 +29,7 @@ namespace Trumpf.Coparoo.Web.Waiting
         private readonly Func<TimeSpan> positiveTimeout;
         private readonly Func<TimeSpan> waitTimeout;
         private readonly Func<bool> showDialog;
+        private readonly Func<IDialogWaiter> dialogWaiter;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Await{T}"/> class.
@@ -39,7 +40,8 @@ namespace Trumpf.Coparoo.Web.Waiting
         /// <param name="waitTimeout">The timeout.</param>
         /// <param name="positiveTimeout">The positive timeout for dialog-waits.</param>
         /// <param name="showDialog">Whether to show a dialog while waiting.</param>
-        internal Await(Func<T> getValue, string name, Type owner, Func<TimeSpan> waitTimeout, Func<TimeSpan> positiveTimeout, Func<bool> showDialog)
+        /// <param name="dialogWaiter">The waiter object.</param>
+        internal Await(Func<T> getValue, string name, Type owner, Func<TimeSpan> waitTimeout, Func<TimeSpan> positiveTimeout, Func<bool> showDialog, Func<IDialogWaiter> dialogWaiter)
         {
             this.getValue = getValue;
             this.name = name;
@@ -47,6 +49,7 @@ namespace Trumpf.Coparoo.Web.Waiting
             this.waitTimeout = waitTimeout;
             this.positiveTimeout = positiveTimeout;
             this.showDialog = showDialog;
+            this.dialogWaiter = dialogWaiter;
         }
 
         /// <summary>
@@ -86,7 +89,6 @@ namespace Trumpf.Coparoo.Web.Waiting
         /// <param name="expectationText">Expectation text, i.e. the predicate expressed as a human-readable text.</param>
         public void WaitFor(Predicate<T> expectation, string expectationText) => WaitFor(expectation, expectationText, waitTimeout());
 
-#if NET451
         /// <summary>
         /// Wait until the property evaluates to true.
         /// Show a dialog.
@@ -97,9 +99,9 @@ namespace Trumpf.Coparoo.Web.Waiting
         public void WaitFor(Predicate<T> expectation, string expectationText, TimeSpan timeout)
         {
             string message = $"{name} in {owner.Name}: {expectationText}";
-            if (showDialog())
+            if (showDialog() && dialogWaiter != null)
             {
-                DialogWait.For(() => Value, value => expectation(value), message, timeout, positiveTimeout(), TimeSpan.FromMilliseconds(100));
+                dialogWaiter().WaitFor(() => Value, value => expectation(value), message, timeout, positiveTimeout(), TimeSpan.FromMilliseconds(100));
             }
             else
             {
@@ -109,28 +111,6 @@ namespace Trumpf.Coparoo.Web.Waiting
                 }
             }
         }
-#else
-        /// <summary>
-        /// Wait until the property evaluates to true.
-        /// Show a dialog.
-        /// </summary>
-        /// <param name="expectation">Expectation predicate.</param>
-        /// <param name="expectationText">Expectation text, i.e. the predicate expressed as a human-readable text.</param>
-        /// <param name="timeout">The timeout.</param>
-        public void WaitFor(Predicate<T> expectation, string expectationText, TimeSpan timeout)
-        {
-            if(showDialog()) {
-                throw new NotSupportedException("Showing a waiting dialog is not supported under .NET Standard and .NET Core. Please use the .NET 4.5 version.");
-            }
-
-            string message = $"{name} in {owner.Name}: {expectationText}";
-
-            if (!TryWaitFor(expectation, timeout))
-            {
-                throw new WaitForException(owner, message);
-            }
-        }
-#endif
         #endregion
 
         #region Others

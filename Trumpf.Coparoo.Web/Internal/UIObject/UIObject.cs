@@ -281,6 +281,6 @@ namespace Trumpf.Coparoo.Web.Internal
         /// <param name="function">The function to wrap.</param>
         /// <param name="name">The name of the property.</param>
         /// <returns>The wrapped Boolean.</returns>
-        private Bool WoolFor(Func<bool> function, string name) => new Bool(new Await<bool>(function, name, GetType(), () => Root.Configuration.WaitTimeout, () => Root.Configuration.PositiveWaitTimeout, () => Root.Configuration.ShowWaitingDialog), () => TrySnap(), () => (this as IUIObjectInternal).TryUnsnap());
+        private Bool WoolFor(Func<bool> function, string name) => new Bool(new Await<bool>(function, name, GetType(), () => Root.Configuration.WaitTimeout, () => Root.Configuration.PositiveWaitTimeout, () => Root.Configuration.ShowWaitingDialog, () => Root.Configuration.DialogWaiter), () => TrySnap(), () => (this as IUIObjectInternal).TryUnsnap());
     }
 }

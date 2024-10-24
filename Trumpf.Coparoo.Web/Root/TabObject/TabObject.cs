@@ -266,7 +266,7 @@ namespace Trumpf.Coparoo.Web
         /// <param name="function">The function to wrap.</param>
         /// <param name="name">The display name used in timeout exceptions.</param>
         /// <returns>The wrapped object.</returns>
-        IAwait<T> ITabObjectInternal.Await<T>(Func<T> function, string name) => new Await<T>(function, name, GetType(), () => Configuration.WaitTimeout, () => Configuration.PositiveWaitTimeout, () => Configuration.ShowWaitingDialog);
+        IAwait<T> ITabObjectInternal.Await<T>(Func<T> function, string name) => new Await<T>(function, name, GetType(), () => Configuration.WaitTimeout, () => Configuration.PositiveWaitTimeout, () => Configuration.ShowWaitingDialog, () => Configuration.DialogWaiter);
 
         /// <summary>
         /// Take a screen shot.
