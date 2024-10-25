@@ -8,12 +8,7 @@ We can split the definition of **Process**, **Page**, and **Control Objects** in
 
 If both layers are separated, the test cases can be defined in another assembly that solely *references the interface layer*, while their implementations are loaded and resolved *dynamically*, i.e., when the test executes.
 
-![decoupling1]
-![Decoupling0](/Resources/decoupling.PNG "coparoo web logo")
-![Decoupling2](./Resources/decoupling.PNG "coparoo web logo")
-![Decoupling3](../Resources/decoupling.PNG "coparoo web logo")
-![Decoupling4](../../Resources/decoupling.PNG "coparoo web logo")
-![Decoupling5](Resources/Resources/decoupling.PNG "coparoo web logo")
+![decoupling]
 
 Thus, test cases and page object implementations are *decoupled*.
 
@@ -48,4 +43,4 @@ The tests and page objects can be decoupled via interfaces as follows:
    - Locate the tab object using the `TabObject.Resolve` method, e.g., `var tab = new MyTab()` becomes `var tab = TabObject.Resolve<IMyTab>()`.
    - Finally, ensure the page object assembly is available and loaded, e.g., via `Assembly.LoadFrom`, before tests are executed.
 
-[decoupling]: ./Resources/decoupling.png "coparoo web logo"
+[Decoupling] ./Resources/decoupling.PNG "coparoo web logo"
