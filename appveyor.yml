@@ -1,8 +1,7 @@
-image:
-- Visual Studio 2022
-
-build:
-  project: Trumpf.Coparoo.Web.sln
+image: Visual Studio 2022
 
 before_build:
-- nuget restore
+  - dotnet restore
+
+build_script:
+  - dotnet build Trumpf.Coparoo.Web.sln --configuration Release --no-restore
