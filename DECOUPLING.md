@@ -8,10 +8,12 @@ We can split the definition of **Process**, **Page**, and **Control Objects** in
 
 If both layers are separated, the test cases can be defined in another assembly that solely *references the interface layer*, while their implementations are loaded and resolved *dynamically*, i.e., when the test executes.
 
-![decoupling]
-![Decoupling](./Resources/decoupling.png "coparoo web logo")
-![Decoupling](../Resources/decoupling.png "coparoo web logo")
-![Decoupling](../../Resources/decoupling.png "coparoo web logo")
+![decoupling1]
+![Decoupling0](/Resources/decoupling.png "coparoo web logo")
+![Decoupling2](./Resources/decoupling.png "coparoo web logo")
+![Decoupling3](../Resources/decoupling.png "coparoo web logo")
+![Decoupling4](../../Resources/decoupling.png "coparoo web logo")
+![Decoupling5](Resources/decoupling.png "coparoo web logo")
 
 Thus, test cases and page object implementations are *decoupled*.
 
