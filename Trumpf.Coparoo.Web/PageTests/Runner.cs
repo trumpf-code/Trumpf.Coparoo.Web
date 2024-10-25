@@ -121,7 +121,6 @@ namespace Trumpf.Coparoo.Web.PageTests
         {
             filter = filter ?? ((e, f) => true);
             Tree result = null;
-            bool success = true;
             try
             {
                 foreach (Type classWithTests in source.TestClasses())
@@ -202,7 +201,6 @@ namespace Trumpf.Coparoo.Web.PageTests
                     }
                     finally
                     {
-                        success = false;
                         pageObjectStatistics.Add(source, testClassStatistic);
                     }
                 }
