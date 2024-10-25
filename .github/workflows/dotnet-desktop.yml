@@ -64,3 +64,11 @@ jobs:
       if: matrix.configuration == 'Release'
       run: |
         dotnet pack ${{ env.Solution_Name }} --configuration Release --no-build --output ${{ env.Package_Output_Dir }}
+
+    # Upload the NuGet package as an artifact
+    - name: Upload NuGet Package
+      if: matrix.configuration == 'Release'
+      uses: actions/upload-artifact@v3
+      with:
+        name: nuget-package
+        path: ${{ env.Package_Output_Dir }}/*.nupkg
