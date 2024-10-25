@@ -15,6 +15,7 @@ jobs:
     env:
       Solution_Name: Trumpf.Coparoo.Web.sln
       Test_Project_Path: Trumpf.Coparoo.Web.Tests\Trumpf.Coparoo.Web.Tests.csproj
+      Package_Output_Dir: ${{ github.workspace }}/artifacts
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -31,6 +32,16 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v2
 
+   # Build the solution
+    - name: Build
+      run: dotnet build ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }}
+
     # Execute all unit tests in the solution
     - name: Execute unit tests
       run: dotnet test
+
+    # Generate NuGet package in Release configuration
+    - name: Generate NuGet Package
+      if: matrix.configuration == 'Release'
+      run: |
+        dotnet pack ${{ env.Solution_Name }} --configuration Release --output ${{ env.Package_Output_Dir }}
