@@ -38,13 +38,12 @@ jobs:
     - name: Build
       run: dotnet build ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }}
 
-    # Create test results directory
-    - name: Create Test Results Directory
-      run: mkdir -p ${{ env.Test_Results_Dir }}
 
-    # Execute all unit tests in the solution with detailed output
-    - name: Execute unit tests
-      run: dotnet test ${{ env.Test_Project_Path }} --configuration ${{ matrix.configuration }} --verbosity normal --logger "trx;LogFileName=${{ env.Test_Results_Dir }}\test_result_${{ matrix.configuration }}.trx"
+    # Create test results directory and execute unit tests
+    - name: Execute Unit Tests
+      run: |
+        mkdir -p ${{ env.Test_Results_Dir }}; 
+        dotnet test ${{ env.Test_Project_Path }} --configuration ${{ matrix.configuration }} --verbosity normal --logger "trx;LogFileName=${{ env.Test_Results_Dir }}\test_result_${{ matrix.configuration }}.trx"
 
     # Check if the test result file was created
     - name: Check Test Results
