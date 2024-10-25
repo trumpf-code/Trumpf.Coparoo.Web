@@ -36,7 +36,7 @@ namespace Trumpf.Coparoo.Web.Demo
         }
         public override void Goto()
         {
-            if (!Displayed)
+            if (!Displayed.Value)
                 Goto<IMenu>().Events.Click();
         }
     }

@@ -26,7 +26,7 @@ namespace Trumpf.Coparoo.Web.Demo
         protected override By SearchPattern => By.CssSelector(".vdi-main-menu");
         public IEnumerable<ILink> Buttons => FindAll<ILink>()
             .OrderFromLeftToRight()
-            .Where(e => e.Displayed);
+            .Where(e => e.Displayed.Value);
 
         public ILink Events => Buttons.ElementAt(0);
         public ILink Place => Buttons.ElementAt(1);
@@ -35,7 +35,7 @@ namespace Trumpf.Coparoo.Web.Demo
 
         public override void Goto()
         {
-            if (!Displayed)
+            if (!Displayed.Value)
                 Parent.Goto();
         }
     }

@@ -15,15 +15,22 @@
 namespace Trumpf.Coparoo.Web.Waiting
 {
     using System;
+    using System.Linq.Expressions;
 
     /// <summary>
     /// Boolean equipped with throwing and non-throwing waiting methods.
     /// </summary>
-    public class Bool
+    public class Bool : IBool
     {
         private readonly IAwait<bool> waiter;
         private readonly Func<bool> snap;
         private readonly Action unsnap;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Bool"/> class with a default value.
+        /// </summary>
+        public Bool()
+            => Expression.Empty();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Bool"/> class.
@@ -39,15 +46,18 @@ namespace Trumpf.Coparoo.Web.Waiting
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Bool"/> class.
+        /// </summary>
+        /// <param name="waiter">The Boolean to wait for.</param>
+        /// <param name="snap">Snap the object.</param>
+        /// <param name="unsnap">Unsnap the object.</param>
+        public IBool Init(IAwait<bool> waiter, Func<bool> snap, Action unsnap)
+            => new Bool(waiter, snap, unsnap);
+
+        /// <summary>
         /// Gets a fresh value evaluation.
         /// </summary>
         public bool Value => waiter.Value;
-
-        /// <summary>
-        /// Implicit conversion to the underlying type.
-        /// </summary>
-        /// <param name="other">The value to convert.</param>
-        public static implicit operator bool(Bool other) => other.Value;
 
         #region TryWait
         /// <summary>
@@ -119,12 +129,6 @@ namespace Trumpf.Coparoo.Web.Waiting
             unsnap();
             return result;
         }
-
-        /// <summary>
-        /// Gets the value as string.
-        /// </summary>
-        /// <returns>The value.</returns>
-        public override string ToString() => Value.ToString();
         #endregion
     }
 }

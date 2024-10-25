@@ -38,17 +38,17 @@ namespace Trumpf.Coparoo.Web.Internal
         /// <summary>
         /// Gets or sets a value indicating whether the UI object can respond to user interaction.
         /// </summary>
-        Bool Enabled { get; }
+        IBool Enabled { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the control and all its child controls are displayed.
         /// </summary>
-        Bool Displayed { get; }
+        IBool Displayed { get; }
 
         /// <summary>
         /// Gets a value indicating whether the UI object's node exists in the UI tree.
         /// </summary>
-        Bool Exists { get; }
+        IBool Exists { get; }
 
         /// <summary>
         /// Gets a System.Drawing.Point object containing the coordinates of the upper-left corner of this element relative to the upper-left corner of the page.

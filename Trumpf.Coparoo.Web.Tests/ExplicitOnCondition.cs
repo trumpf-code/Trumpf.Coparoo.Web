@@ -43,7 +43,7 @@ namespace Trumpf.Coparoo.Tests
         {
             // Act
             C.T = expectedParentType;
-            var visibleOnScreen = new A().On<C>(e => e.Displayed);
+            var visibleOnScreen = new A().On<C>(e => e.Displayed.Value);
 
             // Check
             Assert.AreEqual(expectedParentType, visibleOnScreen.Parent.GetType());

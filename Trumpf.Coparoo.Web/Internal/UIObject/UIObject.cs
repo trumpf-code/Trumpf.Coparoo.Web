@@ -67,12 +67,12 @@ namespace Trumpf.Coparoo.Web.Internal
         /// <summary>
         /// Gets a value indicating whether the page object's node is visible on the screen.
         /// </summary>
-        public Bool Displayed => WoolFor(() => IsDisplayed, nameof(Displayed));
+        public IBool Displayed => WoolFor(() => IsDisplayed, nameof(Displayed));
 
         /// <summary>
         /// Gets a value indicating whether the page object's node exists in the UI tree.
         /// </summary>
-        public virtual Bool Exists => WoolFor(() => UIObjectNode.Accessible(NodeInternal.TryRoot), nameof(Exists));
+        public virtual IBool Exists => WoolFor(() => UIObjectNode.Accessible(NodeInternal.TryRoot), nameof(Exists));
 
         /// <summary>
         /// Gets a System.Drawing.Point object containing the coordinates of the upper-left corner of this element relative to the upper-left corner of the page.
@@ -82,7 +82,7 @@ namespace Trumpf.Coparoo.Web.Internal
         /// <summary>
         /// Gets or sets a value indicating whether the UI object can respond to user interaction.
         /// </summary>
-        public virtual Bool Enabled => WoolFor(() => Node.Enabled, nameof(Enabled));
+        public virtual IBool Enabled => WoolFor(() => Node.Enabled, nameof(Enabled));
 
         /// <summary>
         /// Gets the parent of this page object.
@@ -246,7 +246,7 @@ namespace Trumpf.Coparoo.Web.Internal
             {
                 TControl result = Find<TControl>(pattern, predicate);
                 (result as IUIObjectInternal).Index = next++;
-                if (!result.Exists)
+                if (!result.Exists.Value)
                 {
                     break;
                 }
@@ -281,6 +281,6 @@ namespace Trumpf.Coparoo.Web.Internal
         /// <param name="function">The function to wrap.</param>
         /// <param name="name">The name of the property.</param>
         /// <returns>The wrapped Boolean.</returns>
-        private Bool WoolFor(Func<bool> function, string name) => new Bool(new Await<bool>(function, name, GetType(), () => Root.Configuration.WaitTimeout, () => Root.Configuration.PositiveWaitTimeout, () => Root.Configuration.ShowWaitingDialog, () => Root.Configuration.DialogWaiter), () => TrySnap(), () => (this as IUIObjectInternal).TryUnsnap());
+        private IBool WoolFor(Func<bool> function, string name) => new Bool().Init(new Await<bool>(function, name, GetType(), () => Root.Configuration.WaitTimeout, () => Root.Configuration.PositiveWaitTimeout, () => Root.Configuration.ShowWaitingDialog, () => Root.Configuration.DialogWaiter), () => TrySnap(), () => (this as IUIObjectInternal).TryUnsnap());
     }
 }

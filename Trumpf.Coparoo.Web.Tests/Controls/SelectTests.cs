@@ -40,7 +40,7 @@ namespace Trumpf.Coparoo.Tests
                     var selected = select.Options.Select(e => e.IsSelected).ToList();
 
                     // Check
-                    Assert.IsTrue(displayed);
+                    Assert.IsTrue(displayed.Value);
                     Assert.AreEqual(3, count);
                     CollectionAssert.AreEqual(new[] { "a", "b", "c" }, values);
                     CollectionAssert.AreEqual(new[] { true, false, false }, selected);

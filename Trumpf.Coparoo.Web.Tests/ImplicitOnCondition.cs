@@ -42,7 +42,7 @@ namespace Trumpf.Coparoo.Tests
             var d = P.On<D>();
 
             // Check
-            Assert.IsTrue(d.Displayed);
+            Assert.IsTrue(d.Displayed.Value);
             Assert.AreEqual(typeOfB, d.Parent.Parent.GetType());
         }
 
@@ -94,7 +94,7 @@ namespace Trumpf.Coparoo.Tests
             /// <summary>
             /// Gets a value indicating whether the expected type is the parent.
             /// </summary>
-            protected override bool IsDisplayed => (Parent as IPageObject).Displayed;
+            protected override bool IsDisplayed => (Parent as IPageObject).Displayed.Value;
 
             protected override By SearchPattern => null;
         }

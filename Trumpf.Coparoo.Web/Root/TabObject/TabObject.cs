@@ -194,7 +194,7 @@ namespace Trumpf.Coparoo.Web
         /// Gets or sets a value indicating whether the UI object can respond to user interaction.
         /// Not supported for tab objects.
         /// </summary>
-        public override Bool Enabled
+        public override IBool Enabled
             => throw new InvalidOperationException($"Tab objects do not support the 'Enabled' operation.");
 
         /// <summary>

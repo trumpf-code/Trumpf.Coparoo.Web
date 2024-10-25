@@ -43,7 +43,7 @@ namespace Trumpf.Coparoo.Web.PageTests
         /// <summary>
         /// Gets a value indicating whether the test is ready to run.
         /// </summary>
-        public virtual bool ReadyToRun => Page.Displayed;
+        public virtual bool ReadyToRun => Page.Displayed.Value;
 
         /// <summary>
         /// Function to execute before the first test.

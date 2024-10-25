@@ -22,7 +22,7 @@ namespace Trumpf.Coparoo.Web.Demo
         protected override By SearchPattern => By.CssSelector(".vdi-wrapper");
         public override void Goto()
         {
-            if (!Displayed)
+            if (!Displayed.Value)
                 Parent.Goto();
         }
     }
