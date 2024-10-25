@@ -65,14 +65,15 @@ namespace Trumpf.Coparoo.Tests
                 () =>
             {
                 ChromeOptions options = new ChromeOptions();
+
                 options.AddArgument("headless");
                 options.AddArgument("no-sandbox");
                 options.AddArgument("proxy-server='direct://'");
                 options.AddArgument("proxy-bypass-list=*");
 
-                var result = new ChromeDriver(options);
+                var driver = new ChromeDriver(options);
 
-                return result;
+                return driver;
             };
         }
 

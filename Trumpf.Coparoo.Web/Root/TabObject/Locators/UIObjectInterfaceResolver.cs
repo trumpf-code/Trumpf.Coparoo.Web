@@ -15,6 +15,7 @@
 namespace Trumpf.Coparoo.Web
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
@@ -28,7 +29,7 @@ namespace Trumpf.Coparoo.Web
     internal class UIObjectInterfaceResolver : IUIObjectInterfaceResolver
     {
         private readonly ITabObject rootObject;
-        private static Dictionary<Type, Type> resolveCache = new Dictionary<Type, Type>();
+        private static ConcurrentDictionary<Type, Type> resolveCache = new ConcurrentDictionary<Type, Type>();
         private static Type[] controlTypesCache;
 
         /// <summary>
@@ -92,7 +93,10 @@ namespace Trumpf.Coparoo.Web
                         Trace.WriteLine($"Warning: Multiple matches found for control object interface <{toResolve.FullName}>: {string.Join(", ", matches.Select(e => e.FullName))}; continue with \"lowest\" match: '{result.FullName}'.");
                     }
 
-                    resolveCache.Add(toResolve, result);
+                    if(!resolveCache.TryAdd(toResolve, result))
+                    {
+                        Trace.WriteLine($"Info: Type was already added: <{toResolve.FullName}>.");
+                    }
                 }
             }
 

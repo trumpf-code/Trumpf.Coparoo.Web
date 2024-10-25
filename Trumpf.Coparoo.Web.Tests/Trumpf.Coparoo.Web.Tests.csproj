@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Selenium.WebDriver" Version="4.25.0" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="130.0.6723.6900" />
     <ProjectReference Include="..\Trumpf.Coparoo.Web\Trumpf.Coparoo.Web.csproj" />
   </ItemGroup>
 </Project>

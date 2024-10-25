@@ -135,8 +135,11 @@ namespace Trumpf.Coparoo.Web.Logging.Tree
         /// <param name="filename">The file to save to.</param>
         /// <param name="dotBinaryPath">The path the GraphViz binary.</param>
         /// <returns></returns>
-        internal string WriteGraph(string filename = TabObject.DEFAULT_FILE_PREFIX, string dotBinaryPath = TabObject.DEFAULT_DOT_PATH)
+        internal string WriteGraph(string filename, string dotBinaryPath = TabObject.DEFAULT_DOT_PATH)
         {
+            if (filename is null)
+                throw new ArgumentNullException(nameof(filename));
+
             string outPdf = Path.GetFullPath(filename) + ".pdf";
             string outDot = Path.ChangeExtension(outPdf, ".dot");
 

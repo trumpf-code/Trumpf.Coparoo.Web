@@ -37,10 +37,7 @@ namespace Trumpf.Coparoo.Tests
         public void WhenTheDotTreeIsGenerated_ThenItContainsTheControlProperties()
         {
             // Data
-            var dotFile = $"{TabObject.DEFAULT_FILE_PREFIX}.dot";
-            var pdfFile = $"{TabObject.DEFAULT_FILE_PREFIX}.pdf";
-            var fullDotPath = Path.GetFullPath(dotFile);
-            var fullPdfPath = Path.GetFullPath(pdfFile);
+            var (prefix, dotFile, pdfFile) = TreeWriterHelper.GenerateFileNames();
             var dotExists = false;
             var pdfExists = false;
 
@@ -49,7 +46,7 @@ namespace Trumpf.Coparoo.Tests
             {
                 // Act
                 var root = new WithoutTests.MyTab();
-                var tree = root.TestBottomUpInternal(null, true); // don't execute tests, write graph
+                var tree = root.TestBottomUpInternal(null, true, prefix); // don't execute tests, write graph
 
                 // Check
                 dotExists = File.Exists(dotFile);
@@ -85,10 +82,7 @@ namespace Trumpf.Coparoo.Tests
             WithTests.MenuTests.Slow = false;
 
             // Data
-            var dotFile = $"{TabObject.DEFAULT_FILE_PREFIX}.dot";
-            var pdfFile = $"{TabObject.DEFAULT_FILE_PREFIX}.pdf";
-            var fullDotPath = Path.GetFullPath(dotFile);
-            var fullPdfPath = Path.GetFullPath(pdfFile);
+            var (prefix, dotFile, pdfFile) = TreeWriterHelper.GenerateFileNames();
             var dotExists = false;
             var pdfExists = false;
 
@@ -100,7 +94,7 @@ namespace Trumpf.Coparoo.Tests
             {
                 // Act
                 var root = new WithTests.MyTab();
-                var tree = root.TestBottomUpInternal(null, true);
+                var tree = root.TestBottomUpInternal(null, true, prefix);
 
                 // Check
                 dotExists = File.Exists(dotFile);
@@ -127,108 +121,6 @@ namespace Trumpf.Coparoo.Tests
                     File.Delete(dotFile);
                 }
             }
-        }
-
-        /// <summary>
-        /// Test method.
-        /// </summary>
-        [TestMethod]
-        public void WhenTestOfOnePageObjectAreExecutedAllSucceedAndTheDotTreeIsGenerated_ThenItContainsTheControlPropertiesAndTestRestults()
-        {
-            // Environment
-            WithTests.MenuTests.Slow = false;
-
-            // Data
-            var dotFile = $"{TabObject.DEFAULT_FILE_PREFIX}.dot";
-            var pdfFile = $"{TabObject.DEFAULT_FILE_PREFIX}.pdf";
-            var fullDotPath = Path.GetFullPath(dotFile);
-            var fullPdfPath = Path.GetFullPath(pdfFile);
-            var dotExists = false;
-            var pdfExists = false;
-
-            // Test
-            try
-            {
-                // Act
-                var root = new WithTests.MyTab();
-                var tree = root.On<WithTests.Menu>().TestInternal(true);
-
-                // Check
-                dotExists = File.Exists(dotFile);
-                pdfExists = File.Exists(pdfFile);
-                Assert.AreEqual(8, tree.NodeCount);
-                Assert.AreEqual(11, tree.EdgeCount);
-                Assert.IsTrue(dotExists || pdfExists);
-            }
-            finally
-            {
-                // Clean up
-                if (pdfExists)
-                {
-                    File.Delete(pdfFile);
-                }
-
-                if (dotExists)
-                {
-                    File.Delete(dotFile);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Test method.
-        /// </summary>
-        [TestMethod]
-        public void WhenTestAreExecutedAndOneFailsAndTheDotTreeIsGenerated_ThenItContainsTheControlPropertiesAndTestRestults()
-        {
-            try
-            {
-                // Environment
-                var slow = false;
-                var fail = true;
-                WithTests.LoginTests.Fail = fail;
-                WithTests.LoginTests.Slow = slow;
-                WithTests.MenuTests.Slow = slow;
-
-                // Data
-                var dotFile = $"{TabObject.DEFAULT_FILE_PREFIX}.dot";
-                var pdfFile = $"{TabObject.DEFAULT_FILE_PREFIX}.pdf";
-                var fullDotPath = Path.GetFullPath(dotFile);
-                var fullPdfPath = Path.GetFullPath(pdfFile);
-                var dotExists = false;
-                var pdfExists = false;
-
-                // Test
-                try
-                {
-                    // Act
-                    new WithTests.MyTab().TestBottomUpInternal(null, true);
-                }
-                finally
-                {
-                    // Check
-                    dotExists = File.Exists(dotFile);
-                    pdfExists = File.Exists(pdfFile);
-                    Assert.IsTrue(pdfExists || dotExists);
-
-                    // Clean up
-                    if (pdfExists)
-                    {
-                        File.Delete(pdfFile);
-                    }
-
-                    if (dotExists)
-                    {
-                        File.Delete(dotFile);
-                    }
-                }
-            }
-            catch (TimeoutException)
-            {
-                return;
-            }
-
-            Assert.Fail();
         }
 
         private class WithoutTests

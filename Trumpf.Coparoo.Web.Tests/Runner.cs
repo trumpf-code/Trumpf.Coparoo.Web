@@ -21,13 +21,13 @@ namespace Trumpf.Coparoo.Tests
     using OpenQA.Selenium;
     using Trumpf.Coparoo.Web;
     using Trumpf.Coparoo.Web.Exceptions;
-    using Trumpf.Coparoo.Web.Logging.Tree;
     using Trumpf.Coparoo.Web.PageTests;
 
     /// <summary>
     /// Test class.
     /// </summary>
     [TestClass]
+    [DoNotParallelize] // due to ugly static counter
     public class Runner
     {
         private A Root
@@ -108,19 +108,16 @@ namespace Trumpf.Coparoo.Tests
         [TestMethod]
         public void WhenTheDotTreeIsWrittenToDisk_ThenAFileIsCreated()
         {
-            var dotFile = $"{TabObject.DEFAULT_FILE_PREFIX}.dot";
-            var pdfFile = $"{TabObject.DEFAULT_FILE_PREFIX}.pdf";
-            var fullDotPath = Path.GetFullPath(dotFile);
-            var fullPdfPath = Path.GetFullPath(pdfFile);
+            var (prefix, dotFile, pdfFile) = TreeWriterHelper.GenerateFileNames();
             var dotExists = false;
             var pdfExists = false;
             try
             {
                 // Act
                 var root = Root;
-                root.TestBottomUp(true);
-                dotExists = File.Exists(fullDotPath);
-                pdfExists = File.Exists(fullPdfPath);
+                root.TestBottomUp(true, treeBaseFilename: prefix);
+                dotExists = File.Exists(dotFile);
+                pdfExists = File.Exists(pdfFile);
 
                 // Check
                 Assert.IsTrue(dotExists || pdfExists);
@@ -140,42 +137,6 @@ namespace Trumpf.Coparoo.Tests
             }
         }
 
-        /// <summary>
-        /// Test method.
-        ///
-        /// TODO: reactivate.
-        /// Failed : Trumpf.Coparoo.Tests.Runner.WhenTheDotTreeIsGenerated_ThenItContainsTheTestResults
-        /// Expected: True
-        /// But was:  False
-        /// at Trumpf.Coparoo.Tests.Runner.WhenTheDotTreeIsGenerated_ThenItContainsTheTestResults()[0x0003c] in <6f1f588e7ba94c55a681f6266ea2076f>:0 
-        /// Not reproducible locally.
-        /// </summary>
-        /// [TestMethod]
-        public void WhenTheDotTreeIsGenerated_ThenItContainsTheTestResults()
-        {
-            string file = null;
-            A root;
-            Tree tree;
-            try
-            {
-                // Act
-                root = new A();
-                tree = root.TestBottomUpInternal();
-                file = tree.WriteGraph();
-
-                // Check
-                Assert.AreEqual(8, tree.NodeCount);
-                Assert.IsTrue(File.Exists(file));
-            }
-            finally
-            {
-                // Clean up
-                if (file != null && File.Exists(file))
-                {
-                    File.Delete(file);
-                }
-            }
-        }
 
         /// <summary>
         /// Helper class.

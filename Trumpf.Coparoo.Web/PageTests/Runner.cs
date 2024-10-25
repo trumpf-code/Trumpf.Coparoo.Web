@@ -51,8 +51,9 @@ namespace Trumpf.Coparoo.Web.PageTests
         /// <param name="source">The source page object.</param>
         /// <param name="writeTree">Whether to write the result tree.</param>
         /// <param name="filter">The test method filter predicate.</param>
+        /// <param name="treeBaseFilename">Tree file name.</param>
         /// <returns>This page object.</returns>
-        public static void Test(this IPageObject source, bool writeTree = false, Func<MethodInfo, Type, bool> filter = null) => Test(source, filter, writeTree, new PageObjectStatistics());
+        public static void Test(this IPageObject source, bool writeTree = false, Func<MethodInfo, Type, bool> filter = null, string treeBaseFilename = null) => Test(source, filter, writeTree, new PageObjectStatistics(), treeBaseFilename);
 
         /// <summary>
         /// Run tests for this page object.
@@ -60,8 +61,9 @@ namespace Trumpf.Coparoo.Web.PageTests
         /// <param name="source">The source page object.</param>
         /// <param name="writeTree">Whether to write the result tree.</param>
         /// <param name="filter">The test method filter predicate.</param>
+        /// <param name="treeBaseFilename">Tree file name.</param>
         /// <returns>This page object.</returns>
-        internal static Tree TestInternal(this IPageObject source, bool writeTree = false, Func<MethodInfo, Type, bool> filter = null) => Test(source, filter, writeTree, new PageObjectStatistics());
+        internal static Tree TestInternal(this IPageObject source, bool writeTree = false, Func<MethodInfo, Type, bool> filter = null, string treeBaseFilename = null) => Test(source, filter, writeTree, new PageObjectStatistics(), null);
 
         /// <summary>
         /// Run all tests with the <c>PageTestAttribute</c>.
@@ -69,8 +71,9 @@ namespace Trumpf.Coparoo.Web.PageTests
         /// <param name="source">The source page object.</param>
         /// <param name="writeTree">Whether to write the result tree.</param>
         /// <param name="filter">The test method filter predicate.</param>
+        /// <param name="treeBaseFilename">Tree file name.</param>
         /// <returns>This page object.</returns>
-        public static void TestBottomUp(this IPageObject source, bool writeTree = false, Func<MethodInfo, Type, bool> filter = null) => TestBottomUp(source, filter, writeTree, new PageObjectStatistics());
+        public static void TestBottomUp(this IPageObject source, bool writeTree = false, Func<MethodInfo, Type, bool> filter = null, string treeBaseFilename = null) => TestBottomUp(source, filter, writeTree, new PageObjectStatistics(), treeBaseFilename);
 
         /// <summary>
         /// Run all tests with the <c>PageTestAttribute</c>.
@@ -78,8 +81,9 @@ namespace Trumpf.Coparoo.Web.PageTests
         /// <param name="source">The source page object.</param>
         /// <param name="filter">The test method filter predicate.</param>
         /// <param name="writeTree">Whether to write the result tree.</param>
+        /// <param name="treeBaseFilename">Tree file name.</param>
         /// <returns>This page object.</returns>
-        internal static Tree TestBottomUpInternal(this IPageObject source, Func<MethodInfo, Type, bool> filter = null, bool writeTree = false) => TestBottomUp(source, filter, writeTree, new PageObjectStatistics());
+        internal static Tree TestBottomUpInternal(this IPageObject source, Func<MethodInfo, Type, bool> filter = null, bool writeTree = false, string treeBaseFilename = null) => TestBottomUp(source, filter, writeTree, new PageObjectStatistics(), treeBaseFilename);
 
         /// <summary>
         /// Run all tests with the <c>PageTestAttribute</c>.
@@ -88,19 +92,20 @@ namespace Trumpf.Coparoo.Web.PageTests
         /// <param name="pageObjectStatistics">Whether to write the result tree.</param>
         /// <param name="filter">The test method filter predicate.</param>
         /// <param name="writeTree">Whether to write the result tree.</param>
+        /// <param name="treeBaseFilename">Tree file name.</param>
         /// <returns>This page object.</returns>
-        private static Tree TestBottomUp(this IPageObject source, Func<MethodInfo, Type, bool> filter, bool writeTree, PageObjectStatistics pageObjectStatistics)
+        private static Tree TestBottomUp(this IPageObject source, Func<MethodInfo, Type, bool> filter, bool writeTree, PageObjectStatistics pageObjectStatistics, string treeBaseFilename)
         {
             Trace.WriteLine($"Run tests for {source.GetType().FullName}");
 
             // run tests for every child
             foreach (var child in source.Children())
             {
-                TestBottomUp(child, filter, false, pageObjectStatistics);
+                TestBottomUp(child, filter, false, pageObjectStatistics, treeBaseFilename);
             }
 
             // run tests for this page object
-            return Test(source, filter, writeTree, pageObjectStatistics);
+            return Test(source, filter, writeTree, pageObjectStatistics, treeBaseFilename);
         }
 
         /// <summary>
@@ -110,8 +115,9 @@ namespace Trumpf.Coparoo.Web.PageTests
         /// <param name="filter">The test method filter predicate.</param>
         /// <param name="writeTree">Whether to write the result tree.</param>
         /// <param name="pageObjectStatistics">The page object statistics.</param>
+        /// <param name="treeBaseFilename">Tree file name.</param>
         /// <returns>This page object.</returns>
-        private static Tree Test(this IPageObject source, Func<MethodInfo, Type, bool> filter, bool writeTree, PageObjectStatistics pageObjectStatistics)
+        private static Tree Test(this IPageObject source, Func<MethodInfo, Type, bool> filter, bool writeTree, PageObjectStatistics pageObjectStatistics, string treeBaseFilename)
         {
             filter = filter ?? ((e, f) => true);
             Tree result = null;
@@ -211,9 +217,9 @@ namespace Trumpf.Coparoo.Web.PageTests
                     result += new Edge { To = pair.Value.Root.Id, From = new Node() { Id = pair.Key.FullName }.Id };
                 }
 
-                if (!success || writeTree)
+                if (writeTree)
                 {
-                    var treeFilePath = result.WriteGraph();
+                    var treeFilePath = result.WriteGraph(treeBaseFilename);
                     Trace.WriteLine($"Graph written to '{treeFilePath}'.");
                 }
             }

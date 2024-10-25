@@ -34,7 +34,7 @@ namespace Trumpf.Coparoo.Web
         private readonly PageObjectLocator pageObjectLocator;
         private readonly UIObjectInterfaceResolver objectInterfaceResolver;
         internal const string DEFAULT_FILE_PREFIX = "Coparoo";
-        internal const string DEFAULT_DOT_PATH = @"C:\Program Files (x86)\Graphviz2.38\bin\dot.exe";
+        internal const string DEFAULT_DOT_PATH = @"C:\Program Files\Graphviz-12.0.0-win64\bin\dot.exe";
         private readonly Dictionary<Type, HashSet<Type>> dyanamicParentToChildMap = new Dictionary<Type, HashSet<Type>>();
 
         /// <summary>
