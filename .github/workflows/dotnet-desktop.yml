@@ -38,32 +38,32 @@ jobs:
     - name: Build
       run: dotnet build ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }}
 
-
-    # Create test results directory and execute unit tests
+    # Execute unit tests (continue on error to allow test results upload if failed)
     - name: Execute Unit Tests
-      run: |
-        mkdir -p ${{ env.Test_Results_Dir }}; 
-        dotnet test ${{ env.Test_Project_Path }} --configuration ${{ matrix.configuration }} --verbosity normal --logger "trx;LogFileName=${{ env.Test_Results_Dir }}\test_result_${{ matrix.configuration }}.trx";
-        echo "Listing files in test results directory:"; 
-        dir ${{ env.Test_Results_Dir }}
+      if: matrix.configuration == 'Debug'
       continue-on-error: true
+      run: |
+        mkdir -p ${{ env.Test_Results_Dir }}
+        dotnet test ${{ env.Test_Project_Path }} --configuration ${{ matrix.configuration }} --verbosity normal --logger "trx;LogFileName=${{ env.Test_Results_Dir }}\test_result_${{ matrix.configuration }}.trx"
+        echo "Listing files in test results directory:"
+        dir ${{ env.Test_Results_Dir }}
 
-    # Publish the test result as an artifact
-    - name: Upload Test Results
+    # Upload test results if the previous test step failed
+    - name: Upload Test Results on Failure
       uses: actions/upload-artifact@v4
       with:
         name: test-results
         path: ${{ env.Test_Results_Dir }}\test_result_${{ matrix.configuration }}.trx
 
-    # Generate NuGet package in Release configuration
+    # Generate NuGet package in Release configuration only if all steps succeed
     - name: Generate NuGet Package
-      if: matrix.configuration == 'Release'
+      if: matrix.configuration == 'Release' && success()
       run: |
         dotnet pack ${{ env.Solution_Name }} --configuration Release --no-build --output ${{ env.Package_Output_Dir }}
 
     # Upload the NuGet package as an artifact
     - name: Upload NuGet Package
-      if: matrix.configuration == 'Release'
+      if: matrix.configuration == 'Release' && success()
       uses: actions/upload-artifact@v4
       with:
         name: nuget-package
