@@ -36,7 +36,7 @@ jobs:
 
     # Build the solution
     - name: Build
-      run: dotnet build ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }} --no-restore
+      run: dotnet build ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }}
 
     # Create test results directory
     - name: Create Test Results Directory
