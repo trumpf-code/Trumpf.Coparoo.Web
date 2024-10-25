@@ -44,7 +44,7 @@ jobs:
 
     # Execute all unit tests in the solution with detailed output
     - name: Execute unit tests
-      run: dotnet test ${{ env.Test_Project_Path }} --configuration ${{ matrix.configuration }} --verbosity normal --logger "trx;LogFileName=${{ env.Test_Results_Dir }}\test_result.trx"
+      run: dotnet test ${{ env.Test_Project_Path }} --configuration ${{ matrix.configuration }} --verbosity normal --logger "trx;LogFileName=${{ env.Test_Results_Dir }}\test_result_${{ matrix.configuration }}.trx"
 
     # Check if the test result file was created
     - name: Check Test Results
@@ -57,7 +57,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: test-results
-        path: ${{ env.Test_Results_Dir }}\test_result.trx
+        path: ${{ env.Test_Results_Dir }}\test_result_${{ matrix.configuration }}.trx
 
     # Generate NuGet package in Release configuration
     - name: Generate NuGet Package
