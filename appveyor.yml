@@ -1,7 +1,0 @@
-configuration: Release
-
-before_build:
-  - dotnet restore
-
-build_script:
-  - dotnet build Trumpf.Coparoo.Web.sln
