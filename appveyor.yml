@@ -1,5 +1,5 @@
 image:
-- Visual Studio 2017
+- Visual Studio 2022
 
 build:
   project: Trumpf.Coparoo.Web.sln
