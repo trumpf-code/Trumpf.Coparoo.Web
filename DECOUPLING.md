@@ -10,6 +10,7 @@ If both layers are separated, the test cases can be defined in another assembly 
 
 ![decoupling]
 ![Decoupling](./Resources/decoupling.png "coparoo web logo")
+![Decoupling](../Resources/decoupling.png "coparoo web logo")
 
 Thus, test cases and page object implementations are *decoupled*.
 
