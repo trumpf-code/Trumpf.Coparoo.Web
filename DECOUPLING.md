@@ -43,4 +43,4 @@ The tests and page objects can be decoupled via interfaces as follows:
    - Locate the tab object using the `TabObject.Resolve` method, e.g., `var tab = new MyTab()` becomes `var tab = TabObject.Resolve<IMyTab>()`.
    - Finally, ensure the page object assembly is available and loaded, e.g., via `Assembly.LoadFrom`, before tests are executed.
 
-[decoupling]: ./Resources/decoupling.png "coparoo web logo"
+[decoupling]: ../Resources/decoupling.png "coparoo web logo"
