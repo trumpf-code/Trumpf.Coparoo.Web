@@ -50,6 +50,7 @@ jobs:
 
     # Upload test results if the previous test step failed
     - name: Upload Test Results on Failure
+      if: failure()
       uses: actions/upload-artifact@v4
       with:
         name: test-results
