@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-latest
     env:
       Solution_Name: Trumpf.Coparoo.Web.sln
-      Test_Project_Path: Trumpf.Coparoo.Web.Tests\Trumpf.Coparoo.Web.Tests.csproj
+      Test_Project_Path: Trumpf.Coparoo.Web.Tests/Trumpf.Coparoo.Web.Tests.csproj
       Package_Output_Dir: ${{ github.workspace }}/artifacts
     steps:
     - name: Checkout
@@ -38,7 +38,8 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test
+      run: dotnet test ${{ env.Test_Project_Path }} --configuration ${{ matrix.configuration }} --no-build --verbosity normal --logger "trx;LogFileName=test_results.trx"
+
 
     # Generate NuGet package in Release configuration
     - name: Generate NuGet Package
