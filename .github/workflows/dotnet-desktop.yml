@@ -14,8 +14,10 @@ jobs:
     runs-on: windows-latest
     env:
       Solution_Name: Trumpf.Coparoo.Web.sln
-      Test_Project_Path: Trumpf.Coparoo.Web.Tests/Trumpf.Coparoo.Web.Tests.csproj
+      Test_Project_Path: Trumpf.Coparoo.Web.Tests\Trumpf.Coparoo.Web.Tests.csproj
       Package_Output_Dir: ${{ github.workspace }}/artifacts
+      Test_Results_Dir: ${{ github.workspace }}/test-results
+
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -28,27 +30,37 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
-    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    # Add MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v2
 
-   # Build the solution
+    # Build the solution
     - name: Build
-      run: dotnet build ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }}
+      run: dotnet build ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }} --no-restore
 
-    # Execute all unit tests in the solution
+    # Create test results directory
+    - name: Create Test Results Directory
+      run: mkdir -p ${{ env.Test_Results_Dir }}
+
+    # Execute all unit tests in the solution with detailed output
     - name: Execute unit tests
-      run: dotnet test ${{ env.Test_Project_Path }} --configuration ${{ matrix.configuration }} --no-build --verbosity normal --logger "trx;LogFileName=test_results.trx"
+      run: dotnet test ${{ env.Test_Project_Path }} --configuration ${{ matrix.configuration }} --no-build --verbosity normal --logger "trx;LogFileName=${{ env.Test_Results_Dir }}/test_result.trx"
+
+    # Check if the test result file was created
+    - name: Check Test Results
+      run: |
+        echo "Listing files in test results directory:"
+        dir ${{ env.Test_Results_Dir }}
 
     # Publish the test result as an artifact
     - name: Upload Test Results
       uses: actions/upload-artifact@v3
       with:
         name: test-results
-        path: test_result.trx
+        path: ${{ env.Test_Results_Dir }}/test_result.trx
 
     # Generate NuGet package in Release configuration
     - name: Generate NuGet Package
       if: matrix.configuration == 'Release'
       run: |
-        dotnet pack ${{ env.Solution_Name }} --configuration Release --output ${{ env.Package_Output_Dir }}
+        dotnet pack ${{ env.Solution_Name }} --configuration Release --no-build --output ${{ env.Package_Output_Dir }}
