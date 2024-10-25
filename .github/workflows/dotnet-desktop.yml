@@ -34,7 +34,7 @@ jobs:
 
    # Build the solution
     - name: Build
-      run: dotnet build ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }} --no-restore
+      run: dotnet build ${{ env.Solution_Name }} --configuration ${{ matrix.configuration }}
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
