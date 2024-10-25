@@ -4,6 +4,12 @@
     <TargetFrameworks>netstandard2.0;net462</TargetFrameworks>
     <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
 
+    <!-- debugging information -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <DebugType>embedded</DebugType>
+    <Optimize>false</Optimize>
+
     <!-- nupkg information -->
     <PackageId>Trumpf.Coparoo.Web</PackageId>
     <Title>Trumpf.Coparoo.Web Library for .NET</Title>
