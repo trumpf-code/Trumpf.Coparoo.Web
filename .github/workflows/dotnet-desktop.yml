@@ -15,7 +15,7 @@ jobs:
     env:
       Solution_Name: Trumpf.Coparoo.Web.sln
       Test_Project_Path: Trumpf.Coparoo.Web.Tests\Trumpf.Coparoo.Web.Tests.csproj
-      Package_Output_Dir: $(System.DefaultWorkingDirectory)/artifacts
+      Package_Output_Dir: ${{ github.workspace }}/artifacts
     steps:
     - name: Checkout
       uses: actions/checkout@v4
