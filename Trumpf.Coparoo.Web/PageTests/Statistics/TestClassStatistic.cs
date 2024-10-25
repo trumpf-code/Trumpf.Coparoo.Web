@@ -22,11 +22,36 @@ namespace Trumpf.Coparoo.Web.PageTests.Statistics
     using Trumpf.Coparoo.Web.Logging.Tree;
 
     /// <summary>
+    /// Extensions.
+    /// </summary>
+    internal static class TestClassStatisticExtensions
+    {
+        /// <summary>
+        /// Add test method statistic.
+        /// </summary>
+        /// <param name="source">Test class statistic to extended.</param>
+        /// <param name="other">Test method statistic to add.</param>
+        /// <returns>The extended test class statistics.</returns>
+        internal static void Add(this TestClassStatistic source, TestMethodStatistic other)
+        {
+            if (source.testClassStatistics.TryGetValue(other.MethodInfo, out TestMethodStatistics value))
+            {
+                source.testClassStatistics[other.MethodInfo] = value + other;
+            }
+            else
+            {
+                source.testClassStatistics.Add(other.MethodInfo, new TestMethodStatistics(other.MethodInfo) + other);
+            }
+        }
+    }
+
+
+    /// <summary>
     /// Test class statistics class.
     /// </summary>
     internal class TestClassStatistic
     {
-        private Dictionary<MethodInfo, TestMethodStatistics> testClassStatistics = new Dictionary<MethodInfo, TestMethodStatistics>();
+        internal Dictionary<MethodInfo, TestMethodStatistics> testClassStatistics = new Dictionary<MethodInfo, TestMethodStatistics>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TestClassStatistic"/> class.
@@ -94,26 +119,6 @@ namespace Trumpf.Coparoo.Web.PageTests.Statistics
             }
 
             return new TestClassStatistic(c1.Type) { testClassStatistics = r };
-        }
-
-        /// <summary>
-        /// Add test method statistic.
-        /// </summary>
-        /// <param name="c1">Test class statistic to extended.</param>
-        /// <param name="c2">Test method statistic to add.</param>
-        /// <returns>The extended test class statistics.</returns>
-        public static TestClassStatistic operator +(TestClassStatistic c1, TestMethodStatistic c2)
-        {
-            if (c1.testClassStatistics.TryGetValue(c2.MethodInfo, out TestMethodStatistics value))
-            {
-                c1.testClassStatistics[c2.MethodInfo] = value + c2;
-            }
-            else
-            {
-                c1.testClassStatistics.Add(c2.MethodInfo, new TestMethodStatistics(c2.MethodInfo) + c2);
-            }
-
-            return c1;
         }
 
         /// <summary>

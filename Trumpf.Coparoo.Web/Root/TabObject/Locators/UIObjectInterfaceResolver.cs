@@ -19,6 +19,7 @@ namespace Trumpf.Coparoo.Web
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Reflection;
 
     using Exceptions;
@@ -28,15 +29,14 @@ namespace Trumpf.Coparoo.Web
     /// </summary>
     internal class UIObjectInterfaceResolver : IUIObjectInterfaceResolver
     {
-        private readonly ITabObject rootObject;
-        private static ConcurrentDictionary<Type, Type> resolveCache = new ConcurrentDictionary<Type, Type>();
+        private static readonly ConcurrentDictionary<Type, Type> resolveCache = new ConcurrentDictionary<Type, Type>();
         private static Type[] controlTypesCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UIObjectInterfaceResolver"/> class.
         /// </summary>
-        /// <param name="rootObject">The process object.</param>
-        public UIObjectInterfaceResolver(ITabObject rootObject) => this.rootObject = rootObject;
+        public UIObjectInterfaceResolver()
+            => Expression.Empty();
 
         /// <summary>
         /// Resolve the control type.

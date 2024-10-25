@@ -26,7 +26,7 @@ namespace Trumpf.Coparoo.Web.Logging.Tree
     internal class Tree
     {
         private List<Node> nodes = new List<Node>();
-        private List<Edge> edges = new List<Edge>();
+        private readonly List<Edge> edges = new List<Edge>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tree"/> class.

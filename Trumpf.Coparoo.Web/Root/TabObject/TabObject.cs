@@ -45,7 +45,7 @@ namespace Trumpf.Coparoo.Web
             TabObjectNode n = new TabObjectNode { Creator = Creator };
             Init(null, n);
             pageObjectLocator = new PageObjectLocator(this);
-            objectInterfaceResolver = new UIObjectInterfaceResolver(this);
+            objectInterfaceResolver = new UIObjectInterfaceResolver();
 
             Configuration.PositiveWaitTimeout = TimeSpan.FromSeconds(0);
             Configuration.WaitTimeout = TimeSpan.FromMinutes(1);

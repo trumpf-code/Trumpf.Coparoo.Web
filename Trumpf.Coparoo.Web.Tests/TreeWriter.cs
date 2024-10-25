@@ -163,8 +163,6 @@ namespace Trumpf.Coparoo.Tests
                 public IEnumerable<Link> CosPublic => FindAll<Link>();
                 internal Link CoInternal => Find<Link>();
                 internal IEnumerable<Link> CosInternal => FindAll<Link>();
-                private Link CoPrivate => Find<Link>();
-                private IEnumerable<Link> CosPrivate => FindAll<Link>();
             }
 
             /// <summary>
@@ -219,8 +217,6 @@ namespace Trumpf.Coparoo.Tests
                 public IEnumerable<Link> CosPublic => FindAll<Link>();
                 internal Link CoInternal => Find<Link>();
                 internal IEnumerable<Link> CosInternal => FindAll<Link>();
-                private Link CoPrivate => Find<Link>();
-                private IEnumerable<Link> CosPrivate => FindAll<Link>();
             }
 
             /// <summary>

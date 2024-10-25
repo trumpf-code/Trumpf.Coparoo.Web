@@ -63,7 +63,7 @@ namespace Trumpf.Coparoo.Web.PageTests
         /// <param name="filter">The test method filter predicate.</param>
         /// <param name="treeBaseFilename">Tree file name.</param>
         /// <returns>This page object.</returns>
-        internal static Tree TestInternal(this IPageObject source, bool writeTree = false, Func<MethodInfo, Type, bool> filter = null, string treeBaseFilename = null) => Test(source, filter, writeTree, new PageObjectStatistics(), null);
+        internal static Tree TestInternal(this IPageObject source, bool writeTree = false, Func<MethodInfo, Type, bool> filter = null, string treeBaseFilename = null) => Test(source, filter, writeTree, new PageObjectStatistics(), treeBaseFilename);
 
         /// <summary>
         /// Run all tests with the <c>PageTestAttribute</c>.
@@ -125,7 +125,7 @@ namespace Trumpf.Coparoo.Web.PageTests
             {
                 foreach (Type classWithTests in source.TestClasses())
                 {
-                    Trace.WriteLine($"Found page test class for current class {source.GetType().ToString()}: {classWithTests.ToString()}");
+                    Trace.WriteLine($"Found page test class for current class {source.GetType()}: {classWithTests}");
 
                     // create and initialize page test class
                     IPageObjectTestsInternal instance;
@@ -256,7 +256,7 @@ namespace Trumpf.Coparoo.Web.PageTests
                 testMethod.Invoke(instance, null);
 
                 // add method statistics
-                testClassStatistic += new TestMethodStatistic() { MethodInfo = testMethod, Info = null, Start = startTimeForCurrentIteration, Success = true };
+                testClassStatistic.Add(new TestMethodStatistic() { MethodInfo = testMethod, Info = null, Start = startTimeForCurrentIteration, Success = true });
             }
             catch (Exception e)
             {
@@ -266,10 +266,10 @@ namespace Trumpf.Coparoo.Web.PageTests
                     exceptionForTrace = e.InnerException;
                 }
 
-                Trace.WriteLine($"Exception in page test {testMethod.Name}: {e.Message}{Environment.NewLine}{exceptionForTrace.StackTrace}{Environment.NewLine}{exceptionForTrace.ToString()}");
+                Trace.WriteLine($"Exception in page test {testMethod.Name}: {e.Message}{Environment.NewLine}{exceptionForTrace.StackTrace}{Environment.NewLine}{exceptionForTrace}");
 
                 // add method statistics
-                testClassStatistic += new TestMethodStatistic() { MethodInfo = testMethod, Info = e.GetType().Name, Start = startTimeForCurrentIteration, Success = false };
+                testClassStatistic.Add(new TestMethodStatistic() { MethodInfo = testMethod, Info = e.GetType().Name, Start = startTimeForCurrentIteration, Success = false });
 
                 ExceptionDispatchInfo.Capture(e.InnerException).Throw();
             }

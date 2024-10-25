@@ -184,7 +184,7 @@ namespace Trumpf.Coparoo.Web
                 }
             }
 
-            result = default(TPageObject);
+            result = default;
             return false;
         }
 
