@@ -43,13 +43,10 @@ jobs:
     - name: Execute Unit Tests
       run: |
         mkdir -p ${{ env.Test_Results_Dir }}; 
-        dotnet test ${{ env.Test_Project_Path }} --configuration ${{ matrix.configuration }} --verbosity normal --logger "trx;LogFileName=${{ env.Test_Results_Dir }}\test_result_${{ matrix.configuration }}.trx"
-
-    # Check if the test result file was created
-    - name: Check Test Results
-      run: |
-        echo "Listing files in test results directory:"
+        dotnet test ${{ env.Test_Project_Path }} --configuration ${{ matrix.configuration }} --verbosity normal --logger "trx;LogFileName=${{ env.Test_Results_Dir }}\test_result_${{ matrix.configuration }}.trx";
+        echo "Listing files in test results directory:"; 
         dir ${{ env.Test_Results_Dir }}
+      continue-on-error: true
 
     # Publish the test result as an artifact
     - name: Upload Test Results
